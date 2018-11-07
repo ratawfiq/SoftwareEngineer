@@ -1,0 +1,74 @@
+body
+{
+	background: url('images/ice.jpg') 100%;
+	background-size: cover;
+	font-family:tahoma;
+}
+.login_div	
+{
+	height: auto;
+	width: 300px;
+	box-shadow: 0px 6px 0px 0px #AEB1CC;
+	background: #fff;
+	margin: 10% auto;
+}
+.inputItems
+{
+	padding: 10px;
+	text-align: center;
+}
+.inputItems input  
+{
+	line-height: 20px;
+	width: 85%;
+	padding: 10px;
+	font-size: 14px;
+	font-weight: 800;
+}
+#password
+{
+	margin-top: -3px;
+}
+.createAAcount
+{
+	font-size: 11px;
+	color: #BDBDBD;
+	font-weight: 800;
+	text-align: left;
+	cursor: pointer;
+	
+}
+.topDis
+{
+	background: url('images/ice.jpg') 100%;
+	background-size: cover;
+}
+.shader
+{
+	width: 100%;
+	height: auto;
+	background: rgba(0, 50, 124, 0.59);
+	padding: 10px;
+	text-align: center;
+	box-sizing: border-box;
+	color:#fff;
+}
+.login
+{
+	width: 85%;
+	padding: 10px;
+	line-height: 30px;
+	background: rgb(0, 153, 255);
+	margin: 10px auto;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 3px;
+	box-shadow: 0px 4px 0px 0px #1688A5;
+}
+.forgot_pass
+{
+	font-size: 12px;
+	font-weight: 800;
+	color: #797979;
+	background: white;
+}
