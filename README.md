@@ -22,7 +22,7 @@ V1.0 - 11/06/18 - Qian:
 	Added fillDefaultAddress() to fill the entry fields with the stored address using the checkbox. Need to pull from database.
   Currently in our requirements, we need to automatically fill the entry fields with the address stored in the customer account.
   When we get the database retrieval working, we can fill (echo) the entry fields with those values, and get rid of the check box
-  Need to do google API call. If distance is greater than 15 miles, then send alert.
+ [FIXED] Need to do google API call. If distance is greater than 15 miles, then send alert.
  [FIXED] Checkbox and buttons are broken. Do I need to connect the .js file to the .html file somehow??
  
 	3. Sudocode for confirm page
@@ -48,5 +48,7 @@ V1.2 - 11/08/18 - Qian:
   1) 'customer landing page' - fixed the picture size, re-layout the option cards
   2) 'customer delivery address page' 
   	- fixed the checkbox function, optimized the page layout for different screen sizes
-	- TO BE FIXED: 'submit order' button, after clicking it the website will store all user data into website local cache, which seems overwhelm the website. Website cannot react with all storage strips loaded. If comment out couple strips, it will resume working. Need to figure out a better way to store the website data.
+	- added Google API to validate if delivery address is within 15 miles from restaraunt
+	- [TO BE ADDED:] need to add a function to validate customer input info. What if the 'city' is not a real city? Google API did not embet this error message from what I understand...
+	- [TO BE FIXED:] 'submit order' button, after clicking it the website will store all user data into website local cache, which seems overwhelm the website. Website cannot react with all storage strips loaded. If comment out couple strips, it will resume working. Need to figure out a better way to store the website data.
   
