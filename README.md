@@ -9,13 +9,13 @@ V1.0 - 11/06/18 - Qian:
       - each food price is supposed to read from database. Currently they are static in front end.
       - might want to rename all variables, i.e. qtyInput01, qty01, calQty01, temp, test, etc.
       
-  3) in 'customer landing page',
+  3) [FIXED] in 'customer landing page',
       - pic size needs to be identical
       
   4) 'delivery address page' and 'order confirmation page' need .js file
 
   v1.1 11/07/18 - Eric:
-  1. In IE, customer landing page buttons dont have same size.
+  1. [FIXED] In IE, customer landing page buttons dont have same size.
   
   2. In delivery address HTML, added id values to entry fields. When "Submit Order" is pressed, stored data to local storage.
 	Added fillDefaultAddress() to fill the entry fields with the stored address using the checkbox. Need to pull from database.
@@ -40,3 +40,8 @@ V1.0 - 11/06/18 - Qian:
 		Display food item name, ammount, price
 		
 	Display total price and estimated time
+	
+	
+V1.2 - 11/08/18 - Qian:
+
+  1) 'customer landing page' - fixed the picture size, re-layout the option cards
