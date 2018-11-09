@@ -49,6 +49,7 @@ function calculateSumPrice(){
 	var qty05=0;
 	qty05=document.getElementById("qtyInput05").value;
 	var tempQty05=0;
+	localStorage.tempQty05 = qty05;
 	var calQty05=0;
 	calQty05=localStorage.tempQty05;
 	
@@ -57,7 +58,7 @@ function calculateSumPrice(){
 	var tempQty06=0;
 	localStorage.tempQty06 = qty06;
 	var calQty06=0;
-	calQty03=localStorage.tempQty06;
+	calQty06=localStorage.tempQty06;
 	
 	var qty07=0;
 	qty07=document.getElementById("qtyInput07").value;
