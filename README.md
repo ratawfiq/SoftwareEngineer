@@ -4,13 +4,14 @@ V1.0 - 11/06/18 - Qian:
   
   2) in 'menu page', 
       - changed the type-in qty to selection box. System requiements need to be udpated accordingly.
-      - button #3 & #5 is not working now.
-      - total price of food #6 is not calculated correctly.
+      - [FIXED] button #3 & #5 is not working now.
+      - [FIXED] total price of food #6 is not calculated correctly.
       - each food price is supposed to read from database. Currently they are static in front end.
       - might want to rename all variables, i.e. qtyInput01, qty01, calQty01, temp, test, etc.
       
   3) [FIXED] in 'customer landing page',
       - pic size needs to be identical
+      - [TO BE FIXED] center cards
       
   4) [FIXED] 'delivery address page' needs .js file 
   5) 'order confirmation page' needs .js file
