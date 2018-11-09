@@ -1,13 +1,14 @@
 //check checkbox
 
-/*var defaultFirstName="John";
+var defaultFirstName="John";
 var defaultLastName="Doe";
 var defaultDeliveryAddress="3055 E Walton Blvd";
 var defaultCity="Auburn Hills"
-var defaultState=="MI"
+var defaultState="MI"
 var defaultZipCode="48326"
-var defaultPhoneNumber="555-555"
-var defaultEmail="test@gmail.com"*/
+var defaultPhoneNumber="555-555-5555"
+var defaultEmail="test@gmail.com"
+var defaultComments="no pepper"
 
 
 
@@ -17,15 +18,15 @@ function check_checkbox(){
 		//alert("checked");
 
 		
-		document.getElementById("firstName").value="defaultFirstName";
-		document.getElementById("lastName").value="defaultLastName";
-		document.getElementById("deliveryAddress").value="defaultDeliveryAddress";
-		document.getElementById("city").value="Auburn Hills";
-		document.getElementById("state").value="defaultState";
-		document.getElementById("zipCode").value="defaultZipCode";
-		document.getElementById("phoneNumber").value="defaultPhoneNumber";
-		document.getElementById("email").value="defaultEmail";
-		document.getElementById("comments").value="defaultComments";
+		document.getElementById("firstName").value=defaultFirstName;
+		document.getElementById("lastName").value=defaultLastName;
+		document.getElementById("deliveryAddress").value=defaultDeliveryAddress;
+		document.getElementById("city").value=defaultCity;
+		document.getElementById("state").value=defaultState;
+		document.getElementById("zipCode").value=defaultZipCode;
+		document.getElementById("phoneNumber").value=defaultPhoneNumber;
+		document.getElementById("email").value=defaultEmail;
+		document.getElementById("comments").value=defaultComments;
 	}else{
 		//alert("not checked");
 		document.getElementById("firstName").value="";
@@ -53,7 +54,7 @@ function cancelOrder(){
 
 
 function submitOrder(){
-	
+
 	//call google API to check 15mile delivery area
 	
 //NEED TO BE ADDED: validate customer input - what if it is not a valid city??
@@ -87,7 +88,7 @@ function submitOrder(){
 			
 			}else{
 			
-			alert("We can deliver to you!");
+			//alert("We can deliver to you!");
 			
 //When submitting an order, the data in the entry fields are saved.
 	
