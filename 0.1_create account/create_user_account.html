@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Create an user account</title>
+<link rel="stylesheet" href="create_user_account.css">
+</head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--bootstrap installation-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+<body>
+
+
+<!--title bar-->
+<div class="jumbotron jumbotron-fluid bg-warning text-white" style="background: #aaa;">
+	<div class="container">
+		<h1 class="display-3">ZEN Restaurant</h1>
+		<p class="lead"><em>For your breakfast, lunch and dinner</em></p>
+	</div>
+</div>
+    
+            
+<!--entry fields-->
+<div class="container-fluid">
+
+<div class="row">
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                  <div class="border-bottom font-size-menuCat"><em>Create an user account</em></div>
+                <br><br/>
+                
+				<div class="row">
+                    <div class="col-sm-3 col-md-2">
+                        <p class="font-card-info">Username</p>
+                    </div>
+                    <div class="col-sm-3 col-md-4">
+                        <input type="text" class="form-control" style="height:50px" id="account_username"/>
+						<p><small class="form-text text-muted">Username must have more than 6 characters, less than 30 characters, and contain both letters and numbers.</small></p>
+                    </div>
+					
+					<div class="col-sm-3 col-md-2">
+                        <p class="font-card-info">Password</p>
+                    </div>
+                    <div class="col-sm-3 col-md-4">
+                        <input type="text" class="form-control" style="height:50px" id="account_password"/>
+						<p><small class="form-text text-muted">Password must have more than 6 characters, less than 20 characters, and contain both uppercase letters, lowercase letters, and numbers.</small></p>
+                    </div>
+                </div>
+					
+                <div class="row">
+                    <div class="col-sm-3 col-md-2">
+                        <p class="font-card-info">First Name</p>
+                    </div>
+                    <div class="col-sm-3 col-md-4">
+                        <input type="text" class="form-control" style="height:50px" id="account_firstName"/>
+                    </div>
+         
+                    <div class="col-sm-3 col-md-2">
+                        <p class="font-card-info">Last Name</p>
+                    </div>
+                    <div class="col-sm-3 col-md-4">
+                        <input type="text" class="form-control" style="height:50px" id="account_lastName"/>
+                    </div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="col-sm-3 col-md-2">
+                        <p class="font-card-info">Address</p>
+                    </div>
+                    <div class="col-sm-3 col-md-4">
+                        <input type="text" class="form-control" style="height:50px" id="account_deliveryAddress"/>
+                    </div>
+					
+                    <div class="col-sm-3 col-md-2">
+                        <p class="font-card-info">City</p>
+                    </div>
+                    <div class="col-sm-3 col-md-4">
+                        <input type="text" class="form-control" style="height:50px" id="account_city"/>
+                    </div>
+                </div>
+				
+				
+				 <div class="row">
+                    <div class="col-sm-3 col-md-2">
+                        <p class="font-card-info">State</p>
+                    </div>
+                    <div class="col-sm-3 col-md-4">
+                        <input type="text" class="form-control" style="height:50px" id="account_state"/>
+                    </div>
+
+                    <div class="col-sm-3 col-md-2">
+                        <p class="font-card-info">Zip Code</p>
+                    </div>
+                    <div class="col-sm-3 col-md-4">
+                        <input type="text" class="form-control" style="height:50px" id="account_zipCode"/>
+                    </div>
+                </div>
+				
+                
+                 <div class="row">
+                    <div class="col-sm-3 col-md-2">
+                        <p class="font-card-info">Phone Number</p>
+                    </div>
+                    <div class="col-sm-3 col-md-4">
+                        <input type="text" class="form-control" style="height:50px" id="account_phoneNumber"/>
+                    </div>
+
+                    <div class="col-sm-3 col-md-2">
+                        <p class="font-card-info">Email</p>
+                    </div>
+                    <div class="col-sm-3 col-md-4">
+                        <input type="text" class="form-control" style="height:50px" id="account_email"/>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</div>
+    
+</div>  
+    
+    
+<div class="container-fluid">    
+    <div class="row">
+        <div class="col-md-6 col-sm-3"></div>
+		<div class="col-md-2 col-sm-3" align="right"><button type="button" class="btn btn-info" onclick="createAccount()">Create Account</button></div>
+        
+    </div>
+</div>
+    
+
+  
+<!--bottom bar-->
+<div class="alert sticky-bottom alert-dark text-center" role="alert">
+  	<p><small>&#174;2018. All Rights Reserved.</small></p>
+</div>
+
+
+
+<!--call js script-->
+
+<script type="text/javascript" src="create_user_account.js"></script> 
+
+
+
+
+
+
+</body>
+</html>
