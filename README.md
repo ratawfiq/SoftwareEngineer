@@ -55,8 +55,8 @@ V1.2 - 11/08/18 - Qian:
 
 v1.3 - 11/10/18 - Eric
 
-Created "Make a user account page"
+Created "Make a user account page".
 So far username and password validation works, but someone should double check
 Need to get google API check to work. Goal is to send a warning, but allow the user to make the account.
-Need to put call in to store data into database
+Need to put call in to store data into database.
 
