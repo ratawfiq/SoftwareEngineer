@@ -52,4 +52,11 @@ V1.2 - 11/08/18 - Qian:
 	- added Google API to validate if delivery address is within 15 miles from restaraunt
 	- [TO BE ADDED:] need to add a function to validate customer input info. What if the 'city' is not a real city? Google API did not embet this error message from what I understand...
 	- [TO BE FIXED:] 'submit order' button, after clicking it the website will store all user data into website local cache, which seems overwhelm the website. Website cannot react with all storage strips loaded. If comment out couple strips, it will resume working. Need to figure out a better way to store the website data.
-  
+
+v1.3 - 11/10/18 - Eric
+
+Created "Make a user account page"
+So far username and password validation works, but someone should double check
+Need to get google API check to work. Goal is to send a warning, but allow the user to make the account.
+Need to put call in to store data into database
+
