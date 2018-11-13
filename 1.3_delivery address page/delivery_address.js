@@ -26,7 +26,7 @@ function check_checkbox(){
 		document.getElementById("zipCode").value=defaultZipCode;
 		document.getElementById("phoneNumber").value=defaultPhoneNumber;
 		document.getElementById("email").value=defaultEmail;
-		document.getElementById("comments").value=defaultComments;
+		document.getElementById("comment").value=defaultComments;
 	}else{
 		//alert("not checked");
 		document.getElementById("firstName").value="";
@@ -37,7 +37,7 @@ function check_checkbox(){
 		document.getElementById("zipCode").value="";
 		document.getElementById("phoneNumber").value="";
 		document.getElementById("email").value="";
-		document.getElementById("comments").value="";
+		document.getElementById("comment").value="";
 	}	
 }
 
@@ -48,17 +48,40 @@ function editOrder(){
 }
 
 function cancelOrder(){
-    window.open("../1.1_landing page/customer_landing_page.html");
+    window.open("../1.0_landing page/customer_landing_page.html");
 }
 
 
 
 function submitOrder(){
 
-	//call google API to check 15mile delivery area
+//call google API to check 15mile delivery area
+
 	
 //NEED TO BE ADDED: validate customer input - what if it is not a valid city??
 //might consider 'city + state + zip code'
+//NEED TO BE ADDED: make sure there is no blank boxes before submit order	
+	
+	var nonBlank=false;
+	nonBlank=document.getElementById("firstName").value!="" 
+	&& document.getElementById("lastName").value!=""
+	&& document.getElementById("deliveryAddress").value!=""
+	&& document.getElementById("city").value!=""
+	&& document.getElementById("state").value!=""
+	&& document.getElementById("zipCode").value!=""
+	&& document.getElementById("phoneNumber").value!="";
+	
+	
+	var phoneNumberValidation=false;
+	var phoneNumberDigit=0;
+	phoneNumberDigit=document.getElementById("phoneNumber").value.length;
+	if(phoneNumberDigit==12){
+		phoneNumberValidation=true;
+	}
+	
+	if(nonBlank && phoneNumberValidation){
+	//alert("passed");
+	
 	var origin = document.getElementById("city").value;
 	var destination = 'Rochester Hills, MI, USA';
 	var service = new google.maps.DistanceMatrixService;
@@ -92,7 +115,7 @@ function submitOrder(){
 			
 //When submitting an order, the data in the entry fields are saved.
 	
-			/*var firstNameValue=0;
+			var firstNameValue=0;
 			firstNameValue=document.getElementById("firstName").value;
 			var storedFirstName=0;
 			localStorage.storedFirstName = firstNameValue;
@@ -101,7 +124,7 @@ function submitOrder(){
 			lastNameValue=document.getElementById("lastName").value;
 			var storedLastName=0;
 			localStorage.storedLastName = lastNameValue;
-			
+
 			var deliveryAddressValue=0;
 			deliveryAddressValue=document.getElementById("deliveryAddress").value;
 			var storedDeliveryAddress=0;
@@ -131,13 +154,12 @@ function submitOrder(){
 			emailValue=document.getElementById("email").value;
 			var storedEmail=0;
 			localStorage.storedEmail = emailValue;
-			
+		
 			var commentValue=0;
 			commentValue=document.getElementById("comment").value;
 			var storedComment=0;
-			localStorage.storedComment = commentValue;*/
-			
-			//Function for calling google API and checking distance. If it is illegal, send alert and end. Else go to next page.
+			localStorage.storedComment = commentValue;
+		
 
 			window.open("../1.4_order confirmation page/order_confirmation.html");
 			
@@ -147,6 +169,9 @@ function submitOrder(){
 		}
 	  }
 	});
+	}else{
+	alert("Please fill in full delivery address and follow the phone number format.");
+	}
 	
 
 }
