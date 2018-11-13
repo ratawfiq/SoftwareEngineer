@@ -1,8 +1,5 @@
-//to be fixed:
-//button #3,5 not working
-//total price of #6 is not calculated correctly???
 
-
+//function to calculate the total price
 function calculateSumPrice(){
 	var price01=7;
 	var price02=10;
@@ -30,8 +27,6 @@ function calculateSumPrice(){
 	var calQty02=0;
 	calQty02=localStorage.tempQty02;
 	
-
-
 	var qty03=0;
 	qty03=document.getElementById("qtyInput03").value;
 	var tempQty03=0;
@@ -84,7 +79,7 @@ function calculateSumPrice(){
 
 	sumPrice=price01*calQty01+price02*calQty02+price03*calQty03+price04*calQty04+price05*calQty05+price06*calQty06+price07*calQty07+price08*calQty08+price09*calQty09;
 	
-	//add tax
+	//add 6% tax
 	var taxRate=1.06;
 	actualPrice=taxRate*sumPrice;
 	actualPrice=actualPrice.toFixed(2);
@@ -96,12 +91,8 @@ function calculateSumPrice(){
 	  
 }
 
-function placeOrder(){
-	
-	window.open("../1.3_delivery address page/delivery_address.html");
-	
-}
 
+//all '+/-' buttons
 function plusButton1(){
 
     var i=0;
@@ -316,7 +307,7 @@ function minusButton9(){
 
 
 
-//re-calculate the sum price if customer select different food qty
+//listen to the food qty change, and call 'calcualteSumPrice()' function
 function changeEventHandler(event) {
     calculateSumPrice(); 
 }
@@ -360,4 +351,10 @@ document.addEventListener('DOMContentLoaded',function() {
 
 
 
+//jump page
+function placeOrder(){
+	
+	window.open("../1.3_delivery address page/delivery_address.html");
+	
+}
 
