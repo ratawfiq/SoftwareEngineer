@@ -1,0 +1,31 @@
+.row div{padding: 20px}
+.center-vertical-description{
+position: relative;
+top: -5%;
+transform: translateY(-0%);
+}
+.center-vertical-price{
+position: relative;
+top: 5%;
+transform: translateY(+15%);
+}
+.center-vertical-button{
+position: relative;
+top: 10%;
+transform: translateY(+6%);
+}
+.center-vertical-qty{
+position: relative;
+top: 10%;
+transform: translateY(+15%);
+}
+.custom-width {
+width: 38px !important;
+}
+.color-change {
+background-color: #FFFFFF
+}
+.font-size-menuCat{
+font-size:160%;
+text-align:left;
+}
