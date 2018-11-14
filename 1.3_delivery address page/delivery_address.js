@@ -42,13 +42,24 @@ function check_checkbox(){
 }
 
 
+//function readData(){
+	//document.getElementById("qtyInput01").innerHTML=localStorage.getItem("storedQty01");
+//}
+
+
+
+
 
 function editOrder(){
+	
 	window.open("../1.2_menu page/menu.html");
+	//readData();
+	
 }
 
 function cancelOrder(){
     window.open("../1.0_landing page/customer_landing_page.html");
+
 }
 
 
@@ -60,7 +71,7 @@ function submitOrder(){
 	
 //NEED TO BE ADDED: validate customer input - what if it is not a valid city??
 //might consider 'city + state + zip code'
-//NEED TO BE ADDED: make sure there is no blank boxes before submit order	
+
 	
 	var nonBlank=false;
 	nonBlank=document.getElementById("firstName").value!="" 
@@ -112,6 +123,8 @@ function submitOrder(){
 			}else{
 			
 			//alert("We can deliver to you!");
+
+
 			
 //When submitting an order, the data in the entry fields are saved.
 	
