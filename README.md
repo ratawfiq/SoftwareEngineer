@@ -1,20 +1,20 @@
 V1.0 - 11/06/18 - Qian:
 
-  1) need a seperate 'view menu page'
+  1) [FIXED]need a seperate 'view menu page'
   
   2) in 'menu page', 
-      - changed the type-in qty to selection box. System requiements need to be udpated accordingly.
+      - [NOT VALID ANY MORE] changed the type-in qty to selection box. System requiements need to be udpated accordingly.
       - [FIXED] button #3 & #5 is not working now.
       - [FIXED] total price of food #6 is not calculated correctly.
       - each food price is supposed to read from database. Currently they are static in front end.
       - might want to rename all variables, i.e. qtyInput01, qty01, calQty01, temp, test, etc.
       
   3) [FIXED] in 'customer landing page',
-      - pic size needs to be identical
-      - [TO BE FIXED] center cards
+      - [FIXED]pic size needs to be identical
+      - [FIXED] center cards
       
   4) [FIXED] 'delivery address page' needs .js file 
-  5) 'order confirmation page' needs .js file
+  5) [FIXED]'order confirmation page' needs .js file
 
   v1.1 11/07/18 - Eric:
   1. [FIXED] In IE, customer landing page buttons dont have same size.
@@ -46,12 +46,12 @@ V1.0 - 11/06/18 - Qian:
 	
 V1.2 - 11/08/18 - Qian:
 
-  1) 'customer landing page' - fixed the picture size, re-layout the option cards
+  1) [FIXED]'customer landing page' - fixed the picture size, re-layout the option cards
   2) 'customer delivery address page' 
-  	- fixed the checkbox function, optimized the page layout for different screen sizes
-	- added Google API to validate if delivery address is within 15 miles from restaraunt
+  	- [FIXED]fixed the checkbox function, optimized the page layout for different screen sizes
+	- [FIXED]added Google API to validate if delivery address is within 15 miles from restaraunt
 	- [TO BE ADDED:] need to add a function to validate customer input info. What if the 'city' is not a real city? Google API did not embet this error message from what I understand...
-	- [TO BE FIXED:] 'submit order' button, after clicking it the website will store all user data into website local cache, which seems overwhelm the website. Website cannot react with all storage strips loaded. If comment out couple strips, it will resume working. Need to figure out a better way to store the website data.
+	- [FIXED] 'submit order' button, after clicking it the website will store all user data into website local cache, which seems overwhelm the website. Website cannot react with all storage strips loaded. If comment out couple strips, it will resume working. Need to figure out a better way to store the website data.
 
 v1.3 - 11/10/18 - Eric
 
@@ -60,3 +60,12 @@ So far username and password validation works, but someone should double check
 Need to get google API check to work. Goal is to send a warning, but allow the user to make the account.
 Need to put call in to store data into database.
 
+v1.4 - 11/14/18 - Qian：
+
+	1) in the 'menu' page, change the selection box back to type in box
+	2) fixed the sum price calculation
+	3) added the function, as long as the customer clicks the 'edit order', page go back to menu page and show the previous food qty which customer selected
+	4) add the view menu page
+	5) fixed the bug on the landing page
+	6) [TO BE FIXED] reformat the confirmation page, it is too ugly now
+	7) [TO BE FIXED] update the estimate function in the confirmation page. It is just a static display now.
