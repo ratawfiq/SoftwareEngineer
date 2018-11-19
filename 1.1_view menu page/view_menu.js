@@ -1,13 +1,8 @@
 function startANewOrder(){
 
-	window.open("../1.2_menu page/menu.html");
+	window.open("../1.2_order page/order.html", "_self");
 }
 
-function placeOrder(){
-	
-	window.open("../1.3_delivery address page/delivery_address.html");
-	
-}
 
 
 
