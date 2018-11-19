@@ -67,9 +67,14 @@ v1.4 - 11/14/18 - Qian：
 	3) added the function, as long as the customer clicks the 'edit order', page go back to menu page and show the previous food qty which customer selected
 	4) add the view menu page
 	5) fixed the bug on the landing page
-	6) [TO BE FIXED] reformat the confirmation page, it is too ugly now
-	7) [TO BE FIXED] update the estimate function in the confirmation page. It is just a static display now.
+	6) [TO BE FIXED] reformat the confirmation page, it is too ugly now. need to add the title bar.
+	7) [TO BE FIXED] update the estimate function in the confirmation page. It is a dummy number reading from JS now.
 
 v.1.5 - 11/18/18 -Eric
 1. Added updated login and create account pages. Still need to debug. Also added owner landing page, but need backend.
 2. added test folder with .php files. Look at displayFood.html, displayFood.js, and JSONfood.php
+
+v1.6 - 11/19/18 - Qian
+	1) add the function to clean the web local storage after customer clicks 'submit order' button
+	2) update the window.open feature to replace the current window without generating the addtional tabs
+	3) rename the 'menu_page' to 'order_page'
