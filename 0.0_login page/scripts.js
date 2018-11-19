@@ -25,7 +25,7 @@ var login={
 	{
 		if(this.$email.val()=="" && this.$password.val()=="")
 		{
-			errors.push("please enter all feilds correctly");
+			errors.push("Please enter all fields correctly");
 			$login_div.addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
 				$(this).removeClass('animated shake');
 				

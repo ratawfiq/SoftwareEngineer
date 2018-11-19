@@ -1,8 +1,8 @@
 body
 {
-	background: url('images/ice.jpg') 100%;
+	background: url('images/burger.jpg') 100%;
 	background-size: cover;
-	font-family:tahoma;
+	font-family:menuCat;
 }
 .login_div	
 {
@@ -31,7 +31,7 @@ body
 }
 .createAAcount
 {
-	font-size: 11px;
+	font-size: 14px;
 	color: #BDBDBD;
 	font-weight: 800;
 	text-align: left;
@@ -40,7 +40,7 @@ body
 }
 .topDis
 {
-	background: url('images/ice.jpg') 100%;
+	background: url('images/burger.jpg') 100%;
 	background-size: cover;
 }
 .shader
@@ -71,4 +71,13 @@ body
 	font-weight: 800;
 	color: #797979;
 	background: white;
+}
+.button {
+    background-color: #3c5dff;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
 }
