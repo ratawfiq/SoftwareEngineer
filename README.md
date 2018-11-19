@@ -69,3 +69,7 @@ v1.4 - 11/14/18 - Qian：
 	5) fixed the bug on the landing page
 	6) [TO BE FIXED] reformat the confirmation page, it is too ugly now
 	7) [TO BE FIXED] update the estimate function in the confirmation page. It is just a static display now.
+
+v.1.5 - 11/18/18 -Eric
+1. Added updated login and create account pages. Still need to debug. Also added owner landing page, but need backend.
+2. added test folder with .php files. Look at displayFood.html, displayFood.js, and JSONfood.php
