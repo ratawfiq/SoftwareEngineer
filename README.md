@@ -75,6 +75,7 @@ v.1.5 - 11/18/18 -Eric
 2. added test folder with .php files. Look at displayFood.html, displayFood.js, and JSONfood.php
 
 v1.6 - 11/19/18 - Qian
+
 	1) add the function to clean the web local storage after customer clicks 'submit order' button
 	2) update the window.open feature to replace the current window without generating the addtional tabs
 	3) rename the 'menu_page' to 'order_page'
