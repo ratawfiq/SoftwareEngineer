@@ -1,5 +1,5 @@
 function cancelOrder(){
-    window.open("menu.html");
+    window.open("../1.0_landing page/customer_landing_page.html", "_self");
 }
 
 var orderFoodName = ["Classic Quarter Chicken Dinner", "Half Chicken Dinner", "Double Leg Dinner", "Quarter Chicken & Shrimp Dinner", "VEGGIE Pizza", "BBQ Chicken Pizza", "HAWAIIAN Beef Pizza", "Crispy Chicken Sandwiches", "Gourmet Cheeseburger Sandwiches"];
@@ -41,4 +41,18 @@ function displayOrder() {
     document.getElementById("orderFoodName").innerHTML = tempOrderFoodName;
 	document.getElementById("orderFoodQty").innerHTML = tempOrderFoodQty;
 	document.getElementById("orderFoodPrice").innerHTML = tempOrderFoodPrice;
+}
+
+
+
+
+function submitOrder(){
+
+// TO BE ADDED - save everything to database
+// then clean the web storage
+
+
+	window.open("../1.0_landing page/customer_landing_page.html", "_self");
+	localStorage.clear();
+
 }
