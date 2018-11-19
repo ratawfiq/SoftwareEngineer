@@ -1,5 +1,7 @@
 //Created by Eric Cai on 11/10/18
 
+//global variable to pass URL between functions
+var protoURL;
 function createAccount(){
 	var accountUsername="Default";
 	accountUsername=document.getElementById("account_username").value;
@@ -46,7 +48,7 @@ function createAccount(){
 	var pass_no_lowercase=true;
 	var pass_no_num=true;
 	
-	var pass_error=false; //If the password is incorrect, it sets this to true to sent an alert
+	var pass_error=false; //If the password is incorrect, it sets this to true to send an alert
 
 	if (accountPassword.length < 6) {
         pass_too_short=false;	
@@ -76,7 +78,6 @@ function createAccount(){
 	}
 
 	//Pulls data from entry fields
-	
 	var accountFirstNameValue="";
 	accountFirstNameValue=document.getElementById("account_firstName").value;	
 	
@@ -102,10 +103,31 @@ function createAccount(){
 	accountEmailValue=document.getElementById("account_email").value;
 
 	
-	var accountDistance="";
-	var accountDuration="";
+	//Variables to send to database:
+	//accountUsername, accountPassword
+	//accountFirstNameValue, accountLastNameValue, accountUserAddressValue, accountCityValue, accountStateValue, accountZipCodeValue, accountPhoneNumberValue, accountEmailValue, accountDuration, accountDistance	
+	//accountDistance, accountDuration
 	
-	//Call google API to check 15 mile delivery area (TBD)
+	//Encoding the data so that it can be sent through URL to the .php file
+	var encodeUsername=encodeURIComponent(accountUsername);
+	var encodePassword=encodeURIComponent(accountPassword);
+	var encodeFirstNameValue=encodeURIComponent(accountFirstNameValue);
+	var encodeLastNameValue=encodeURIComponent(accountLastNameValue);
+	var encodeUserAddressValue=encodeURIComponent(accountUserAddressValue);
+	var encodeCityValue=encodeURIComponent(accountCityValue);
+	var encodeStateValue=encodeURIComponent(accountStateValue);
+	var encodeZipCodeValue=encodeURIComponent(accountZipCodeValue);
+	var encodePhoneNumberValue=encodeURIComponent(accountPhoneNumberValue);
+	var encodeEmailValue=encodeURIComponent(accountEmailValue);
+	
+	
+	//---------------------------------------
+	//Section to send user account data to database.
+	var PageToSendTo = "create_user_account.php?"; //In google call, will add distance and duration
+	var VariablePlaceholder = "username="+encodeUsername+"&password="+encodePassword+"&firstname="+encodeFirstNameValue+"&lastname="+encodeLastNameValue+"&address="+encodeUserAddressValue+"&city="+encodeCityValue+"&state="+encodeStateValue+"&zipcode="+encodeZipCodeValue+"&email="+encodeEmailValue+"&phonenumber="+encodePhoneNumberValue+"&userrole=cust"+"&userstatus=good";
+	protoURL = PageToSendTo + VariablePlaceholder;	
+	
+	//Call google API to check 15 mile delivery area. Need to do database storage in Google callback due to distance matrix being an asynchronous call
 	var origin = accountUserAddressValue+" "+accountCityValue+" "+accountStateValue+" "+accountZipCodeValue;
 	var destination = '118 Library Dr, Rochester, MI 48309'; //Location of restaurant
 
@@ -117,9 +139,17 @@ function createAccount(){
 	  unitSystem: google.maps.UnitSystem.metric,
 	  avoidHighways: false,
 	  avoidTolls: false
-	}, function(response, status) {
+	}, callback);
+	
+	
+	window.open("../0.0_login page/login.html", '_self');	
+}
+function callback(response, status) {
+
+	var accountDistance=0;
+	var accountDuration=0;
+	
 	if (status !== 'OK') {
-	  
 		alert('Error was: ' + status);
 	} else {
 		var originList = response.originAddresses;
@@ -129,27 +159,34 @@ function createAccount(){
 		
 			var results = response.rows[i].elements;
 			for (var j = 0; j < results.length; j++) {
-		  
-				if (results[j].distance.value>24140){ 
-				//Google API only uses meter for result.distance.value
-					alert("Your address is greater than 15 miles from the restaurant. Your account will still be created.");
-				}
-				accountDistance=results[j].distance.value;
+				accountDistance=results[j].distance.value; //Since we are only inputting one locations, we should be getting only 1 set of results
 				accountDuration=results[j].duration.value;
-			}
+				var r;
+				if (accountDistance>24140){ //Google API using meter for result.distance.value
+					//Confirmation boxes
+					r = confirm("Your address is greater than 15 miles from the restaurant. Continue creating account?");
+					if (r==false){
+						return; //If cancel is pressed, returns and user can change data
+					}
+				} else {
+					r=confirm("Confirm account creation?");
+					if (r==false){
+						return;
+					}
+				}
+			}//makes final URL and sends data to PHP file
+			finalURL=protoURL+"&userlocationdistance="+accountDistance+"&userlocationtime="+accountDuration;
+			sendData(finalURL);
 		}
 	}
-	});
-	
-	//Variables to send to database:
-	//accountFirstNameValue, accountLastNameValue, accountUserAddressValue, accountCityValue, accountStateValue, accountZipCodeValue, accountPhoneNumberValue, accountEmailValue, accountDuration, accountDistance	
-
-
-	//---------------------------------------
-	//Section to send user account data to database
-	//Remember to grab locally stored distance and duration to send to customer account, on top of entered data.
-	//----------------------------------------
-	//window.open("../0.0_login page/login.html", '_self');
-
-	
+}
+function sendData(url){
+if (window.XMLHttpRequest){
+		xmlhttp=new XMLHttpRequest();
+	}
+	else{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.open("GET", url, false);
+	xmlhttp.send();
 }
