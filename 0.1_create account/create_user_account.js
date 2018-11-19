@@ -1,7 +1,6 @@
 //Created by Eric Cai on 11/10/18
 
 function createAccount(){
-
 	var accountUsername="Default";
 	accountUsername=document.getElementById("account_username").value;
 
@@ -77,78 +76,80 @@ function createAccount(){
 	}
 
 	//Pulls data from entry fields
-	var accountFirstNameValue=0;
+	
+	var accountFirstNameValue="";
 	accountFirstNameValue=document.getElementById("account_firstName").value;	
 	
-	var accountLastNameValue=0;
-	accountLastNameValue=document.getElementById("aaccount_lastName").value;
+	var accountLastNameValue="";
+	accountLastNameValue=document.getElementById("account_lastName").value;
 			
-	var accountDeliveryAddressValue=0;
+	var accountDeliveryAddressValue="";
 	accountUserAddressValue=document.getElementById("account_userAddress").value;
 
-	var accountCityValue=0;
+	var accountCityValue="";
 	accountCityValue=document.getElementById("account_city").value;
 	
-	var accountStateValue=0;
+	var accountStateValue="";
 	accountStateValue=document.getElementById("account_state").value;
 			
-	var accountZipCodeValue=0;
+	var accountZipCodeValue="";
 	accountZipCodeValue=document.getElementById("account_zipCode").value;
 			
-	var accountPhoneNumberValue=0;
+	var accountPhoneNumberValue="";
 	accountPhoneNumberValue=document.getElementById("account_phoneNumber").value;
 			
-	var accountEmailValue=0;
+	var accountEmailValue="";
 	accountEmailValue=document.getElementById("account_email").value;
 
-	//Call google API to check 15 mile delivery area
 	
-	//NEED TO BE ADDED: validate customer input - what if it is not a valid city??
-
+	var accountDistance="";
+	var accountDuration="";
+	
+	//Call google API to check 15 mile delivery area (TBD)
 	var origin = accountUserAddressValue+" "+accountCityValue+" "+accountStateValue+" "+accountZipCodeValue;
-	var destination = '118 Library Dr, Rochester, MI 48309'; //Location of restuarant
+	var destination = '118 Library Dr, Rochester, MI 48309'; //Location of restaurant
+
 	var service = new google.maps.DistanceMatrixService;
 	service.getDistanceMatrix({
-	  origins: [origin]
-	  destinations: [destination]
+	  origins: [origin],
+	  destinations: [destination],
 	  travelMode: 'DRIVING',
 	  unitSystem: google.maps.UnitSystem.metric,
 	  avoidHighways: false,
 	  avoidTolls: false
-	}, callback(response, status){
-		
-	function callback(response, status) {
-		if (status !== 'OK') {
+	}, function(response, status) {
+	if (status !== 'OK') {
+	  
 		alert('Error was: ' + status);
-		}
-		else{
+	} else {
 		var originList = response.originAddresses;
 		var destinationList = response.destinationAddresses;
-		
+	  
 		for (var i = 0; i < originList.length; i++) {
+		
 			var results = response.rows[i].elements;
 			for (var j = 0; j < results.length; j++) {
-				var element=results[j];
-				var distance=element.distance.text;
-				var duration=element.duration.text;
-				var from = originList[i];
-				var to = destinationList[j];
+		  
+				if (results[j].distance.value>24140){ 
+				//Google API only uses meter for result.distance.value
+					alert("Your address is greater than 15 miles from the restaurant. Your account will still be created.");
+				}
+				accountDistance=results[j].distance.value;
+				accountDuration=results[j].duration.value;
 			}
-		  }
 		}
-		if (destinationList[0]>24140){ 
-			//Google API only uses meter for result.distance.value
-			alert("Your address is greater than 15 miles from the restaurant.");
-		}
-//alert("We can deliver to you!");
+	}
+	});
+	
+	//Variables to send to database:
+	//accountFirstNameValue, accountLastNameValue, accountUserAddressValue, accountCityValue, accountStateValue, accountZipCodeValue, accountPhoneNumberValue, accountEmailValue, accountDuration, accountDistance	
 
 
 	//---------------------------------------
 	//Section to send user account data to database
-	
+	//Remember to grab locally stored distance and duration to send to customer account, on top of entered data.
 	//----------------------------------------
-
-	//window.open("../0.0_login page/login.html");
+	//window.open("../0.0_login page/login.html", '_self');
 
 	
 }

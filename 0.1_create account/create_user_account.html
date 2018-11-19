@@ -44,7 +44,7 @@
                         <p class="font-card-info">Username</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="account_username"/>
+                        <input type="text" class="form-control" style="height:50px" id="account_username" />
 						<p><small class="form-text text-muted">Username must have more than 6 characters, less than 30 characters, and contain both letters and numbers.</small></p>
                     </div>
 					
@@ -52,7 +52,7 @@
                         <p class="font-card-info">Password</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="account_password"/>
+                        <input type="text" class="form-control" style="height:50px" id="account_password" />
 						<p><small class="form-text text-muted">Password must have more than 6 characters, less than 20 characters, and contain both uppercase letters, lowercase letters, and numbers.</small></p>
                     </div>
                 </div>
@@ -62,14 +62,14 @@
                         <p class="font-card-info">First Name</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="account_firstName"/>
+                        <input type="text" class="form-control" style="height:50px" id="account_firstName" />
                     </div>
          
                     <div class="col-sm-3 col-md-2">
                         <p class="font-card-info">Last Name</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="account_lastName"/>
+                        <input type="text" class="form-control" style="height:50px" id="account_lastName" />
                     </div>
                 </div>
                 
@@ -79,14 +79,14 @@
                         <p class="font-card-info">Address</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="account_deliveryAddress"/>
+                        <input type="text" class="form-control" style="height:50px" id="account_userAddress" />
                     </div>
 					
                     <div class="col-sm-3 col-md-2">
                         <p class="font-card-info">City</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="account_city"/>
+                        <input type="text" class="form-control" style="height:50px" id="account_city" />
                     </div>
                 </div>
 				
@@ -96,14 +96,14 @@
                         <p class="font-card-info">State</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="account_state"/>
+                        <input type="text" class="form-control" style="height:50px" id="account_state" />
                     </div>
 
                     <div class="col-sm-3 col-md-2">
                         <p class="font-card-info">Zip Code</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="account_zipCode"/>
+                        <input type="text" class="form-control" style="height:50px" id="account_zipCode" />
                     </div>
                 </div>
 				
@@ -113,14 +113,14 @@
                         <p class="font-card-info">Phone Number</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="account_phoneNumber"/>
+                        <input type="text" class="form-control" style="height:50px" id="account_phoneNumber" />
                     </div>
 
                     <div class="col-sm-3 col-md-2">
                         <p class="font-card-info">Email</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="account_email"/>
+                        <input type="text" class="form-control" style="height:50px" id="account_email" />
                     </div>
                 </div>
                 
@@ -137,13 +137,12 @@
     
 <div class="container-fluid">    
     <div class="row">
-        <div class="col-md-6 col-sm-3"></div>
-		<div class="col-md-2 col-sm-3" align="right"><button type="button" class="btn btn-info" onclick="createAccount()">Create Account</button></div>
+		<div class="col-md-6 col-sm-3"><a href="../0.0_login page/login.html" class="btn btn-info" align="left">Back to Login</a></div>
+		<div class="col-md-2 col-sm-3" align="right"><button type="button" class="btn btn-info" onclick="createAccount()" >Create Account</input></div>
         
     </div>
 </div>
     
-
   
 <!--bottom bar-->
 <div class="alert sticky-bottom alert-dark text-center" role="alert">
@@ -155,6 +154,7 @@
 <!--call js script-->
 
 <script type="text/javascript" src="create_user_account.js"></script> 
+<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyA2TMNF1bewLerQgvelJwKPu1xkAMZbz7c"></script>
 
 
 
