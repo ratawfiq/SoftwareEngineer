@@ -52,13 +52,13 @@ function check_checkbox(){
 
 function editOrder(){
 	
-	window.open("../1.2_menu page/menu.html");
+	window.open("../1.2_order page/order.html", "_self");
 	//readData();
 	
 }
 
 function cancelOrder(){
-    window.open("../1.0_landing page/customer_landing_page.html");
+    window.open("../1.0_landing page/customer_landing_page.html", "_self");
 
 }
 
