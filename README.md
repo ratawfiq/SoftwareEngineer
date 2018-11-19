@@ -79,3 +79,6 @@ v1.6 - 11/19/18 - Qian
 	1) add the function to clean the web local storage after customer clicks 'submit order' button
 	2) update the window.open feature to replace the current window without generating the addtional tabs
 	3) rename the 'menu_page' to 'order_page'
+v1.7 - 11/19/18 -Eric
+	1. Create user account is finished. Am able to store data on database
+
