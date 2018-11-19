@@ -3,8 +3,9 @@ function loginCheck(){
 	var username_input="Default"
 	var password_input="Default"
 	
-	username_input=document.getElementById("username").value;
-	password_input=document.getElementById("password").value;
+	//Need to URL encode because stored data is in URL format
+	username_input=encodeURIComponent(document.getElementById("username").value);
+	password_input=encodeURIComponent(document.getElementById("password").value);
 	
 	if (username_input=="" || password_input==""){
 		alert("Please fill all fields correctly");
@@ -19,7 +20,7 @@ function loginCheck(){
 	if(oReq.status===200) {
         //This is where you handle what to do with the response.
         //The actual data is found on this.responseText
-        details=oReq.responseText; //Will alert: 42
+        details=oReq.responseText;
     };
    
 	//alert(details);

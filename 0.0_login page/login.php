@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT Username, Password FROM fooddeliveryservice.user_account_data";
+$sql = "SELECT Username, Password, UserStatus FROM fooddeliveryservice.user_account_data";
 $result = $conn->query($sql);
 
 //Checks to see if the query is built right
@@ -25,7 +25,7 @@ $i=0;
 if ($result->num_rows > 0) {
     // get data of each row
 	while($row = $result->fetch_assoc()) {
-        $userDetails[$i]= array('Usernames'=>$row["Username"], 'Passwords'=>$row["Password"]);
+        $userDetails[$i]= array('Usernames'=>$row["Username"], 'Passwords'=>$row["Password"], 'UserStatus'=>$row["UserStatus"]);
 		$i++;
 	}
 } else {
