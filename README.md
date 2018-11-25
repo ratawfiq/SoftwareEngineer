@@ -81,4 +81,16 @@ v1.6 - 11/19/18 - Qian
 	3) rename the 'menu_page' to 'order_page'
 v1.7 - 11/19/18 -Eric
 	1. Create user account is finished. Am able to store data on database
+v1.8 - 11/25/18
+1. Fixed login and create account. In login I make a database call to check if the username is valid. In create account, a customer cannot use a username if it is already in the database.
+2. Edited making an order confirmation page. Made PHP files to pull food details, pull latest order details, store order details, and store food item details. Added functions to send data to database, find order details, finding food details. Updated displayOrder() so that it will use database data. Am able to find the largest orderID and greatest foodPrepTime. Can calculate kitchenCookTime.
+3. NOTE: Time will be stored in seconds.
+Things needed:
+1. Need orderPrice stored into local storage. What is the variable name?
+2. Store delivery travel distance and time into local storage from google API. Time needs to be in seconds.
+3. Menu cannot have negative quantities.
+4. Is there a way to make sure that when someone is submitting an order, the food quantities cannot be all blank?
+
+ToDo:
+1. Pull in stored customer address details.
 
