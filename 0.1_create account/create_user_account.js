@@ -1,8 +1,28 @@
 //Created by Eric Cai on 11/10/18
 
 //global variable to pass URL between functions
-var protoURL;
+var protoURL="";
 function createAccount(){
+	
+	//Checks that all fields are filled.
+	var nonBlank=false;
+	nonBlank=document.getElementById("account_username").value!="" 
+	&& document.getElementById("account_password").value!="" 
+	&& document.getElementById("account_firstName").value!="" 
+	&& document.getElementById("account_lastName").value!="" 
+	&& document.getElementById("account_userAddress").value!="" 
+	&& document.getElementById("account_city").value!="" 
+	&& document.getElementById("account_state").value!="" 
+	&& document.getElementById("account_zipCode").value!="" 
+	&& document.getElementById("account_phoneNumber").value!=""
+	&& document.getElementById("account_email").value!="";
+	
+	if(nonBlank==false){
+		alert("Please fill all fields.");
+		return;
+	}
+	
+	
 	var accountUsername="Default";
 	accountUsername=document.getElementById("account_username").value;
 
@@ -77,6 +97,32 @@ function createAccount(){
 		return;
 	}
 
+	//////////////////////////////////////////////////////////////////////
+	//Checks if username is taken
+	var storedUsers="";
+	var oReq = new XMLHttpRequest(); //New request object
+	oReq.open("GET", "getUsernames.php", false);
+	oReq.send();
+
+	if(oReq.status===200) {
+        //This is where you handle what to do with the response.
+        //The actual data is found on this.responseText
+        storedUsers=oReq.responseText;
+    };
+	
+	//parses the JSON that was returned by the PHP into an object.
+	var userDetails=JSON.parse(storedUsers);
+	//loop through the object for usernames to check if they are valid
+	var len=userDetails.length;
+	for (var i=0; i<len; i++){
+		if (accountUsername==userDetails[i].Usernames){
+			alert("That username has already been taken.");
+			return;
+		}
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	
 	//Pulls data from entry fields
 	var accountFirstNameValue="";
 	accountFirstNameValue=document.getElementById("account_firstName").value;	
@@ -142,42 +188,47 @@ function createAccount(){
 	}, callback);
 	
 	
-	window.open("../0.0_login page/login.html", '_self');	
+	//window.open("../0.0_login page/login.html", '_self');	
 }
 function callback(response, status) {
 
 	var accountDistance=0;
 	var accountDuration=0;
-	
 	if (status !== 'OK') {
 		alert('Error was: ' + status);
 	} else {
 		var originList = response.originAddresses;
 		var destinationList = response.destinationAddresses;
-	  
 		for (var i = 0; i < originList.length; i++) {
-		
+	
 			var results = response.rows[i].elements;
 			for (var j = 0; j < results.length; j++) {
+				if(results[j].status!=='OK'){
+					alert("Invalid address"); //Checks if address is valid. You can still have a good response, but a bad address
+					return;
+				}
 				accountDistance=results[j].distance.value; //Since we are only inputting one locations, we should be getting only 1 set of results
 				accountDuration=results[j].duration.value;
-				var r;
+
 				if (accountDistance>24140){ //Google API using meter for result.distance.value
 					//Confirmation boxes
-					r = confirm("Your address is greater than 15 miles from the restaurant. Continue creating account?");
+					var r = confirm("Your address is greater than 15 miles from the restaurant. Continue creating account?");
 					if (r==false){
+						protoUrl="";
 						return; //If cancel is pressed, returns and user can change data
 					}
 				} else {
-					r=confirm("Confirm account creation?");
-					if (r==false){
+					var s=confirm("Confirm account creation?");
+					if (s==false){
+						protoUrl="";
 						return;
 					}
 				}
 			}//makes final URL and sends data to PHP file
-			finalURL=protoURL+"&userlocationdistance="+accountDistance+"&userlocationtime="+accountDuration;
-			sendData(finalURL);
+			
 		}
+		finalURL=protoURL+"&userlocationdistance="+accountDistance+"&userlocationtime="+accountDuration;
+		sendData(finalURL);
 	}
 }
 function sendData(url){

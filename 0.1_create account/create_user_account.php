@@ -1,4 +1,5 @@
 <?php
+//Made by Eric Cai
 $servername = "localhost";
 $username="root";
 $password="pass";
@@ -18,7 +19,6 @@ $lastname=$_GET['lastname'];
 $address=$_GET['address'];
 $city=$_GET['city'];
 $state=$_GET['state'];
-$city=$_GET['city'];
 $zipcode=$_GET['zipcode'];
 $email=$_GET['email'];
 $phonenumber=$_GET['phonenumber'];
