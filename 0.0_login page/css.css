@@ -1,7 +1,10 @@
 body
 {
-	background: url('images/burger.jpg') 100%;
+	background: url('images/burger2.jpg') 100%;
 	background-size: cover;
+	 background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
 	font-family:menuCat;
 }
 .login_div	
@@ -40,7 +43,7 @@ body
 }
 .topDis
 {
-	background: url('images/burger.jpg') 100%;
+	background-color: black;
 	background-size: cover;
 }
 .shader
