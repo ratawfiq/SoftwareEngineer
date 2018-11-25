@@ -99,7 +99,6 @@ function submitOrder(){
 	//-----------------------------------------------
 	
 // TO BE ADDED - save everything to database
-//Need to call database to find the latest order number
 //Timestamp to get current time, then database call to get lowest kitchen cook time to calculate esitmate time
 // then clean the web storage
 	var storedOrderDetails=findOrderDetails();
