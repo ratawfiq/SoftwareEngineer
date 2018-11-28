@@ -1,11 +1,10 @@
 //Made by Eric Cai
 
-/*
-function getOrders(orderStatus){
+
+function getDatabase(url){
 	//Do database call to get order header info
 	var details="";
 	var oReq = new XMLHttpRequest(); //New request object
-	url="kitchen_queues.php?orderStatus="+orderStatus;
 	oReq.open("GET", url, false);
 	oReq.send();	 
 	if(oReq.status==200) {
@@ -18,40 +17,29 @@ function getOrders(orderStatus){
     
 }
 
-function getOrderFoodDetails(orderID){
-	
-		//Do database call to get order details
-	var details="";
-	var oReq = new XMLHttpRequest(); //New request object
-	url="getOrderDetails.php?orderID="+orderID;
-	oReq.open("GET", url, false);
-	oReq.send();	 
-	if(oReq.status==200) {
-        //This is where you handle what to do with the response.
-        //The actual data is found on this.responseText
-        details=oReq.responseText;
-    };
+function display(){
 
-    return details; //Gives back order details in a String. Need to be parsed.
+	createTables("table1", "customer_submitted");
 	
+	createTables("table2", "kitchen_in_progress");
 	
 }
-*/
 
-function createTables(){
-	/*
-	var custSubmittedOrders=JSON.parse(getOrders("customer_submitted"));
-	var kitchenInProgressOrders=JSON.parse(getOrders("kitchen_in_progress"));
-	
-	custLen=custSubmittedOrders.length;
-	for (var i=0; i<custLen; i++){
-		//Things to add to the row
-		//var row=document.createElement("tr");
-		var cust_orderID=custSubmittedOrders[i].OrderID;
-		var cust_lastName=custSubmittedOrders[i].DeliveryLastName;
+function createTables(tableNum, orderStatus){
+
+	queue_url="kitchen_queues.php?orderStatus="+orderStatus;
+	var temp=getDatabase(queue_url);
+	var orderHeader=JSON.parse(temp);
+
+	var len=orderHeader.length;
+	for (var i=0; i<len; i++){
+
+		var orderID=orderHeader[i].OrderID;
+		var lastName=orderHeader[i].DeliveryLastName;
+		
 		
 		//format time from UNIX timestamp
-		var a= new Date(custSubmittedOrders[i].OrderSubmissionTime*1000);//Convert seconds to ms
+		var a= new Date(orderHeader[i].OrderSubmissionTime*1000);//Convert seconds to ms
 		
 		var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 		var year = a.getFullYear();
@@ -60,27 +48,50 @@ function createTables(){
 		var hour = a.getHours();
 		var min = a.getMinutes();
 		var sec = a.getSeconds();
-		var cust_submitTime = date + '-' + month + '-' + year + '-' + hour + ':' + min + ':' + sec ;
+		var submitTime = date + '-' + month + '-' + year + '-' + hour + ':' + min + ':' + sec ;
 		
-		var cust_foodItems="";
-		var cust_foodQty="";
-		foodItemDetails=JSON.parse(getOrderFoodDetails(cust_orderID));
-		for (var k=0; k<foodItemDetails.length; k++){
-			cust_foodItems=cust_foodItems+foodItemDetail[k].FoodID+"\n";
-			cust_foodQty=cust_foodQty+foodItemDetail[k].Quantity+"\n";
+		//var submitTime=orderHeader[i].OrderSubmissionTime;
+		
+		var foodItems="";
+		var foodQty="";
+		
+		var temp_url="getOrderDetails.php?orderID="+orderID;
+
+		var temp3=getDatabase(temp_url);
+		
+		foodItemDetails=JSON.parse(temp3);
+		foodLen=foodItemDetails.length;
+		for (var k=0; k<foodLen; k++){
+			foodItems=foodItems+foodItemDetails[k].FoodID+"<br>";
+			foodQty=foodQty+foodItemDetails[k].Quantity+"<br>";
+		}
+		
+		var comments=orderHeader[i].Comments;
+		
+		var timer_max="";
+		if (tableNum='table1'){
+			timer_max="NA";
+		}
+		else{
+			
+			
 			
 		}
 		
-		var cust_comments=custSubmittedOrders[i].Comments;
-		*/
-
 		
-		//Gets the body of table1
-		var table = document.getElementById('table1');
+		var check='<input type="checkbox" name="check-'+tableNum+'">';
+		
+		var info='<button type="button" class="btn btn-info" onclick="moreInfo()">MoreInfo</button>';
 
+		//---------------------------------------------------------------------
+		//Creating the table
+		
+		//Gets the body of table
+		var table = document.getElementById(tableNum);
+	
 		//Inserts a row at the top of the table
-		var row=table.insertRow(0);
-	alert("HI");
+		var row = table.insertRow(1);
+
 		//Inserts cells
 		var timer=row.insertCell(0);
 		var orderID_cell=row.insertCell(1);
@@ -89,33 +100,57 @@ function createTables(){
 		var foodItems_cell=row.insertCell(4);
 		var foodQty_cell=row.insertCell(5);
 		var comments_cell=row.insertCell(6);
-		var select_cell=row.insertCell(7);
+		var check_cell=row.insertCell(7);
 		var info_cell=row.insertCell(8);
 			
-		
+		/*
 		//Temp Variables
-		var cust_timer=document.createTextNode('5');
-		var cust_orderID=document.createTextNode('1');
-		var cust_lastName=document.createTextNode("Dave");
-		var cust_submitTime=document.createTextNode("5:5:5");
-		var cust_foodItems=document.createTextNode("1\n2");
-		var cust_foodQty=document.createTextNode("1\n2");
-		var cust_comments=document.createTextNode("hi");
-		var cust_select=document.createTextNode('<input type="checkbox" name="check-tab1">');
-		var cust_info=document.createTextNode('<button type="button" class="btn btn-info" onclick="moreInfo()">MoreInfo</button>');
+		var timer='5';
+		var orderID='1';
+		var lastName="Dave";
+		var submitTime="5:5:5";
+		var foodItems="1<br>2";
+		var foodQty="1<br>2";
+		var comments="hi";
+		*/
 		
 		//Should put the data into the cells
-		timer.appendChild(cust_timer); //Need to add.
-		orderID_cell.appendChild(cust_orderID);
-		lastName_cell.appendChild(cust_lastName);
-		submitTime_cell.appendChild(cust_submitTime);
-		foodItems_cell.appendChild(cust_foodItems);
-		foodQty_cell.appendChild(cust_foodQty);
-		comments_cell.appendChild(=cust_comments);
-		select_cell.appendChild(cust_select);
-		info_cell.appendChild(cust_info);
-			
-		//}
-	//}
+		timer.innerHTML=timer_max; //Need to add.
+		orderID_cell.innerHTML=orderID;
+		lastName_cell.innerHTML=lastName;
+		submitTime_cell.innerHTML=submitTime;
+		foodItems_cell.innerHTML=foodItems;
+		foodQty_cell.innerHTML=foodQty;
+		comments_cell.innerHTML=comments;
+		check_cell.innerHTML=check;
+		info_cell.innerHTML=info;
+		//-----------------------------------------------------------------------
+	}
 	
+}
+
+function cookFood(){
+
+	var table1 = document.getElementById("table1");
+    var table2 = document.getElementById("table2");
+    var checkboxes = document.getElementsByName("check-table1");
+
+    //loops through orders checked in table1
+    for(var i = 0; i < checkboxes.length; i++){
+        if(checkboxes[i].checked){
+        	//Gets the orderID from the table and sends it to database to update
+        	var orderID = table1.rows[i+1].cells[1].innerHTML;
+ 
+        	updateDatabase(orderID, "kitchen_in_progress");
+    	}
+	}
+}
+
+function updateDatabase(orderID, newStatus){
+
+	var oReq = new XMLHttpRequest(); //New request object
+	var url="alterDatabase.php?orderID="+orderID+"&newStatus="+newStatus;
+	oReq.open("GET", url, false);
+	oReq.send();	 
+
 }

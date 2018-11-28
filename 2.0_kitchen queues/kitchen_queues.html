@@ -2,11 +2,12 @@
 
 <!-- Made by Pooja, edited by Eric Cai -->
 <html>
-    <head>
+<head>
         <title>Kitchen Landing Page</title>
-        <meta charset="windows-1252">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="kitchen_queues.css">
+</head>
 
 <!--bootstrap installation-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -14,8 +15,37 @@
 
 <!--call js script-->
 <script type="text/javascript" src="kitchen_queues.js"></script> 
-<script> createTables() </script>
 
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <table id="table1" >
+        <tr>
+            <th>Order ID</th>
+            <th>Username</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+			<th>Order Submission Time</th>
+            <th>Food Item ID</th>
+			<th>Food Item Quantity</th>
+			<th>Comments</th>
+            <th>Select</th>
+			<th>More Info</th>
+        </tr>
+
+				
+    </table>
+  </div>
+
+</div>
+
+<body onload="display()">
 <!--title bar-->
 <div class="jumbotron jumbotron-fluid bg-warning text-white" style="background: #aaa;">
 	<div class="container">
@@ -24,138 +54,55 @@
 	</div>
 </div>        
   
-    </head>
-
-            <div class="scrollit">
-			
-                <table id="table1" style="display: inline-block;float: left; margin-left: 3cm;" >
-				<caption>Submitted Customer Orders</caption>
-				
-                    <tr>
-						<th>Timer</th>
-                        <th>Order ID</th>
-                        <th>Last Name</th>
-						<th>Order Submission Time</th>
-                        <th>Food Item ID</th>
-						<th>Food Item Quantity</th>
-						<th>Comments</th>
-                        <th>Select</th>
-						<th>More Info</th>
-                    </tr>
+<div class="row" style="overflow-x:auto;">
+    <table id="table1" style="display: inline-block;float: left>; margin-left: 3cm;" >
+        <tr>
+			<th>Timer</th>
+            <th>Order ID</th>
+            <th>Last Name</th>
+			<th>Order Submission Time</th>
+            <th>Food Item ID</th>
+			<th>Food Item Quantity</th>
+			<th>Comments</th>
+            <th>Select</th>
+			<th>More Info</th>
+        </tr>
 
 				
-                </table>
-				
-            </div>
+    </table>
+	<button onclick="createTables('table1', 'customer_submitted')">Try it</button>			
+</div>
             
-            <div class="tab tab-btn">
-                <button onclick="tab1_To_tab2();">>>>>></button>
-                <button onclick="tab2_To_tab1();"><<<<<</button>
-            </div>
+<div class="row">
+	<div class="col-md-1 col-sm-1"></div>
+	<div class="col-md-2 col-sm-2"><button type="button" id="cookButton" class="btn btn-info" onclick="cookFood()">Cook selected customer submitted orders</button></div>
+ </div>
             
 	
-            <div class="tab">
-                <table id="table2" style="display: inline-block;float: left;">
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Time to deliver</th>
-                        <th>Food Items</th>
-						<th>Delivery Address</th>
-                        <th>Select</th>
-                    </tr>
-					<tr>
-                        <td>A9</td>
-                        <td>B9</td>
-                        <td>C9</td>
-						<td>C1</td>
-                        <td><input type="checkbox" name="check-tab2"></td>
-                    </tr>
-					<tr>
-                        <td>A9</td>
-                        <td>B9</td>
-                        <td>C9</td>
-						<td>C1</td>
-                        <td><input type="checkbox" name="check-tab2"></td>
-                    </tr>
+<div class="row" style="overflow-x:auto;">
+    <table id="table2" style="display: inline-block;float: left; margin-left: 3cm;">
+        <tr>
+			<th>Timer</th>
+            <th>Order ID</th>
+            <th>Last Name</th>
+			<th>Order Submission Time</th>
+            <th>Food Item ID</th>
+			<th>Food Item Quantity</th>
+			<th>Comments</th>
+            <th>Select</th>
+			<th>More Info</th>
+        </tr>
 					
-                </table>   
-            </div>
-        
-        
-        <script>
-            
-            function tab1_To_tab2()
-            {
-                var table1 = document.getElementById("table1"),
-                   table2 = document.getElementById("table2"),
-                    checkboxes = document.getElementsByName("check-tab1");
-            console.log("Val1 = " + checkboxes.length);
-                 for(var i = 0; i < checkboxes.length; i++)
-                     if(checkboxes[i].checked)
-                        {
-                            // create new row and cells 
-                            var newRow = table2.insertRow(table2.length),
-                                cell1 = newRow.insertCell(0),
-                                cell2 = newRow.insertCell(1),
-                                cell3 = newRow.insertCell(2),
-                                cell4 = newRow.insertCell(3);
-								cell5 = newRow.insertCell(4);
-								
-                            // add values to the cells
-                            cell1.innerHTML = table1.rows[i+1].cells[0].innerHTML;
-                            cell2.innerHTML = table1.rows[i+1].cells[1].innerHTML;
-                            cell3.innerHTML = table1.rows[i+1].cells[2].innerHTML;
-							cell4.innerHTML = table1.rows[i+1].cells[3].innerHTML;
-                            cell5.innerHTML = "<input type='checkbox' name='check-tab2'>";
-                           
-                            // remove the transfered rows from the first table [table1]
-                            var index = table1.rows[i+1].rowIndex;
-                            table1.deleteRow(index);
-                            // we have deleted some rows so the checkboxes.length have changed
-                            // so we have to decrement the value of i
-                            i--;
-                           console.log(checkboxes.length);
-                        }
-            }
-            
-            
-            function tab2_To_tab1()
-            {
-                var table1 = document.getElementById("table1"),
-                    table2 = document.getElementById("table2"),
-                    checkboxes = document.getElementsByName("check-tab2");
-            console.log("Val1 = " + checkboxes.length);
-                 for(var i = 0; i < checkboxes.length; i++)
-                     if(checkboxes[i].checked)
-                        {
-                            // create new row and cells
-                            var newRow = table1.insertRow(table1.length),
-                                cell1 = newRow.insertCell(0),
-                                cell2 = newRow.insertCell(1),
-                                cell3 = newRow.insertCell(2),
-                                cell4 = newRow.insertCell(3);
-								cell5 = newRow.insertCell(4);
-                            // add values to the cells
-							cell1.innerHTML = table2.rows[i+1].cells[0].innerHTML;
-                            cell2.innerHTML = table2.rows[i+1].cells[1].innerHTML;
-                            cell3.innerHTML = table2.rows[i+1].cells[2].innerHTML;
-                            cell4.innerHTML = table2.rows[i+1].cells[3].innerHTML;
-                            cell5.innerHTML = "<input type='checkbox' name='check-tab1'>";
-                           
-                            // remove the transfered rows from the second table [table2]
-                            var index = table2.rows[i+1].rowIndex;
-                            table2.deleteRow(index);
-                            // we have deleted some rows so the checkboxes.length have changed
-                            // so we have to decrement the value of i
-                            i--;
-                           console.log(checkboxes.length);
-                        }
-            }
-            
-        </script>    
-        
- 
+    </table>   
+	<button onclick="createTables('table2', 'kitchen_in_progress')">Try it</button>			
+</div>
+
+ <!--bottom bar-->
+<div class="alert sticky-bottom alert-dark text-center" role="alert">
+  	<p><small>&#174;2018. All Rights Reserved.</small></p>
+</div>
+
+</body>
+
 </html>
-
-
 

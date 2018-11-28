@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 }
 $orderStatus=$_GET['orderStatus'];
 
-$sql = "SELECT * FROM fooddeliveryservice.order_header WHERE OrderStatus="+$orderStatus;
+$sql = "SELECT * FROM fooddeliveryservice.order_header WHERE OrderStatus='{$orderStatus}'";
 $result = $conn->query($sql);
 
 //Checks to see if the query is built right
@@ -28,7 +28,7 @@ $i=0;
 if ($result->num_rows > 0) {
     // get data of each row
 	while($row = $result->fetch_assoc()) { //Need to pull in all data items in order header
-        $userDetails[$i]= array('OrderID'=>$row["OrderID"],
+        $orderDetails[$i]= array('OrderID'=>$row["OrderID"],
 		'Username'=>$row["Username"],
 		'DeliveryFirstName'=>$row["DeliveryFirstName"],
 		'DeliveryLastName'=>$row["DeliveryLastName"],
