@@ -86,11 +86,28 @@ v1.8 - 11/25/18
 2. Edited making an order confirmation page. Made PHP files to pull food details, pull latest order details, store order details, and store food item details. Added functions to send data to database, find order details, finding food details. Updated displayOrder() so that it will use database data. Am able to find the largest orderID and greatest foodPrepTime. Can calculate kitchenCookTime.
 3. NOTE: Time will be stored in seconds.
 Things needed:
-1. Need orderPrice stored into local storage. What is the variable name?
-2. Store delivery travel distance and time into local storage from google API. Time needs to be in seconds.
-3. Menu cannot have negative quantities.
-4. Is there a way to make sure that when someone is submitting an order, the food quantities cannot be all blank?
+1. Need orderPrice stored into local storage. What is the variable name? 
+2. Store delivery travel distance and time into local storage from google API. Time needs to be in seconds. [done]
+3. Menu cannot have negative quantities.[done?]
+4. Is there a way to make sure that when someone is submitting an order, the food quantities cannot be all blank? [done]
 
 ToDo:
-1. Pull in stored customer address details.
+1. Pull in stored customer address details. [done]
+
+v1.9 12/2/18-Eric Cai
+Login:
+1. Stored username into local storage
+
+Menu Page:
+1. Stored price into local storage in store function; Double check.
+
+Delivery Address page:
+1. Stored google data into local storage
+2. Converted from metric to imperial. Double check that math still works
+
+Confirmation page:
+1. Database calls are working. Able to store food details and order header
+2. Able to diplay data on load.
+3. Calculated estimated time.
+4. NEED TO PULL TOTAL PRICE. It is returning undefined. Why?
 
