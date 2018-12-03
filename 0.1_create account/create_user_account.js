@@ -22,6 +22,13 @@ function createAccount(){
 		return;
 	}
 	
+	var phoneNumberValidation=false;
+	var phoneNumberDigit=0;
+	phoneNumberDigit=document.getElementById("account_phoneNumber").value.length;
+	if(phoneNumberDigit!=12){
+		alert("Please enter a phone number with the following format: xxx-xxx-xxxx");
+		return;
+	}
 	
 	var accountUsername="Default";
 	accountUsername=document.getElementById("account_username").value;
@@ -182,7 +189,7 @@ function createAccount(){
 	  origins: [origin],
 	  destinations: [destination],
 	  travelMode: 'DRIVING',
-	  unitSystem: google.maps.UnitSystem.metric,
+	  unitSystem: google.maps.UnitSystem.imperial,
 	  avoidHighways: false,
 	  avoidTolls: false
 	}, callback);
@@ -210,7 +217,7 @@ function callback(response, status) {
 				accountDistance=results[j].distance.value; //Since we are only inputting one locations, we should be getting only 1 set of results
 				accountDuration=results[j].duration.value;
 
-				if (accountDistance>24140){ //Google API using meter for result.distance.value
+				if (accountDistance>79200){ //Google API using meter for result.distance.value
 					//Confirmation boxes
 					var r = confirm("Your address is greater than 15 miles from the restaurant. Continue creating account?");
 					if (r==false){

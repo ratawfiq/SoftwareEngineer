@@ -13,10 +13,10 @@ if ($conn->connect_error) {
 }
 
 $orderID=$_GET['orderID'];
-$newStatus=$_GET['newStatus'];
+$kitchenFinishCookTime=$_GET['kitchenFinishCookTime'];
 
 
-$sql = "UPDATE fooddeliveryservice.order_header SET orderStatus='".$newStatus."' WHERE orderID='" . $orderID. "'";
+$sql = "UPDATE fooddeliveryservice.order_header SET KitchenFinishCookTime='".$kitchenFinishCookTime."' WHERE orderID='" . $orderID. "'";
 	
 
 $result = $conn->query($sql);
@@ -26,4 +26,3 @@ if (!$result) {
 }
 
 $conn->close();
-?>

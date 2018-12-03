@@ -49,13 +49,15 @@ function loginCheck(){
 			validPass=true;
 			//If username and password is valid, check user role and go to landing page.
 			if (username_input=="kitchen"){
-				//window.open("../1.1_landing page/customer_landing_page.html", '_self');
+				window.open("../2.0_kitchen queues/kitchen_queues.html", '_self');
 			} else if(username_input=="delivery"){
 				//window.open("../1.1_landing page/customer_landing_page.html", '_self');
 			} else if (username_input=="owner"){
 				window.open("../4.1_owner landing page/owner_landing_page.html", '_self');
 			} else {
 				window.open("../1.0_landing page/customer_landing_page.html", '_self');
+				var storedUsername=0;
+				localStorage.storedUsername = username_input; //stores username so that customer functions work
 			}	
 		}else{
 			alert("The inputted password is incorrect");

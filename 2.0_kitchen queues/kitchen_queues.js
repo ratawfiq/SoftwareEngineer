@@ -1,6 +1,5 @@
 //Made by Eric Cai
 
-
 function getDatabase(url){
 	//Do database call to get order header info
 	var details="";
@@ -17,6 +16,22 @@ function getDatabase(url){
     
 }
 
+function updateDatabase(orderID, newStatus){
+
+	var oReq = new XMLHttpRequest(); //New request object
+	var url="alterDatabase.php?orderID="+orderID+"&newStatus="+newStatus;
+	oReq.open("GET", url, false);
+	oReq.send();	 
+
+}
+
+function updateKitchenFinishCookTime(orderID, kitchenTime){
+	var oReq = new XMLHttpRequest(); //New request object
+	var url="updateKitchenFinishCookTime.php?orderID="+orderID+"&kitchenFinishCookTime="+kitchenTime;
+	oReq.open("GET", url, false);
+	oReq.send();
+	
+}
 function display(){
 
 	createTables("table1", "customer_submitted");
@@ -27,10 +42,15 @@ function display(){
 
 function createTables(tableNum, orderStatus){
 
-	queue_url="kitchen_queues.php?orderStatus="+orderStatus;
+	var queue_url="kitchen_queues.php?orderStatus="+orderStatus;
 	var temp=getDatabase(queue_url);
 	var orderHeader=JSON.parse(temp);
-
+	
+	if(orderHeader[0]==""){
+		
+		return;
+	}
+	
 	var len=orderHeader.length;
 	for (var i=0; i<len; i++){
 
@@ -50,8 +70,6 @@ function createTables(tableNum, orderStatus){
 		var sec = a.getSeconds();
 		var submitTime = date + '-' + month + '-' + year + '-' + hour + ':' + min + ':' + sec ;
 		
-		//var submitTime=orderHeader[i].OrderSubmissionTime;
-		
 		var foodItems="";
 		var foodQty="";
 		
@@ -68,40 +86,72 @@ function createTables(tableNum, orderStatus){
 		
 		var comments=orderHeader[i].Comments;
 		
+		//------------------------------------------
+		//Setting up timer
+		var finishCookTime;
 		var timer_max="";
-		if (tableNum='table1'){
+		var yearB;
+		var monthB;
+		var dateB;
+		var hourB;
+		var minB;
+		var secB;
+		var b;
+		
+		if (tableNum=='table1'){
+			//If order is customer submitted, then input the estimated time the order should be cooked by, and no timer
 			timer_max="NA";
+			
+			//Need to use Number() to turn string to num
+			newTime=Number(orderHeader[i].OrderSubmissionTime)+Number(orderHeader[i].KitchenCookTime);
+		
+			b=new Date((newTime)*1000);
+			
+			yearB = b.getFullYear();
+			monthB = months[b.getMonth()];
+			dateB = b.getDate();
+			hourB = b.getHours();
+			minB = b.getMinutes();
+			secB = b.getSeconds();
+			finishCookTime = dateB + '-' + monthB + '-' + yearB + '-' + hourB + ':' + minB + ':' + secB ;
 		}
 		else{
-			
-			
+			//If the order is kitchen_in_progress, then take the date that the order is supposed to be completed
+			b=new Date(orderHeader[i].KitchenFinishCookTime*1000);
+			yearB = b.getFullYear();
+			monthB = months[b.getMonth()];
+			dateB = b.getDate();
+			hourB = b.getHours();
+			minB = b.getMinutes();
+			secB = b.getSeconds();
+			finishCookTime = dateB + '-' + monthB + '-' + yearB + '-' + hourB + ':' + minB + ':' + secB ;
 			
 		}
 		
 		
-		var check='<input type="checkbox" name="check-'+tableNum+'">';
+		var check="<input type='checkbox' name='check-"+tableNum+"'>";
 		
-		var info='<button type="button" class="btn btn-info" onclick="moreInfo()">MoreInfo</button>';
 
 		//---------------------------------------------------------------------
 		//Creating the table
 		
 		//Gets the body of table
 		var table = document.getElementById(tableNum);
-	
+
 		//Inserts a row at the top of the table
 		var row = table.insertRow(1);
 
 		//Inserts cells
-		var timer=row.insertCell(0);
-		var orderID_cell=row.insertCell(1);
-		var lastName_cell=row.insertCell(2);
-		var submitTime_cell=row.insertCell(3);
-		var foodItems_cell=row.insertCell(4);
-		var foodQty_cell=row.insertCell(5);
-		var comments_cell=row.insertCell(6);
-		var check_cell=row.insertCell(7);
-		var info_cell=row.insertCell(8);
+		var check_cell=row.insertCell(0);
+		var timer=row.insertCell(1);
+		var orderID_cell=row.insertCell(2);
+		var lastName_cell=row.insertCell(3);
+		var submitTime_cell=row.insertCell(4);
+		var finishTime_cell=row.insertCell(5);
+		var foodItems_cell=row.insertCell(6);
+		var foodQty_cell=row.insertCell(7);
+		var comments_cell=row.insertCell(8);
+		
 			
 		/*
 		//Temp Variables
@@ -119,11 +169,12 @@ function createTables(tableNum, orderStatus){
 		orderID_cell.innerHTML=orderID;
 		lastName_cell.innerHTML=lastName;
 		submitTime_cell.innerHTML=submitTime;
+		finishTime_cell.innerHTML=finishCookTime;
 		foodItems_cell.innerHTML=foodItems;
 		foodQty_cell.innerHTML=foodQty;
 		comments_cell.innerHTML=comments;
 		check_cell.innerHTML=check;
-		info_cell.innerHTML=info;
+
 		//-----------------------------------------------------------------------
 	}
 	
@@ -139,18 +190,44 @@ function cookFood(){
     for(var i = 0; i < checkboxes.length; i++){
         if(checkboxes[i].checked){
         	//Gets the orderID from the table and sends it to database to update
-        	var orderID = table1.rows[i+1].cells[1].innerHTML;
- 
+        	var orderID = table1.rows[i+1].cells[2].innerHTML;
+
+			var now = Math.floor((new Date().getTime())/1000); //Gets the time when the order is moved
+
+			//Gets the kitchen cook time to add to the now time
+			var url="getKitchenCookTime.php?orderID="+orderID;
+			var temp=getDatabase(url);
+			var orderKitchenTime=JSON.parse(temp);
+
+			var kitchenTime=Number(now)+Number(orderKitchenTime[0].KitchenCookTime);
+
+			updateKitchenFinishCookTime(orderID, kitchenTime);
+			
+			//Changed the order status
         	updateDatabase(orderID, "kitchen_in_progress");
+			
+		}
+	}
+	
+	location.reload(true);
+}
+function completeFood(){
+
+	var table1 = document.getElementById("table1");
+    var table2 = document.getElementById("table2");
+    var checkboxes = document.getElementsByName("check-table2");
+
+    //loops through orders checked in table1
+    for(var i = 0; i < checkboxes.length; i++){
+        if(checkboxes[i].checked){
+        	//Gets the orderID from the table and sends it to database to update
+        	var orderID = table1.rows[i+1].cells[2].innerHTML;
+ 
+        	updateDatabase(orderID, "kitchen_complete");
     	}
 	}
+	
+	location.reload(true); 
 }
 
-function updateDatabase(orderID, newStatus){
 
-	var oReq = new XMLHttpRequest(); //New request object
-	var url="alterDatabase.php?orderID="+orderID+"&newStatus="+newStatus;
-	oReq.open("GET", url, false);
-	oReq.send();	 
-
-}

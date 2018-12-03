@@ -1,7 +1,9 @@
-
+//Made by Qian, modified by Eric Cai
 
 //read the stored data if applicable
-
+		var storedPrice=0;
+		var actualPrice=0;
+		
 		var storedQty01=0;
 		var storedQty02=0;
 		var storedQty03=0;
@@ -64,58 +66,58 @@
 
 
 //function to calculate the total price
-		function calculateSumPrice(){
-			var price01=7;
-			var price02=10;
-			var price03=9;
-			var price04=12;
-			var price05=10;
-			var price06=13;
-			var price07=15;
-			var price08=8;
-			var price09=8;
+function calculateSumPrice(){
+		var price01=7;
+		var price02=10;
+		var price03=9;
+		var price04=12;
+		var price05=10;
+		var price06=13;
+		var price07=15;
+		var price08=8;
+		var price09=8;
 			
 			
 			
-			var qty01=0;
-			qty01=document.getElementById("qtyInput01").value;
-
-			var qty02=0;
-			qty02=document.getElementById("qtyInput02").value;
+		var qty01=0;
+		qty01=document.getElementById("qtyInput01").value;
 			
-			var qty03=0;
-			qty03=document.getElementById("qtyInput03").value;
+		var qty02=0;
+		qty02=document.getElementById("qtyInput02").value;
 			
-			var qty04=0;
-			qty04=document.getElementById("qtyInput04").value;
+		var qty03=0;
+		qty03=document.getElementById("qtyInput03").value;
 			
-			var qty05=0;
-			qty05=document.getElementById("qtyInput05").value;
+		var qty04=0;
+		qty04=document.getElementById("qtyInput04").value;
+		
+		var qty05=0;
+		qty05=document.getElementById("qtyInput05").value;
 			
-			var qty06=0;
-			qty06=document.getElementById("qtyInput06").value;
+		var qty06=0;
+		qty06=document.getElementById("qtyInput06").value;
 			
-			var qty07=0;
-			qty07=document.getElementById("qtyInput07").value;
+		var qty07=0;
+		qty07=document.getElementById("qtyInput07").value;
 			
-			var qty08=0;
-			qty08=document.getElementById("qtyInput08").value;
+		var qty08=0;
+		qty08=document.getElementById("qtyInput08").value;
 			
-			var qty09=0;
-			qty09=document.getElementById("qtyInput09").value;
-
-
-			sumPrice=price01*qty01+price02*qty02+price03*qty03+price04*qty04+price05*qty05+price06*qty06+price07*qty07+price08*qty08+price09*qty09;
-			
-			//add 6% tax
-			var taxRate=1.06;
-			actualPrice=taxRate*sumPrice;
-			actualPrice=actualPrice.toFixed(2);//2 decimal digits
+		var qty09=0;
+		qty09=document.getElementById("qtyInput09").value;
 
 
-			document.getElementById("totalPrice").innerHTML="$"+actualPrice;
-			  
-		}
+		sumPrice=price01*qty01+price02*qty02+price03*qty03+price04*qty04+price05*qty05+price06*qty06+price07*qty07+price08*qty08+price09*qty09;
+			
+		//add 6% tax
+		var taxRate=1.06;
+		actualPrice=taxRate*sumPrice;
+		actualPrice=actualPrice.toFixed(2);//2 decimal digits
+		
+		
+		document.getElementById("totalPrice").innerHTML="$"+actualPrice;
+
+}
 
 
 //all '+/-' buttons
@@ -386,46 +388,46 @@
 		
 //store the customer choice into web storage session
 		
-		function storeData(){
-			var tempQty01=0;
-			tempQty01 = document.getElementById("qtyInput01").value;
-			localStorage.storedQty01=tempQty01;
-
-			
-			var tempQty02=0;
-			tempQty02 = document.getElementById("qtyInput02").value;
-			localStorage.storedQty02=tempQty02;
-			
-			var tempQty03=0;
-			tempQty03 = document.getElementById("qtyInput03").value;
-			localStorage.storedQty03=tempQty03;
-			
-			var tempQty04=0;
-			tempQty04 = document.getElementById("qtyInput04").value;
-			localStorage.storedQty04=tempQty04;
-			
-			var tempQty05=0;
-			tempQty05 = document.getElementById("qtyInput05").value;
-			localStorage.storedQty05=tempQty05;
-			
-			var tempQty06=0;
-			tempQty06 = document.getElementById("qtyInput06").value;
-			localStorage.storedQty06=tempQty06;
-			
-			var tempQty07=0;
-			tempQty07 = document.getElementById("qtyInput07").value;
-			localStorage.storedQty07=tempQty07;
-			
-			var tempQty08=0;
-			tempQty08 = document.getElementById("qtyInput08").value;
-			localStorage.storedQty08=tempQty08;
-			
-			var tempQty09=0;
-			tempQty09 = document.getElementById("qtyInput09").value;
-			localStorage.storedQty09=tempQty09;
-	
-		}
+function storeData(){
+		var tempQty01=0;
+		tempQty01 = document.getElementById("qtyInput01").value;
+		localStorage.storedQty01=tempQty01;
 		
+		var tempQty02=0;
+		tempQty02 = document.getElementById("qtyInput02").value;
+		localStorage.storedQty02=tempQty02;
+		
+		var tempQty03=0;
+		tempQty03 = document.getElementById("qtyInput03").value;
+		localStorage.storedQty03=tempQty03;
+			
+		var tempQty04=0;
+		tempQty04 = document.getElementById("qtyInput04").value;
+		localStorage.storedQty04=tempQty04;
+			
+		var tempQty05=0;
+		tempQty05 = document.getElementById("qtyInput05").value;
+		localStorage.storedQty05=tempQty05;
+			
+		var tempQty06=0;
+		tempQty06 = document.getElementById("qtyInput06").value;
+		localStorage.storedQty06=tempQty06;
+			
+		var tempQty07=0;
+		tempQty07 = document.getElementById("qtyInput07").value;
+		localStorage.storedQty07=tempQty07;
+			
+		var tempQty08=0;
+		tempQty08 = document.getElementById("qtyInput08").value;
+		localStorage.storedQty08=tempQty08;
+			
+		var tempQty09=0;
+		tempQty09 = document.getElementById("qtyInput09").value;
+		localStorage.storedQty09=tempQty09;
+	
+		localStorage.storedPrice = actualPrice;
+}
+	
 		
 		
 

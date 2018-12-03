@@ -16,7 +16,7 @@
 
 
 
-<body>
+<body onload="displayOrder()">
 
 
 <!--title bar-->
@@ -60,7 +60,7 @@
 
 		<div class="row font-weight-bold">
 			   <div class="col-sm-7 col-md-7 font-size-menuCat02 "><em>Estimated Time:</em></div>
-			   <div class="col-sm-3 col-md-3 font-size-menuCat02"><em>22 min</em></div>
+			   <div class="col-sm-3 col-md-3 font-size-menuCat02"><p id="estTime"></p></div>
 			   <div class="col-sm-2 col-md-2"></div>
 		</div> 
 
@@ -76,7 +76,7 @@
         <div class="col-8"></div>
         <div class="col-2"><button type="button" class="btn btn-info" onclick="cancelOrder()">Cancel Order</button></div>
 <!-- TO BE UPDATE - need to refer to current order status page-->
-        <div class="col-2"><button type="button" class="btn btn-info" onclick="submitOrder()">Submit</button></div>
+        <div class="col-2"><button type="button" class="btn btn-info" onclick="submitOrder()">Submit Order</button></div>
         <div class="col-1"></div>
     </div>
 </div>
@@ -91,9 +91,6 @@
 
 <!--call js script-->
 <script type="text/javascript" src="order_confirmation.js"></script> 
-<script> displayOrder() </script>
-
-
 
 </body>
 </html>

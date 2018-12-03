@@ -16,35 +16,6 @@
 <!--call js script-->
 <script type="text/javascript" src="kitchen_queues.js"></script> 
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <table id="table1" >
-        <tr>
-            <th>Order ID</th>
-            <th>Username</th>
-            <th>Last Name</th>
-            <th>Address</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Zip Code</th>
-			<th>Order Submission Time</th>
-            <th>Food Item ID</th>
-			<th>Food Item Quantity</th>
-			<th>Comments</th>
-            <th>Select</th>
-			<th>More Info</th>
-        </tr>
-
-				
-    </table>
-  </div>
-
-</div>
-
 <body onload="display()">
 <!--title bar-->
 <div class="jumbotron jumbotron-fluid bg-warning text-white" style="background: #aaa;">
@@ -56,21 +27,23 @@
   
 <div class="row" style="overflow-x:auto;">
     <table id="table1" style="display: inline-block;float: left>; margin-left: 3cm;" >
+	<caption style="caption-side:top;font-size:20px"> Customer Submitted Orders</caption>
         <tr>
+			<th>Select</th>
 			<th>Timer</th>
             <th>Order ID</th>
             <th>Last Name</th>
 			<th>Order Submission Time</th>
+			<th>Order Finish Cook Time</th>
             <th>Food Item ID</th>
 			<th>Food Item Quantity</th>
 			<th>Comments</th>
-            <th>Select</th>
-			<th>More Info</th>
+            
         </tr>
 
 				
     </table>
-	<button onclick="createTables('table1', 'customer_submitted')">Try it</button>			
+	
 </div>
             
 <div class="row">
@@ -81,28 +54,73 @@
 	
 <div class="row" style="overflow-x:auto;">
     <table id="table2" style="display: inline-block;float: left; margin-left: 3cm;">
+	<caption style="caption-side:top;font-size:20px"> Orders In Progress</caption>
         <tr>
+			<th>Select</th>
 			<th>Timer</th>
             <th>Order ID</th>
             <th>Last Name</th>
 			<th>Order Submission Time</th>
+			<th>Order Finish Cook Time</th>
             <th>Food Item ID</th>
 			<th>Food Item Quantity</th>
 			<th>Comments</th>
-            <th>Select</th>
-			<th>More Info</th>
+            
         </tr>
 					
     </table>   
-	<button onclick="createTables('table2', 'kitchen_in_progress')">Try it</button>			
+	
 </div>
 
+<div class="row">
+	<div class="col-md-1 col-sm-1"></div>
+	<div class="col-md-2 col-sm-2"><button type="button" id="completeButton" class="btn btn-info" onclick="completeFood()">Complete selected kitchen orders</button></div>
+ </div>
+ 
  <!--bottom bar-->
 <div class="alert sticky-bottom alert-dark text-center" role="alert">
   	<p><small>&#174;2018. All Rights Reserved.</small></p>
 </div>
 
-</body>
+<script>
 
-</html>
+var table = document.getElementById("table2");
 
+var x = setInterval(
+    function () {
+
+        for (var i = 1, row; row = table.rows[i]; i++) {
+            //iterate through rows
+            //rows would be accessed using the "row" variable assigned in the for loop
+
+            var endDate = row.cells[5];
+            countDownDate = new Date(endDate.innerHTML.replace(/-/g, "/")).getTime();
+            var countDown = row.cells[1];
+            // Update the count down every 1 second
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+            // Display the result in the element
+            countDown.innerHTML = (hours + "h "
+                + minutes + "m " + seconds + "s ");
+
+            //If the count down is finished, write some text 
+            if (distance < 0) {
+				nowSec = Math.floor(now/1000);
+				newKitchenTime=nowSec+180;
+                updateKitchenFinishCookTime(row.cells[2], newKitchenTime);
+            }
+        }
+    }, 1000);
+ </script>

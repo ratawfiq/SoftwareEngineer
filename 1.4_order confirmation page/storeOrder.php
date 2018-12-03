@@ -22,11 +22,12 @@ $deliverystate=$_GET['deliverystate'];
 $deliveryzipcode=$_GET['deliveryzipcode'];
 $deliveryphone=$_GET['deliveryphone'];
 $comments=$_GET['comments'];
-$ordersubmissiontime=date('Y-m-d H:i:s', $_GET['ordersubmissiontime']); 
-$initialestimateddeliverytime=date('Y-m-d H:i:s', $_GET['initialestimateddeliverytime']);
+$ordersubmissiontime=$_GET['ordersubmissiontime']); 
+$initialestimateddeliverytime=$_GET['initialestimateddeliverytime']);
 $actualdeliverytime="";
 $kitchencooktime=$_GET['kitchencooktime']; //in seconds
 $deliverytraveltime=$_GET['deliverytraveltime']; //in seconds
+$deliverytraveldistance=$_GET['deliverytraveldistance']; //in seconds
 $totalprice=$_GET['totalprice'];
 $orderstatus="customer_submitted";
 

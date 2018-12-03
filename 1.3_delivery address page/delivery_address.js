@@ -1,5 +1,23 @@
-//check checkbox
+//Made by Qian, modified by Eric Cai
 
+
+function getDatabase(url){
+	//Do database call to get order header info
+	var details="";
+	var oReq = new XMLHttpRequest(); //New request object
+	oReq.open("GET", url, false);
+	oReq.send();	 
+	if(oReq.status==200) {
+        //This is where you handle what to do with the response.
+        //The actual data is found on this.responseText
+        details=oReq.responseText;
+    };
+
+    return details; //Gives back order details in a String. Need to be parsed.
+    
+}
+
+/*
 var defaultFirstName="John";
 var defaultLastName="Doe";
 var defaultDeliveryAddress="3055 E Walton Blvd";
@@ -9,24 +27,26 @@ var defaultZipCode="48326"
 var defaultPhoneNumber="555-555-5555"
 var defaultEmail="test@gmail.com"
 var defaultComments="no pepper"
-
-
+*/
 
 function check_checkbox(){
 	var myCheckBox=document.getElementById("checkbox");
 	if(myCheckBox.checked==true){
-		//alert("checked");
-
+		//Gets stored username, and gets cutomer info from the database
+		var tempUsername=localStorage.storedUsername;
+		var url='delivery_address.php?username='+tempUsername;
+		var temp=getDatabase(url);
+		var customerInfo=JSON.parse(temp);
 		
-		document.getElementById("firstName").value=defaultFirstName;
-		document.getElementById("lastName").value=defaultLastName;
-		document.getElementById("deliveryAddress").value=defaultDeliveryAddress;
-		document.getElementById("city").value=defaultCity;
-		document.getElementById("state").value=defaultState;
-		document.getElementById("zipCode").value=defaultZipCode;
-		document.getElementById("phoneNumber").value=defaultPhoneNumber;
-		document.getElementById("email").value=defaultEmail;
-		document.getElementById("comment").value=defaultComments;
+		document.getElementById("firstName").value=customerInfo[0].FirstName;
+		document.getElementById("lastName").value=customerInfo[0].LastName;
+		document.getElementById("deliveryAddress").value=customerInfo[0].Address;
+		document.getElementById("city").value=customerInfo[0].City;
+		document.getElementById("state").value=customerInfo[0].State;
+		document.getElementById("zipCode").value=customerInfo[0].ZipCode;
+		document.getElementById("phoneNumber").value=customerInfo[0].PhoneNumber;
+		document.getElementById("email").value=customerInfo[0].Email;
+
 	}else{
 		//alert("not checked");
 		document.getElementById("firstName").value="";
@@ -41,25 +61,18 @@ function check_checkbox(){
 	}	
 }
 
-
 //function readData(){
 	//document.getElementById("qtyInput01").innerHTML=localStorage.getItem("storedQty01");
 //}
 
-
-
-
-
 function editOrder(){
 	
 	window.open("../1.2_order page/order.html", "_self");
-	//readData();
-	
+	//readData();	
 }
 
 function cancelOrder(){
     window.open("../1.0_landing page/customer_landing_page.html", "_self");
-
 }
 
 
@@ -93,20 +106,25 @@ function submitOrder(){
 	if(nonBlank && phoneNumberValidation){
 	//alert("passed");
 	
-	var origin = document.getElementById("city").value;
-	var destination = 'Rochester Hills, MI, USA';
+	var addressValue=document.getElementById("deliveryAddress").value;
+	var cityValue=document.getElementById("city").value;
+	var stateValue=document.getElementById("state").value;
+	var zipCodeValue=document.getElementById("zipCode").value;
+	
+	var origin = addressValue+" "+cityValue+" "+stateValue+" "+zipCodeValue;
+	var destination = '118 Library Dr, Rochester, MI 48309';
 	var service = new google.maps.DistanceMatrixService;
 	service.getDistanceMatrix({
 	  origins: [origin],
 	  destinations: [destination],
 	  travelMode: 'DRIVING',
-	  unitSystem: google.maps.UnitSystem.metric,
+	  unitSystem: google.maps.UnitSystem.IMPERIAL,
 	  avoidHighways: false,
 	  avoidTolls: false
 	}, function(response, status) {
 	  if (status !== 'OK') {
-	  
 		alert('Error was: ' + status);
+		return;
 	  } else {
 		var originList = response.originAddresses;
 		var destinationList = response.destinationAddresses;
@@ -115,17 +133,19 @@ function submitOrder(){
 		
 		  var results = response.rows[i].elements;
 		  for (var j = 0; j < results.length; j++) {
-		  
-			if (results[j].distance.value>24140){ 
-			//Google API only uses meter for result.distance.value
-			alert("We only deliver to the area within 15 miles.");
+			if(results[j].status!=='OK'){
+					alert("Invalid address"); //Checks if address is valid. You can still have a good response, but a bad address
+					return;
+			}
 			
+			var deliveryDistance=results[j].distance.value; //Since we are only inputting one locations, we should be getting only 1 set of results
+			var deliveryDuration=results[j].duration.value;
+			if (deliveryDistance>79200){ 
+			//Google API using imperial distance
+				alert("We only deliver to the area within 15 miles.");
+				return;
 			}else{
-			
-			//alert("We can deliver to you!");
 
-
-			
 //When submitting an order, the data in the entry fields are saved.
 	
 			var firstNameValue=0;
@@ -173,8 +193,13 @@ function submitOrder(){
 			var storedComment=0;
 			localStorage.storedComment = commentValue;
 		
+			var storedDistance=0;
+			localStorage.storedDistance=deliveryDistance;
+			
+			var storedDuration=0;
+			localStorage.storedDuration=deliveryDuration;
 
-			window.open("../1.4_order confirmation page/order_confirmation.html");
+			window.open("../1.4_order confirmation page/order_confirmation.html", '_self');
 			
 			
 			}
@@ -183,7 +208,7 @@ function submitOrder(){
 	  }
 	});
 	}else{
-	alert("Please fill in full delivery address and follow the phone number format.");
+		alert("Please fill in all entry fields and follow the phone number format.");
 	}
 	
 

@@ -41,6 +41,7 @@ if ($result->num_rows > 0) {
 		'InitialEstimatedDeliveryTime'=>$row["InitialEstimatedDeliveryTime"],
 		'ActualDeliveryTime'=>$row["ActualDeliveryTime"],
 		'KitchenCookTime'=>$row["KitchenCookTime"],
+		'KitchenFinishCookTime'=>$row["KitchenFinishCookTime"],
 		'DeliveryTravelDistance'=>$row["DeliveryTravelDistance"],
 		'DeliveryTravelTime'=>$row["DeliveryTravelTime"],
 		'TotalPrice'=>$row["TotalPrice"],
