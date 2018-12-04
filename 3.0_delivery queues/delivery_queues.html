@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<!-- Made by Pooja, edited by Eric Cai -->
+<!-- Made by Eric Cai -->
 <html>
 <head>
-        <title>Kitchen Landing Page</title>
+        <title>Delivery Landing Page</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="kitchen_queues.css">
+        <link rel="stylesheet" href="delivery_queues.css">
 </head>
 
 <!--bootstrap installation-->
@@ -14,7 +14,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <!--call js script-->
-<script type="text/javascript" src="kitchen_queues.js"></script> 
+<script type="text/javascript" src="delivery_queues.js"></script> 
 
 <body onload="display()">
 <!--title bar-->
@@ -27,16 +27,17 @@
   
 <div class="row" style="overflow-x:auto;">
     <table id="table1" style="display: inline-block;float: left>; margin-left: 3cm;" >
-	<caption style="caption-side:top;font-size:20px"> Customer Submitted Orders</caption>
+	<caption style="caption-side:top;font-size:20px"> Kitchen Completed Orders</caption>
         <tr>
 			<th>Select</th>
 			<th>Timer</th>
             <th>Order ID</th>
             <th>Last Name</th>
-			<th>Order Submission Time</th>
-			<th>Order Finish Cook Time</th>
-            <th>Food Item ID</th>
+			<th>Food Item ID</th>
 			<th>Food Item Quantity</th>
+            <th>Delivery Location</th>
+			<th>Delivery Distance</th>
+			<th>Delivery Completion Time</th>
 			<th>Comments</th>
             
         </tr>
@@ -48,22 +49,23 @@
             
 <div class="row">
 	<div class="col-md-1 col-sm-1"></div>
-	<div class="col-md-2 col-sm-2"><button type="button" id="cookButton" class="btn btn-info" onclick="cookFood()">Cook selected customer submitted orders</button></div>
+	<div class="col-md-2 col-sm-2"><button type="button" id="deliverButton" class="btn btn-info" onclick="deliverFood()">Deliver selected kitchen submitted orders</button></div>
  </div>
             
 	
 <div class="row" style="overflow-x:auto;">
     <table id="table2" style="display: inline-block;float: left; margin-left: 3cm;">
-	<caption style="caption-side:top;font-size:20px"> Orders In Progress</caption>
+	<caption style="caption-side:top;font-size:20px"> Deliveries In Progress</caption>
         <tr>
 			<th>Select</th>
 			<th>Timer</th>
             <th>Order ID</th>
             <th>Last Name</th>
-			<th>Order Submission Time</th>
-			<th>Order Finish Cook Time</th>
-            <th>Food Item ID</th>
+			<th>Food Item ID</th>
 			<th>Food Item Quantity</th>
+            <th>Delivery Location</th>
+			<th>Delivery Distance</th>
+			<th>Delivery Completion Time</th>
 			<th>Comments</th>
             
         </tr>
@@ -74,7 +76,7 @@
 
 <div class="row">
 	<div class="col-md-1 col-sm-1"></div>
-	<div class="col-md-2 col-sm-2"><button type="button" id="completeButton" class="btn btn-info" onclick="completeFood()">Complete selected kitchen orders</button></div>
+	<div class="col-md-2 col-sm-2"><button type="button" id="completeButton" class="btn btn-info" onclick="completeFood()">Complete selected deliveries</button></div>
  </div>
  
  <!--bottom bar-->
@@ -93,7 +95,7 @@ var x = setInterval(
             //iterate through rows
             //rows would be accessed using the "row" variable assigned in the for loop
 
-            var endDate = row.cells[5];
+            var endDate = row.cells[8];
             countDownDate = new Date(endDate.innerHTML.replace(/-/g, "/")).getTime();
             var countDown = row.cells[1];
             // Update the count down every 1 second
@@ -117,10 +119,9 @@ var x = setInterval(
 
             //If the count down is finished, write some text 
             if (distance < 0) {
-			
 				nowSec = Math.floor(now/1000);
-				var newKitchenTime=Number(nowSec)+180;
-                updateKitchenFinishCookTime(row.cells[2].innerText, newKitchenTime);
+				var newDeliveryTime=Number(nowSec)+180;
+                updateDeliveryFinishTime(row.cells[2].innerText, newDeliveryTime);
 				location.reload(true); 
             }
         }

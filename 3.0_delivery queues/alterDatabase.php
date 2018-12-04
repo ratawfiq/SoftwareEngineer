@@ -16,7 +16,7 @@ $orderID=$_GET['orderID'];
 $newStatus=$_GET['newStatus'];
 
 
-$sql = "UPDATE fooddeliveryservice.order_header SET orderStatus='{$newStatus}' WHERE orderID='{$orderID}'";
+$sql = "UPDATE fooddeliveryservice.order_header SET orderStatus='".$newStatus."' WHERE orderID='" . $orderID. "'";
 	
 
 $result = $conn->query($sql);

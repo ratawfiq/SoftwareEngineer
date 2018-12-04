@@ -21,28 +21,29 @@ function updateDatabase(orderID, newStatus){
 	var oReq = new XMLHttpRequest(); //New request object
 	var url="alterDatabase.php?orderID="+orderID+"&newStatus="+newStatus;
 	oReq.open("GET", url, false);
-	oReq.send();	 
+	oReq.send();
+	return;	
 
 }
 
-function updateKitchenFinishCookTime(orderID, kitchenTime){
+function updateDeliveryFinishTime(orderID, deliveryTime){
 	var oReq = new XMLHttpRequest(); //New request object
-	var url="updateKitchenFinishCookTime.php?orderID="+orderID+"&kitchenFinishCookTime="+kitchenTime;
+	var url="updateDeliveryFinishTime.php?orderID="+orderID+"&deliveryFinishTime="+deliveryTime;
 	oReq.open("GET", url, false);
 	oReq.send();
-	return "hi";
+	
 }
 function display(){
 
-	createTables("table1", "customer_submitted");
+	createTables("table1", "kitchen_complete");
 	
-	createTables("table2", "kitchen_in_progress");
+	createTables("table2", "delivery_in_progress");
 	
 }
 
 function createTables(tableNum, orderStatus){
 
-	var queue_url="kitchen_queues.php?orderStatus="+orderStatus;
+	var queue_url="delivery_queues.php?orderStatus="+orderStatus;
 	var temp=decodeURIComponent(getDatabase(queue_url)); //Data is encoded into URL format in the database to be able to be sent using PHP
 	var orderHeader=JSON.parse(temp);
 	
@@ -56,22 +57,13 @@ function createTables(tableNum, orderStatus){
 
 		var orderID=orderHeader[i].OrderID;
 		var lastName=orderHeader[i].DeliveryLastName;
+		var deliveryLocation=orderHeader[i].DeliveryAddress+" "+orderHeader[i].DeliveryCity+" "+orderHeader[i].DeliveryState+" "+orderHeader[i].DeliveryZipCode; 
+		var deliveryDistance=orderHeader[i].DeliveryTravelDistance;
+		var deliveryTime=orderHeader[i].DeliveryTravelTime;
 		
-		
-		//format time from UNIX timestamp
-		var a= new Date(orderHeader[i].OrderSubmissionTime*1000);//Convert seconds to ms
-		
-		var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-		var year = a.getFullYear();
-		var month = months[a.getMonth()];
-		var date = a.getDate();
-		var hour = a.getHours();
-		var min = a.getMinutes();
-		var sec = a.getSeconds();
-		var submitTime = date + '-' + month + '-' + year + '-' + hour + ':' + min + ':' + sec ;
-		
+	
 		//-------------------------------------------------
-		//Gets the information from the fod details table
+		//Gets the information from the food details table
 		var foodItems="";
 		var foodQty="";
 		
@@ -89,6 +81,7 @@ function createTables(tableNum, orderStatus){
 		
 		//------------------------------------------
 		//Setting up timer
+		var finishDeliveryTime;
 		var finishCookTime;
 		var timer_max="";
 		var yearB;
@@ -98,34 +91,37 @@ function createTables(tableNum, orderStatus){
 		var minB;
 		var secB;
 		var b;
+		var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 		
 		if (tableNum=='table1'){
-			//If order is customer submitted, then input the estimated time the order should be cooked by, and no timer
+			//If order is kitchen submitted, then input the estimated time the order should be cooked by, and no timer
 			timer_max="NA";
 			
 			//Need to use Number() to turn string to num
-			newTime=Number(orderHeader[i].OrderSubmissionTime)+Number(orderHeader[i].KitchenCookTime);
+			var newTime=Number(deliveryTime)+Number(orderHeader[i].KitchenFinishCookTime);
 		
 			b=new Date((newTime)*1000);
-			
+			alert(b);
 			yearB = b.getFullYear();
 			monthB = months[b.getMonth()];
 			dateB = b.getDate();
 			hourB = b.getHours();
 			minB = b.getMinutes();
 			secB = b.getSeconds();
-			finishCookTime = dateB + '-' + monthB + '-' + yearB + '-' + hourB + ':' + minB + ':' + secB ;
+			
+			finishDeliveryTime = dateB + '-' + monthB + '-' + yearB + '-' + hourB + ':' + minB + ':' + secB ;
+		
 		}
 		else{
-			//If the order is kitchen_in_progress, then take the date that the order is supposed to be completed
-			b=new Date(orderHeader[i].KitchenFinishCookTime*1000);
+			//If the order is delivery_in_progress, then take the date that the order is supposed to be completed
+			b=new Date(orderHeader[i].DeliveryFinishTime*1000);
 			yearB = b.getFullYear();
 			monthB = months[b.getMonth()];
 			dateB = b.getDate();
 			hourB = b.getHours();
 			minB = b.getMinutes();
 			secB = b.getSeconds();
-			finishCookTime = dateB + '-' + monthB + '-' + yearB + '-' + hourB + ':' + minB + ':' + secB ;
+			finishDeliveryTime = dateB + '-' + monthB + '-' + yearB + '-' + hourB + ':' + minB + ':' + secB ;
 			
 		}
 		
@@ -147,11 +143,12 @@ function createTables(tableNum, orderStatus){
 		var timer=row.insertCell(1);
 		var orderID_cell=row.insertCell(2);
 		var lastName_cell=row.insertCell(3);
-		var submitTime_cell=row.insertCell(4);
-		var finishTime_cell=row.insertCell(5);
-		var foodItems_cell=row.insertCell(6);
-		var foodQty_cell=row.insertCell(7);
-		var comments_cell=row.insertCell(8);
+		var foodItems_cell=row.insertCell(4);
+		var foodQty_cell=row.insertCell(5);
+		var deliveryLocation_cell=row.insertCell(6);
+		var deliveryDistance_cell=row.insertCell(7);
+		var deliveryTime_cell=row.insertCell(8);
+		var comments_cell=row.insertCell(9);
 		
 			
 		/*
@@ -166,13 +163,14 @@ function createTables(tableNum, orderStatus){
 		*/
 		
 		//Should put the data into the cells
-		timer.innerHTML=timer_max; //Need to add.
+		timer.innerHTML=timer_max; 
 		orderID_cell.innerHTML=orderID;
 		lastName_cell.innerHTML=lastName;
-		submitTime_cell.innerHTML=submitTime;
-		finishTime_cell.innerHTML=finishCookTime;
 		foodItems_cell.innerHTML=foodItems;
 		foodQty_cell.innerHTML=foodQty;
+		deliveryLocation_cell.innerHTML=deliveryLocation;
+		deliveryDistance_cell.innerHTML=deliveryDistance;
+		deliveryTime_cell.innerHTML=finishDeliveryTime;
 		comments_cell.innerHTML=comments;
 		check_cell.innerHTML=check;
 
@@ -181,7 +179,7 @@ function createTables(tableNum, orderStatus){
 	
 }
 
-function cookFood(){
+function deliverFood(){
 
 	var table1 = document.getElementById("table1");
     var table2 = document.getElementById("table2");
@@ -195,17 +193,17 @@ function cookFood(){
 
 			var now = Math.floor((new Date().getTime())/1000); //Gets the time when the order is moved
 
-			//Gets the kitchen cook time to add to the now time
-			var url="getKitchenCookTime.php?orderID="+orderID;
+			//Gets the delivery travel time to add to the now time
+			var url="getDeliveryTime.php?orderID="+orderID;
 			var temp=getDatabase(url);
-			var orderKitchenTime=JSON.parse(temp);
+			var orderDeliveryTime=JSON.parse(temp);
 
-			var kitchenTime=Number(now)+Number(orderKitchenTime[0].KitchenCookTime);
+			var deliveryTime=Number(now)+Number(orderDeliveryTime[0].DeliveryTravelTime);
 
-			updateKitchenFinishCookTime(orderID, kitchenTime);
+			updateDeliveryFinishTime(orderID, deliveryTime);
 			
 			//Changed the order status
-        	updateDatabase(orderID, "kitchen_in_progress");
+        	updateDatabase(orderID, "delivery_in_progress");
 			
 		}
 	}
@@ -220,11 +218,11 @@ function completeFood(){
 
     //loops through orders checked in table1
     for(var i = 0; i < checkboxes.length; i++){
-		
         if(checkboxes[i].checked){
         	//Gets the orderID from the table and sends it to database to update
-        	var orderID = table2.rows[i+1].cells[2].innerText;
-        	updateDatabase(orderID, "kitchen_complete");
+        	var orderID = table1.rows[i+1].cells[2].innerHTML;
+ 
+        	updateDatabase(orderID, "complete");
     	}
 	}
 	

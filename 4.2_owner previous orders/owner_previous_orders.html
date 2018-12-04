@@ -1,0 +1,194 @@
+<!--Created by Weishen, modified by Eric Cai-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Owner Previous Orders</title>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet" href="owner_previous_orders.css">
+</head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--bootstrap installation-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<body>
+<!--call js script-->
+<script type="text/javascript" src="owner_previous_orders.js"></script>
+
+<!--title bar-->
+<div class="jumbotron jumbotron-fluid bg-warning text-white" style="background: #aaa;">
+	<div class="container">
+		<h1 class="display-3">ZEN Restaurant</h1>
+		<p class="lead"><em>For your breakfast, lunch and dinner</em></p>
+		<!--<p class="lead"><em>Previous orders are shown below, orders are already completed</em></p>-->
+	</div>
+</div>
+
+<div class="row">
+	<p>Select orders and press button for more info</p>
+	<div class="col-md-2 col-sm-3" align="left"><button type="button" class="btn btn-info" onclick="moreInfo()">More Info</button></div>
+</div>
+<div class="row" style="overflow-x:auto;">
+<table id="table1" style="display: inline-block;float: left>; margin-left: 3cm;">
+    <tr>
+		<th>Select</th>
+		<th>Order ID</th>
+		<th>Username</th>
+		<th>Order Created Time</th>
+		<th>Order Delivered Time</th>
+		<th>Initial Estimated Delivery Time</th>
+		<th>Total Price</th>
+	</tr>
+</table>
+</div>
+<script>
+// var text = '{ "sites" : [' +
+//  '{ "time":"Runoob" , "detail":"Julie" , "price":"10"},' +
+//  '{ "time":"Google" , "detail":"Nick" , "price":"20"},' +
+//  '{ "time":"Taobao" , "detail":"July" , "price":"30"} ]}';
+// var text = '[' +
+//  '{ "time":"Runoob" , "detail":"Julie" , "price":"10"},' +
+//  '{ "time":"Google" , "detail":"Nick" , "price":"20"},' +
+//  '{ "time":"Taobao" , "detail":"July" , "price":"30"} ]';
+//
+
+// $(document).ready(function(){
+//  $("button").click(function(){
+  // alert('test');
+$.get("http://localhost/master/4.2%20ownerpreviousorders/previous_orders.php",function(data,status){
+//  alert("数据: " + data + "\n状态: " + status);
+	var jsonO = eval(data);
+// alert(jsonO[0].FoodID);
+// alert(jsonO[1].detail);
+	window.alert(jsonO.length + " records");
+
+
+	var i;
+	for (i = 0; i < jsonO.length; i++) {
+  //添加一行
+		var newTr = table1.insertRow();
+  // //添加两列
+		var newTd0 = newTr.insertCell();
+		var newTd1 = newTr.insertCell();
+		var newTd2 = newTr.insertCell();
+		var newTd3 = newTr.insertCell();
+		var newTd4 = newTr.insertCell();
+		var newTd5 = newTr.insertCell();
+		var newTd6 = newTr.insertCell();
+  //
+  // // window.alert('新加行');
+		newTd0.innerHTML = "<input type='checkbox' name='check-table1>";
+		newTd0.innerHTML = jsonO[i].OrderID + " ";
+		newTd1.innerText= jsonO[i].Username;
+		newTd2.innerText= jsonO[i].OrderSubmissionTime;
+		newTd3.innerText= jsonO[i].ActualDeliveryTime;
+		newTd4.innerText= jsonO[i].InitialEstimatedDeliveryTime;
+		newTd5.innerText= jsonO[i].TotalPrice;
+
+	}
+
+});
+
+</script>
+
+
+
+
+	<!-- // var len=orderHeader.length;
+	// for (var i=0; i<len; i++){
+	//
+	// 	var orderID=orderHeader[i].OrderID;
+	// 	var lastName=orderHeader[i].DeliveryLastName;
+	 </script> -->
+
+
+
+
+    <!-- <head>
+        <title> Fetching data </title>
+    </head>
+
+    <body>
+
+        <table width="100%" border="2" cellpadding="2" cellspacing='1'>
+
+           <tr bgcolor="#2ECCFA">
+                     <th>Orders id</th>
+                     <th>Food id</th>
+                     <th>Quantity</th>
+           </tr> -->
+
+<!-- We use while loop to fetch data and display rows of date on html table -->
+<!--
+<?php
+
+     while ($order = mysql_fetch_assoc($records)){
+
+           echo "<tr>";
+               echo "<td>".$order['OrderID']."</td>";
+               echo "<td>".$order['FoodID']."</td>";
+               echo "<td>".$order['Quantity']."</td>";
+           echo "</tr>";
+
+     }
+?> -->
+        <!-- </table>
+
+   </body>
+
+
+
+
+
+	<style>
+	table, th, td {
+	    border: 1px solid black;
+	    border-collapse: collapse;
+	}
+	th, td {
+	    padding: 5px;
+	}
+	th {
+	    text-align: left;
+	}
+	</style>
+	</head>
+
+	<body>
+
+	<table style="width:100%">
+	  <tr>
+	    <th>Order time</th>
+			<th>Order details</th>
+	    <th>Total price</th>
+	  </tr>
+	  <tr>
+			<td>01:00:00</td>
+	    <td>Jill</td>
+	    <td>50</td>
+	  </tr>
+	  <tr>
+			<td>01:00:00</td>
+	    <td>Eve</td>
+	    <td>94</td>
+	  </tr>
+	  <tr>
+			<td>01:00:00</td>
+	    <td>John</td>
+	    <td>80</td>
+	  </tr>
+	</table>
+ -->
+
+ <!--bottom bar-->
+<div class="alert sticky-bottom alert-dark text-center" role="alert">
+  	<p><small>&#174;2018. All Rights Reserved.</small></p>
+</div>
+
+</body>
+</html>
