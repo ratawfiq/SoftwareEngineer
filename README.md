@@ -111,3 +111,7 @@ Confirmation page:
 3. Calculated estimated time.
 4. NEED TO PULL TOTAL PRICE. It is returning undefined. Why?
 
+v2.0 - 12-3-18-Eric
+Cleaned up the timers on kitchen and delivery queues. Working correctly now. Started work on formatting owner pages.
+To do: customer view prev orders and customer view current orders.
+
