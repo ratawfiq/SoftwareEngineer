@@ -51,13 +51,15 @@ function loginCheck(){
 			if (username_input=="kitchen"){
 				window.open("../2.0_kitchen queues/kitchen_queues.html", '_self');
 			} else if(username_input=="delivery"){
-				//window.open("../1.1_landing page/customer_landing_page.html", '_self');
+				window.open("../3.0_delivery queues/delivery_queues.html", '_self');
 			} else if (username_input=="owner"){
 				window.open("../4.1_owner landing page/owner_landing_page.html", '_self');
 			} else {
-				window.open("../1.0_landing page/customer_landing_page.html", '_self');
-				var storedUsername=0;
+				
+				var storedUsername="";
 				localStorage.storedUsername = username_input; //stores username so that customer functions work
+			
+				window.open("../1.0_landing page/customer_landing_page.html", '_self');
 			}	
 		}else{
 			alert("The inputted password is incorrect");

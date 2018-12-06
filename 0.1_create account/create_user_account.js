@@ -195,7 +195,7 @@ function createAccount(){
 	}, callback);
 	
 	
-	//window.open("../0.0_login page/login.html", '_self');	
+	window.open("../0.0_login page/login.html", '_self');	
 }
 function callback(response, status) {
 
