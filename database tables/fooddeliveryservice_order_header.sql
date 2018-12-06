@@ -53,7 +53,7 @@ CREATE TABLE `order_header` (
 
 LOCK TABLES `order_header` WRITE;
 /*!40000 ALTER TABLE `order_header` DISABLE KEYS */;
-INSERT INTO `order_header` VALUES ('1','Username1','John','Doe','1st Street','Rochester','MI','48307','555-5555','No',1543275279,1543276279,NULL,900,1543881653,1543884882,10,100,10.5,'delivery_in_progress'),('2','Username2','Jane','Doe','2nd Street','Rochester','MI','48307','555-5555','No',1543277387,1543279387,NULL,180,1543882128,NULL,15,200,12,'kitchen_in_progress'),('3','Tester1','A','B','3rd Street','Rochester','MI','48307','555-555','Yes',1543689477,1543699477,NULL,300,NULL,NULL,4,300,9,'customer_submitted');
+INSERT INTO `order_header` VALUES ('1','Username1','John','Doe','1st Street','Rochester','MI','48307','555-5555','No',1543275279,1543276279,NULL,900,1543881653,1543884882,10,100,10.5,'delivery_in_progress'),('2','Username2','Jane','Doe','2nd Street','Rochester','MI','48307','555-5555','No',1543277387,1543279387,NULL,180,1543972027,NULL,15,200,12,'kitchen_in_progress'),('3','Tester1','A','B','3rd Street','Rochester','MI','48307','555-555','Yes',1543689477,1543699477,NULL,300,NULL,NULL,4,300,9,'customer_submitted'),('4','user','C','D','4th Street','Rochester','MI','48307','555-555-5555','Y',1543689477,1543699477,NULL,300,NULL,NULL,4,300,9,'completed'),('5','user','C','D','4th Street','Rochester','MI','48307','555-555-555','N',1543689477,1543699477,1543699477,300,1543699477,1543699477,4,300,9,'kitchen_completed');
 /*!40000 ALTER TABLE `order_header` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -66,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 19:58:06
+-- Dump completed on 2018-12-05 19:36:50
