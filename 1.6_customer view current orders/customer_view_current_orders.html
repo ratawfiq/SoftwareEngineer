@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<!-- Created by Eric Cai -->
+<html>
+<head>
+        <title>View Current Orders</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="customer_view_current_orders.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+
+<!--bootstrap installation-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!--call js script-->
+<script type="text/javascript" src="customer_view_current_orders.js"></script> 
+
+
+
+
+
+<!-- MAGED -->
+
+
+<body onload="display()">
+
+<!--title bar-->
+<div class="jumbotron jumbotron-fluid bg-warning text-white" style="background: #aaa;">
+	<div class="container">
+		<h1 class="display-3">ZEN Restaurant</h1>
+		<p class="lead"><em>For your breakfast, lunch and dinner</em></p>
+	</div>
+</div>    
+    
+<div>
+	<h2 style="margin-left:3cm">Click an order for more information</h2>
+</div>
+<div class="row" style="overflow-x:auto;">
+
+
+    <table id="table1" style="display: inline-block;margin-left:3cm" >
+	<caption style="caption-side:top;font-size:20px"> View Current Orders</caption>
+        <tr>
+            <th>Order ID</th>
+            <th>Submission Time</th>
+			<th>Estimated Delivery Time</th>
+			<th>Order Price</th>
+        </tr>
+
+			
+    </table>
+
+	 <!-- Trigger/Open The Popup -->
+<div class="popup" id="x">
+	<p class="popuptext" id="popupText">
+	<span class="close">&times;</span>
+	</p>
+</div>
+
+	
+
+</div> <br><br>
+
+
+ <!--bottom bar-->
+<div class="alert sticky-bottom alert-dark text-center" role="alert">
+  	<p><small>&#174;2018. All Rights Reserved for Zen Team.</small></p>
+</div>
+
+
+
+</body>
+
+</html>

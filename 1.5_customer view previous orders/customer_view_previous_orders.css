@@ -1,0 +1,156 @@
+.row div{padding: 20px}
+.center-vertical-description{
+position: relative;
+top: -5%;
+transform: translateY(-0%);
+}
+.center-vertical-price{
+position: relative;
+top: 5%;
+transform: translateY(+15%);
+}
+.center-vertical-button{
+position: relative;
+top: 10%;
+transform: translateY(+6%);
+}
+.center-vertical-qty{
+position: relative;
+top: 10%;
+transform: translateY(+15%);
+}
+.custom-width {
+width: 38px !important;
+}
+.color-change {
+background-color: #FFFFFF
+}
+.font-size-menuCat{
+font-size:160%;
+text-align:left;
+}
+
+            
+ .container{overflow: hidden}
+ .tab{float: left}
+ .tab-btn{margin: 50px;}
+button{display:block;margin-bottom: 20px;}
+tr{transition:all .25s ease-in-out}
+tr:hover{background-color: #ddd;}
+
+
+table {
+  display: inline-block;
+  height: 500px;
+  overflow-y: scroll;
+}
+
+#table1 {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    
+}
+
+#table1 td, #table1 th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#table1 tr:nth-child(even){background-color: #f2f2f2;}
+
+#table1 tr:hover {background-color: #ddd;}
+
+#table1 th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+} 
+
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: #555;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: relative;
+	
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: relative;
+
+    margin-left: auto;
+    margin-right: auto
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
