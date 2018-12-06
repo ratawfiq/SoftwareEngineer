@@ -1,10 +1,11 @@
 <?php
+//Made by Eric Cai
 
 $servername = "localhost";
 $username="root";
 $password="pass";
 $database="fooddeliveryservice";
-//Weishen edited
+
 // Create connection
 $conn = new mysqli($servername, $username, $password,$database);
 
@@ -13,27 +14,40 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM order_header where OrderStatus ='completed' ORDER BY OrderSubmissionTime DESC ";
+$sql = "SELECT * FROM order_header WHERE OrderStatus = 'kitchen_completed' ORDER BY OrderSubmissionTime DESC";
 $result = $conn->query($sql);
+
+// $sql1 = "SELECT * FROM OrderStatus = 'kitchen_in_progress'";
+// $result1 = $conn->query($sql1);
+//
+// $sql2 = "SELECT * FROM OrderStatus = 'kitchen_completed'";
+// $result2 = $conn->query($sql2);
+//
+// $sql3 = "SELECT * FROM OrderStatus = 'delivery_in_progress'";
+// $result3 = $conn->query($sql3);
 
 //Checks to see if the query is built right
 if (!$result) {
     trigger_error('Invalid query: ' . $conn->error);
 }
 
-$arr=array();
+$arr2=array();
 $i=0;
 if ($result->num_rows > 0) {
     // get data of each row
 	while($row = $result->fetch_assoc()) {
   //       $userDetails[$i]= array('detail'=>$row["detail"],'price'=>$row["price"],'date'=>$row["date"]);
 		// $i++;
-		array_push($arr, $row);
+		array_push($arr2, $row);
 	}
 } else {
-    $arr[0]="No users";
+    $arr2[0]="No users";
 }
+//
 
-echo json_encode($arr);
+echo json_encode($arr2);
+// echo json_encode($arr1);
+// echo json_encode($arr2);
+// echo json_encode($arr3);
 
 ?>

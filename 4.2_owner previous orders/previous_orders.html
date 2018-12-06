@@ -1,0 +1,85 @@
+<!--Created by Weishen, modified by Eric Cai-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>All Previous Orders</title>
+<link rel="stylesheet" href="previous_orders.css">
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--bootstrap installation-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<body>
+	<!--call js script-->
+	<script type="text/javascript" src="previous_orders.js"></script>
+
+<!--title bar-->
+<div class="jumbotron jumbotron-fluid bg-warning text-white" style="background: #aaa;">
+	<div class="container">
+		<h1 class="display-3">ZEN Restaurant</h1>
+		<p class="lead"><em>For your breakfast, lunch and dinner</em></p>
+	</div>
+</div>
+
+
+
+<table id="testTbl" border=1 style="width:100%">
+    <tr>
+    	<th>Order ID</th>
+    	<th>Username</th>
+    	<th>Order Created Time</th>
+		<th>Order Delivered Time</th>
+		<th>Total Price</th>
+		<th>Order Details</th>
+	</tr>
+</table>
+
+<script>
+
+$.get("../4.2_owner previous orders/previous_orders.php",function(data,status){
+
+	var jsonO = eval(data);
+
+	var i;
+	for (i = 0; i < jsonO.length; i++) {
+
+		var newTr = testTbl.insertRow();
+
+		var newTd0 = newTr.insertCell();
+		var newTd1 = newTr.insertCell();
+		var newTd2 = newTr.insertCell();
+		var newTd3 = newTr.insertCell();
+		var newTd5 = newTr.insertCell();
+		var newTd6 = newTr.insertCell();
+
+		newTd0.innerHTML = jsonO[i].OrderID + " ";
+		newTd1.innerText= jsonO[i].Username;
+		newTd2.innerText= convertTime(jsonO[i].OrderSubmissionTime);
+		newTd3.innerText= convertTime(jsonO[i].ActualDeliveryTime);
+		newTd5.innerText= jsonO[i].TotalPrice;
+
+		var str=convertString(jsonO[i]);
+
+
+		newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id)'' >" + "Order Details"+ "</button>"
+
+	}
+
+  });
+
+function myFunction(e) {
+	alert(e);
+}
+
+</script>
+
+
+
+</body>
+</html>
