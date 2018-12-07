@@ -194,8 +194,7 @@ function createAccount(){
 	  avoidTolls: false
 	}, callback);
 	
-	
-	window.open("../0.0_login page/login.html", '_self');	
+
 }
 function callback(response, status) {
 
@@ -236,6 +235,7 @@ function callback(response, status) {
 		}
 		finalURL=protoURL+"&userlocationdistance="+accountDistance+"&userlocationtime="+accountDuration;
 		sendData(finalURL);
+		window.open("../0.0_login page/login.html", '_self');
 	}
 }
 function sendData(url){
