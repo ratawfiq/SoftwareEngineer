@@ -82,10 +82,7 @@ function submitOrder(){
 //call google API to check 15mile delivery area
 
 	
-//NEED TO BE ADDED: validate customer input - what if it is not a valid city??
-//might consider 'city + state + zip code'
 
-	
 	var nonBlank=false;
 	nonBlank=document.getElementById("firstName").value!="" 
 	&& document.getElementById("lastName").value!=""

@@ -22,11 +22,17 @@ function createAccount(){
 		return;
 	}
 	
+	//checks phone number
 	var phoneNumberValidation=false;
 	var phoneNumberDigit=0;
 	phoneNumberDigit=document.getElementById("account_phoneNumber").value.length;
 	if(phoneNumberDigit!=12){
 		alert("Please enter a phone number with the following format: xxx-xxx-xxxx");
+		return;
+	}
+	
+	if (validEmail(document.getElementById("account_email").value)==false){
+		alert("Please enter a valid email.");
 		return;
 	}
 	
@@ -216,7 +222,7 @@ function callback(response, status) {
 				accountDistance=results[j].distance.value; //Since we are only inputting one locations, we should be getting only 1 set of results
 				accountDuration=results[j].duration.value;
 
-				if (accountDistance>79200){ //Google API using meter for result.distance.value
+				if (accountDistance>79200){ //Google API using feet for result.distance.value
 					//Confirmation boxes
 					var r = confirm("Your address is greater than 15 miles from the restaurant. Continue creating account?");
 					if (r==false){
@@ -248,3 +254,15 @@ if (window.XMLHttpRequest){
 	xmlhttp.open("GET", url, false);
 	xmlhttp.send();
 }
+
+
+function validEmail(inputText){
+
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if(inputText.match(mailformat)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
