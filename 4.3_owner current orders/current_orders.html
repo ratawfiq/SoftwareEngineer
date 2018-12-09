@@ -21,7 +21,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-<body>
+<body onload="openCity(event, 'Tab1')">
 <!--call js script-->
 <script type="text/javascript" src="current_orders.js"></script>
 
@@ -36,6 +36,12 @@
 	</div>	
 </div>
 
+<!-- Trigger/Open The Popup -->
+<div id="overlay" onclick="off()" align="center">
+	<div class="container" style="background-color: black;">
+	<p id="overlayText"></p>
+	</div>
+</div>
 
 <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'Tab1')">Customer submitted orders</button>
@@ -106,7 +112,7 @@
 </div>
 
 <script>
-openCity(event, 'Tab1');
+//openCity(event, 'Tab1');
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -121,8 +127,26 @@ function openCity(evt, cityName) {
    	evt.currentTarget.className += " active";
 }
 
-function myFunction(e) {
-	alert(e);
+function myFunction(e, id) {
+	var url="getOrderDetails.php?orderID="+id;
+	var details = getDatabase(url);
+
+	var foodInfo="";
+	foodItemDetails=JSON.parse(details);
+	foodLen=foodItemDetails.length;
+	for (var k=0; k<foodLen; k++){
+		var foodName=translateFood(foodItemDetails[k].FoodID);
+
+		foodInfo=foodInfo+foodName+" x"+foodItemDetails[k].Quantity+"<br>";
+	}
+
+	var oText=e+"</br>"+foodInfo;
+
+	var overlay=document.getElementById("overlayText");
+	document.getElementById("overlayText").innerHTML=oText;
+	on();
+
+	
 }
 </script>
 
@@ -155,7 +179,7 @@ $.get("../4.3_owner%20current%20orders/current_orders.php",function(data,status)
 	var str=convertString(jsonO[i]);
 
 
-		newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id)'' >" + "Order Details"+ "</button>"
+		newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>"
 
 	}
 
@@ -190,7 +214,7 @@ $.get("../4.3_owner%20current%20orders/current_orders0.php",function(data,status
 	var str=convertString(jsonO[i]);
 
 
-        newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id)'' >" + "Order Details"+ "</button>"
+        newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>"
 
 	}
 
@@ -224,7 +248,7 @@ $.get("../4.3_owner%20current%20orders/current_orders1.php",function(data,status
 
 	var str=convertString(jsonO[i]);
 	
-        newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id)'' >" + "Order Details"+ "</button>"
+        newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>"
 
 	}
 
@@ -258,7 +282,7 @@ $.get("../4.3_owner%20current%20orders/current_orders2.php",function(data,status
 
 		var str=convertString(jsonO[i]);
 
-    	newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id)'' >" + "Order Details"+ "</button>"
+    	newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>"
 
 	}
 
