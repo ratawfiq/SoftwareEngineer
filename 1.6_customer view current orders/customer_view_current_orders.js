@@ -40,7 +40,7 @@ function createTables(tableNum, orderStatus, username){
 			var submissionTime=convertTime(orderHeader[i].OrderSubmissionTime);
 			var estDeliveryTime=convertTime(orderHeader[i].DeliveryFinishTime);
 			var price=orderHeader[i].TotalPrice;
-			
+
 			
 
 		//---------------------------------------------------------------------
@@ -58,13 +58,13 @@ function createTables(tableNum, orderStatus, username){
 			var submissionTime_cell=row.insertCell(1);
 			var estDeliveryTime_cell=row.insertCell(2);
 			var price_cell=row.insertCell(3);
-
 		
 			//Should put the data into the cells
 			orderID_cell.innerHTML=orderID;
 			submissionTime_cell.innerHTML=submissionTime;
 			estDeliveryTime_cell.innerHTML=estDeliveryTime;
 			price_cell.innerHTML=price;
+
 			//-----------------------------------------------------------------------
 		}
 	}
