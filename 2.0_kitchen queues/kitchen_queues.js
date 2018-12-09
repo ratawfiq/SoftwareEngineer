@@ -50,7 +50,7 @@ function createTables(tableNum, orderStatus){
 		
 		return;
 	}
-	
+		
 	var len=orderHeader.length;
 	for (var i=0; i<len; i++){
 
@@ -81,7 +81,9 @@ function createTables(tableNum, orderStatus){
 		foodItemDetails=JSON.parse(temp3);
 		foodLen=foodItemDetails.length;
 		for (var k=0; k<foodLen; k++){
-			foodItems=foodItems+foodItemDetails[k].FoodID+"<br>";
+			var foodName=translateFood(foodItemDetails[k].FoodID);
+
+			foodItems=foodItems+foodName+"<br>";
 			foodQty=foodQty+foodItemDetails[k].Quantity+"<br>";
 		}
 		
@@ -153,17 +155,6 @@ function createTables(tableNum, orderStatus){
 		var foodQty_cell=row.insertCell(7);
 		var comments_cell=row.insertCell(8);
 		
-			
-		/*
-		//Temp Variables
-		var timer='5';
-		var orderID='1';
-		var lastName="Dave";
-		var submitTime="5:5:5";
-		var foodItems="1<br>2";
-		var foodQty="1<br>2";
-		var comments="hi";
-		*/
 		
 		//Should put the data into the cells
 		timer.innerHTML=timer_max; //Need to add.
@@ -224,11 +215,45 @@ function completeFood(){
         if(checkboxes[i].checked){
         	//Gets the orderID from the table and sends it to database to update
         	var orderID = table2.rows[i+1].cells[2].innerText;
-        	updateDatabase(orderID, "kitchen_complete");
+        	updateDatabase(orderID, "kitchen_completed");
     	}
 	}
 	
 	location.reload(true); 
 }
 
-
+function translateFood(foodID){
+	var foodName='';
+	switch(foodID){
+			case '1': 
+				foodName="Classic Quarter Chicken Dinner";
+				break;
+			case '2': 
+				foodName="Half Chicken Dinner";
+				break;
+			case '3': 
+				foodName= "Double Leg Dinner";
+				break;
+			case '4': 
+				foodName="Quarter Chicken & Shrimp Dinner";
+				break;
+			case '5': 
+				foodName="VEGGIE";
+				break;
+			case '6': 
+				foodName="BBQ CHICKEN";
+				break;
+			case '7': 
+				foodName="HAWAIIAN Beef";
+				break;
+			case '8': 
+				foodName="CRISPY CHICKEN";
+				break;
+			case '9': 
+				foodName="GOURMET CHEESEBURGER";
+				break;
+			default: 
+				foodName="NULL";
+			}
+	return foodName;
+}

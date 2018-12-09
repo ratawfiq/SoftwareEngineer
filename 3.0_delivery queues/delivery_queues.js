@@ -35,7 +35,7 @@ function updateDeliveryFinishTime(orderID, deliveryTime){
 }
 function display(){
 
-	createTables("table1", "kitchen_complete");
+	createTables("table1", "kitchen_completed");
 	
 	createTables("table2", "delivery_in_progress");
 	
@@ -73,7 +73,8 @@ function createTables(tableNum, orderStatus){
 		foodItemDetails=JSON.parse(temp3);
 		foodLen=foodItemDetails.length;
 		for (var k=0; k<foodLen; k++){
-			foodItems=foodItems+foodItemDetails[k].FoodID+"<br>";
+			var foodName=translateFood(foodItemDetails[k].FoodID);
+			foodItems=foodItems+foodName+"<br>";
 			foodQty=foodQty+foodItemDetails[k].Quantity+"<br>";
 		}
 		
@@ -101,7 +102,6 @@ function createTables(tableNum, orderStatus){
 			var newTime=Number(deliveryTime)+Number(orderHeader[i].KitchenFinishCookTime);
 		
 			b=new Date((newTime)*1000);
-			alert(b);
 			yearB = b.getFullYear();
 			monthB = months[b.getMonth()];
 			dateB = b.getDate();
@@ -150,18 +150,7 @@ function createTables(tableNum, orderStatus){
 		var deliveryTime_cell=row.insertCell(8);
 		var comments_cell=row.insertCell(9);
 		
-			
-		/*
-		//Temp Variables
-		var timer='5';
-		var orderID='1';
-		var lastName="Dave";
-		var submitTime="5:5:5";
-		var foodItems="1<br>2";
-		var foodQty="1<br>2";
-		var comments="hi";
-		*/
-		
+
 		//Should put the data into the cells
 		timer.innerHTML=timer_max; 
 		orderID_cell.innerHTML=orderID;
@@ -229,4 +218,39 @@ function completeFood(){
 	location.reload(true); 
 }
 
+function translateFood(foodID){
+	var foodName='';
+	switch(foodID){
+			case '1': 
+				foodName="Classic Quarter Chicken Dinner";
+				break;
+			case '2': 
+				foodName="Half Chicken Dinner";
+				break;
+			case '3': 
+				foodName= "Double Leg Dinner";
+				break;
+			case '4': 
+				foodName="Quarter Chicken & Shrimp Dinner";
+				break;
+			case '5': 
+				foodName="VEGGIE";
+				break;
+			case '6': 
+				foodName="BBQ CHICKEN";
+				break;
+			case '7': 
+				foodName="HAWAIIAN Beef";
+				break;
+			case '8': 
+				foodName="CRISPY CHICKEN";
+				break;
+			case '9': 
+				foodName="GOURMET CHEESEBURGER";
+				break;
+			default: 
+				foodName="NULL";
+			}
 
+	return foodName;
+}

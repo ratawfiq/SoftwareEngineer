@@ -19,71 +19,81 @@
 <body onload="display()">
 <!--title bar-->
 <div class="jumbotron jumbotron-fluid bg-warning text-white" style="background: #aaa;">
-	<div class="container">
-		<h1 class="display-3">ZEN Restaurant</h1>
-		<p class="lead"><em>For your breakfast, lunch and dinner</em></p>
-	</div>
-</div>        
+    <div class="container">
+        <div style="inline-block">
+        <h1 class="display-3">ZEN Restaurant</h1>
+        <p class="lead"><em>For your breakfast, lunch and dinner</em></p>
+        </div>
+        <div style="inline-block"><a href="../0.0_login page/login.html" class="btn btn-info" align="right">Logout</a></div>
+    </div>  
+</div>      
   
+
+<div class="container-fluid">
+
+ <!--Tables-->
 <div class="row" style="overflow-x:auto;">
-    <table id="table1" style="display: inline-block;float: left>; margin-left: 3cm;" >
-	<caption style="caption-side:top;font-size:20px"> Customer Submitted Orders</caption>
+    <table id="table1" style="display: inline-block;" align="center">
+    <caption style="caption-side:top;font-size:20px"> Customer Submitted Orders</caption>
         <tr>
-			<th>Select</th>
-			<th>Timer</th>
+            <th>Select</th>
+            <th>Timer</th>
             <th>Order ID</th>
             <th>Last Name</th>
-			<th>Order Submission Time</th>
-			<th>Order Finish Cook Time</th>
+            <th>Order Submission Time</th>
+            <th>Order Finish Cook Time</th>
             <th>Food Item ID</th>
-			<th>Food Item Quantity</th>
-			<th>Comments</th>
+            <th>Food Item Quantity</th>
+            <th>Comments</th>
             
         </tr>
 
-				
+                
     </table>
-	
+    
 </div>
             
 <div class="row">
-	<div class="col-md-1 col-sm-1"></div>
-	<div class="col-md-2 col-sm-2"><button type="button" id="cookButton" class="btn btn-info" onclick="cookFood()">Cook selected customer submitted orders</button></div>
+    <div class="col-md-7 col-sm-1"></div>
+    <div class="col-md-2 col-sm-2"><button type="button" id="cookButton" class="btn btn-info" onclick="cookFood()">Cook selected customer submitted orders</button></div>
  </div>
             
-	
+    
 <div class="row" style="overflow-x:auto;">
-    <table id="table2" style="display: inline-block;float: left; margin-left: 3cm;">
-	<caption style="caption-side:top;font-size:20px"> Orders In Progress</caption>
+    <table id="table2" style="display: inline-block;" align="center">
+    <caption style="caption-side:top;font-size:20px"> Orders In Progress</caption>
         <tr>
-			<th>Select</th>
-			<th>Timer</th>
+            <th>Select</th>
+            <th>Timer</th>
             <th>Order ID</th>
             <th>Last Name</th>
-			<th>Order Submission Time</th>
-			<th>Order Finish Cook Time</th>
+            <th>Order Submission Time</th>
+            <th>Order Finish Cook Time</th>
             <th>Food Item ID</th>
-			<th>Food Item Quantity</th>
-			<th>Comments</th>
+            <th>Food Item Quantity</th>
+            <th>Comments</th>
             
         </tr>
-					
+                    
     </table>   
-	
+    
 </div>
 
 <div class="row">
-	<div class="col-md-1 col-sm-1"></div>
-	<div class="col-md-2 col-sm-2"><button type="button" id="completeButton" class="btn btn-info" onclick="completeFood()">Complete selected kitchen orders</button></div>
+    <div class="col-md-7 col-sm-1"></div>
+    <div class="col-md-2 col-sm-2"><button type="button" id="completeButton" class="btn btn-info" onclick="completeFood()">Complete selected kitchen orders</button></div>
  </div>
  
+
+</div>
+
  <!--bottom bar-->
 <div class="alert sticky-bottom alert-dark text-center" role="alert">
-  	<p><small>&#174;2018. All Rights Reserved.</small></p>
+    <p><small>&#174;2018. All Rights Reserved.</small></p>
 </div>
 
 <script>
-
+//Countdown timer
 var table = document.getElementById("table2");
 
 var x = setInterval(
@@ -117,11 +127,11 @@ var x = setInterval(
 
             //If the count down is finished, write some text 
             if (distance < 0) {
-			
-				nowSec = Math.floor(now/1000);
-				var newKitchenTime=Number(nowSec)+180;
+            
+                nowSec = Math.floor(now/1000);
+                var newKitchenTime=Number(nowSec)+180;
                 updateKitchenFinishCookTime(row.cells[2].innerText, newKitchenTime);
-				location.reload(true); 
+                location.reload(true); 
             }
         }
     }, 1000);

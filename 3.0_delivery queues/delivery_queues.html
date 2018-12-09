@@ -20,13 +20,19 @@
 <!--title bar-->
 <div class="jumbotron jumbotron-fluid bg-warning text-white" style="background: #aaa;">
 	<div class="container">
+		<div style="inline-block">
 		<h1 class="display-3">ZEN Restaurant</h1>
 		<p class="lead"><em>For your breakfast, lunch and dinner</em></p>
-	</div>
-</div>        
-  
+		</div>
+		<div style="inline-block"><a href="../0.0_login page/login.html" class="btn btn-info" align="right">Logout</a></div>
+	</div>	
+</div>       
+ 
+<div class="container-fluid">
+
+<!--Tables-->
 <div class="row" style="overflow-x:auto;">
-    <table id="table1" style="display: inline-block;float: left>; margin-left: 3cm;" >
+    <table id="table1" style="display: inline-block;" align="center">
 	<caption style="caption-side:top;font-size:20px"> Kitchen Completed Orders</caption>
         <tr>
 			<th>Select</th>
@@ -48,13 +54,13 @@
 </div>
             
 <div class="row">
-	<div class="col-md-1 col-sm-1"></div>
+	<div class="col-md-7 col-sm-1"></div>
 	<div class="col-md-2 col-sm-2"><button type="button" id="deliverButton" class="btn btn-info" onclick="deliverFood()">Deliver selected kitchen submitted orders</button></div>
  </div>
             
 	
 <div class="row" style="overflow-x:auto;">
-    <table id="table2" style="display: inline-block;float: left; margin-left: 3cm;">
+    <table id="table2" style="display: inline-block;" align="center">
 	<caption style="caption-side:top;font-size:20px"> Deliveries In Progress</caption>
         <tr>
 			<th>Select</th>
@@ -75,9 +81,11 @@
 </div>
 
 <div class="row">
-	<div class="col-md-1 col-sm-1"></div>
+	<div class="col-md-7 col-sm-1"></div>
 	<div class="col-md-2 col-sm-2"><button type="button" id="completeButton" class="btn btn-info" onclick="completeFood()">Complete selected deliveries</button></div>
  </div>
+
+</div>
  
  <!--bottom bar-->
 <div class="alert sticky-bottom alert-dark text-center" role="alert">
@@ -85,7 +93,7 @@
 </div>
 
 <script>
-
+//Countdown timer
 var table = document.getElementById("table2");
 
 var x = setInterval(
