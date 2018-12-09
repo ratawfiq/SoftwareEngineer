@@ -6,7 +6,31 @@
 <title>View Menu</title>
 <link rel="stylesheet" href="previous_orders.css">
 
+<style>
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
 
+#overlayText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+</style>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
 </script>
@@ -140,7 +164,7 @@ function myFunction(e, id) {
 		foodInfo=foodInfo+foodName+" x"+foodItemDetails[k].Quantity+"<br>";
 	}
 
-	var oText=e+"</br>"+foodInfo;
+	var oText=e+"Food Details: </br>"+foodInfo;
 
 	var overlay=document.getElementById("overlayText");
 	document.getElementById("overlayText").innerHTML=oText;

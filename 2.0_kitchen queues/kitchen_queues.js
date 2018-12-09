@@ -143,7 +143,7 @@ function createTables(tableNum, orderStatus){
 
 		//Inserts a row at the top of the table
 		var row = table.insertRow(1);
-
+		row.setAttribute("onclick", "moreInfo("+orderID+")");
 		//Inserts cells
 		var check_cell=row.insertCell(0);
 		var timer=row.insertCell(1);
@@ -222,6 +222,40 @@ function completeFood(){
 	location.reload(true); 
 }
 
+function moreInfo(ID){
+
+	var url="getOrderByID.php?orderID="+ID;
+    var temp=decodeURIComponent(getDatabase(url)); //Data is encoded into URL format in the database to be able to be sent using PHP
+		
+	var orderHeader=JSON.parse(temp);
+
+	var len=orderHeader.length;
+
+	for (var i=0; i<len; i++){
+
+		var address=orderHeader[i].DeliveryAddress;
+		var city=orderHeader[i].DeliveryCity;
+		var state=orderHeader[i].DeliveryState;
+		var zipcode=orderHeader[i].DeliveryZipCode;
+		var comments=orderHeader[i].Comments;
+		var submissionTime=convertTime(orderHeader[i].OrderSubmissionTime)
+		var price=orderHeader[i].TotalPrice;
+		
+		var locations=address+" "+city+" "+state+" "+zipcode;
+	
+		var str="<p>Order ID: "+ID+
+		"<br/>Order Submission Time: "+submissionTime+
+		"<br/>Price: "+price+
+		"<br/>Delivery Location: "+locations+
+		"<br/>Comments: "+comments+"</p>";
+	
+		var overlay=document.getElementById("overlayText");
+		document.getElementById("overlayText").innerHTML=str;
+		on();
+		
+	}
+}
+
 function translateFood(foodID){
 	var foodName='';
 	switch(foodID){
@@ -256,4 +290,26 @@ function translateFood(foodID){
 				foodName="NULL";
 			}
 	return foodName;
+}
+
+function convertTime(time){
+	var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	var b=new Date(time*1000);
+	var yearB = b.getFullYear();
+	var monthB = months[b.getMonth()];
+	var dateB = b.getDate();
+	var hourB = b.getHours();
+	var minB = b.getMinutes();
+	var secB = b.getSeconds();
+	var finalTime = dateB + '-' + monthB + '-' + yearB + '-' + hourB + ':' + minB + ':' + secB ;
+
+	return finalTime;
+}
+
+function on() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+    document.getElementById("overlay").style.display = "none";
 }

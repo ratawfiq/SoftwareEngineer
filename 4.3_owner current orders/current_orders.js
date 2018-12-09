@@ -17,17 +17,17 @@ function convertTime(time){
 function convertString(val){
 
 	var str="OrderID:   "+val.OrderID
-    +"\nUsername:   "+val.Username
-    +"\nFirst and Last Name: "+val.DeliveryFirstName+" "+val.DeliveryLastName
-    +"\nDelivery Location:   "+val.DeliveryAddress
+    +"</br>Username:   "+val.Username
+    +"</br>First and Last Name: "+val.DeliveryFirstName+" "+val.DeliveryLastName
+    +"</br>Delivery Location:   "+val.DeliveryAddress
     +" "+val.DeliveryCity
     +" "+val.DeliveryState
     +" "+val.DeliveryZipCode
-    +"\nPhone Number:  "+val.DeliveryPhone
-    +"\nOrder Submission Time:   "+convertTime(val.OrderSubmissionTime)
-    +"\nTotal Price:   "+val.TotalPrice
-    +"\nEstimated Delivery Time:   "+convertTime(val.InitialEstimatedDeliveryTime)
-    +"\nComments:   "+val.Comments;
+    +"</br>Phone Number:  "+val.DeliveryPhone
+    +"</br>Order Submission Time:   "+convertTime(val.OrderSubmissionTime)
+    +"</br>Total Price:   "+val.TotalPrice
+    +"</br>Estimated Delivery Time:   "+convertTime(val.InitialEstimatedDeliveryTime)
+    +"</br>Comments:   "+val.Comments +"</br>";
 
     return str;
 }
