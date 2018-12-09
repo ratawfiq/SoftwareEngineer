@@ -115,3 +115,5 @@ v2.0 - 12-3-18-Eric
 Cleaned up the timers on kitchen and delivery queues. Working correctly now. Started work on formatting owner pages.
 To do: customer view prev orders and customer view current orders.
 
+v2.1 - 12/09/18 - Qian
+fixed the issue which 'e' can by typed in in the Qty type-in column in the 'make an order' page
