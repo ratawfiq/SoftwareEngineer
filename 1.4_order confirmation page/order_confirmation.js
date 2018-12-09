@@ -98,6 +98,8 @@ function displayOrder() {
 	document.getElementById("orderFoodQty").innerHTML = tempOrderFoodQty;
 	document.getElementById("orderFoodPrice").innerHTML = tempOrderFoodPrice;
 	
+	document.getElementById("totalPrice").innerHTML = "Total Price: $"+localStorage.storedPrice;
+	
 	document.getElementById("estTime").innerHTML=displayTime+" minutes";
 }
 
@@ -118,7 +120,7 @@ function submitOrder(){
 		if(orderFoodQty[k]!=0){//Indexing starts at 0
 			var num=k+1;
 			var food_url='storeFoodDetails.php?orderID='+orderID+'&foodID='+num+'&quantity='+orderFoodQty[k];
-			//databaseSend(food_url);
+			databaseSend(food_url);
 		}
 	}
 
@@ -169,13 +171,12 @@ function submitOrder(){
 	'&kitchencooktime='+kitchenCookTime+ 
 	'&deliverytraveltime='+deliveryTravelTime+ 
 	'&deliverytraveldistance='+deliveryTravelDistance+ 
-	'&totalprice='+totalPrice;//
+	'&totalprice='+totalPrice;
 	var order_url = PageToSendTo + VariablePlaceholder;	
-	alert(order_url);
-	//databaseSend(order_url);
 
-	
-	//window.open("../1.0_landing page/customer_landing_page.html", "_self");
+	databaseSend(order_url);
+
+	window.open("../1.0_landing page/customer_landing_page.html", "_self");
 	//localStorage.clear();
 
 }
@@ -232,4 +233,10 @@ if (window.XMLHttpRequest){
 	}
 	xmlhttp.open("GET", url, false);
 	xmlhttp.send();
+	
+	if(xmlhttp.status==200) {
+        //This is where you handle what to do with the response.
+        //The actual data is found on this.responseText
+        details=xmlhttp.responseText;
+    };
 }

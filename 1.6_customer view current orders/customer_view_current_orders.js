@@ -175,11 +175,17 @@ function moreInfo(ID){
 		"<br/>Order Status: "+stat+
 		"<br/>Comments: "+comments+"</p>";
 	
-
-		var popup=document.getElementById("popupText");
-		document.getElementById("popupText").innerHTML=str;
-		popup.classList.toggle("show");
-
+		var overlay=document.getElementById("overlayText");
+		document.getElementById("overlayText").innerHTML=str;
+		on();
 		
 	}
+}
+
+function on() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+    document.getElementById("overlay").style.display = "none";
 }

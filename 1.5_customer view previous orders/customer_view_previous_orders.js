@@ -151,7 +151,7 @@ function moreInfo(ID){
 					foodName="NULL"
 
 			}
-			foodItems=foodItems+foodItemDetails[k].Quantity+"x "+foodName+"\n";
+			foodItems=foodItems+foodItemDetails[k].Quantity+"x "+foodName+"<br/>";
 		}
 
 		var str="<p>Order ID: "+ID+
@@ -162,11 +162,18 @@ function moreInfo(ID){
 		"<br/>Delivery Location: "+location+
 		"<br/>Comments: "+comments+"</p>";
 	
-
-		var popup=document.getElementById("popupText");
-		document.getElementById("popupText").innerHTML=str;
-		popup.classList.toggle("show");
+		var overlay=document.getElementById("overlayText");
+		document.getElementById("overlayText").innerHTML=str;
+		on();
 
 		
 	}
+}
+
+function on() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+    document.getElementById("overlay").style.display = "none";
 }

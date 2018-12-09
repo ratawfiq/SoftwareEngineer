@@ -24,7 +24,7 @@
 		var tempStoredQty08=0;
 		var tempStoredQty09=0;			
 
-
+/*
 		tempStoredQty01=localStorage.storedQty01;
 		tempStoredQty02=localStorage.storedQty02;
 		tempStoredQty03=localStorage.storedQty03;
@@ -62,11 +62,12 @@
 
 		}
 
-
+*/
 
 
 //function to calculate the total price
 function calculateSumPrice(){
+	
 		var price01=7;
 		var price02=10;
 		var price03=9;

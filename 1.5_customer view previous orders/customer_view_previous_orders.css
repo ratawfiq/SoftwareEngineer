@@ -68,63 +68,10 @@ table {
     color: white;
 } 
 
-/* Popup container - can be anything you want */
-.popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* The actual popup */
-.popup .popuptext {
-    visibility: hidden;
-    width: 500px;
-    background-color: #555;
-    color: #fff;
-    text-align: left;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: relative;
-	
-    z-index: 1;
-    margin-left: auto;
-    margin-right: auto
-}
-
-/* Popup arrow */
-.popup .popuptext::after {
-    content: "";
-    position: relative;
-
-    margin-left: auto;
-    margin-right: auto
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-/* Toggle this class - hide and show the popup */
-.popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
-}
+/
 
 
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-    from {opacity: 0;} 
-    to {opacity: 1;}
-}
 
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
-}
 
 /* The Close Button */
 .close {
@@ -134,23 +81,27 @@ table {
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
     cursor: pointer;
 }
 
-.modal-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
+#overlayText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
     color: white;
-}
-
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
 }

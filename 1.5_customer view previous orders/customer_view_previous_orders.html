@@ -19,30 +19,29 @@
 <!--call js script-->
 <script type="text/javascript" src="customer_view_previous_orders.js"></script> 
 
-
-
-
-
-<!-- MAGED -->
-
-
 <body onload="display()">
 
 <!--title bar-->
 <div class="jumbotron jumbotron-fluid bg-warning text-white" style="background: #aaa;">
 	<div class="container">
+		<div style="inline-block">
 		<h1 class="display-3">ZEN Restaurant</h1>
 		<p class="lead"><em>For your breakfast, lunch and dinner</em></p>
-	</div>
-</div>    
-    
+		</div>
+		<div style="inline-block"><a href="../0.0_login page/login.html" class="btn btn-info" align="right">Logout</a></div>
+	</div>	
+</div>  
+ 
+ <!--Body-->
+<div class="container-fluid">
+
 <div>
 	<h2 style="margin-left:3cm">Click an order for more information</h2>
 </div>
 <div class="row" style="overflow-x:auto;">
 
 
-    <table id="table1" style="display: inline-block;margin-left:3cm" >
+    <table id="table1" style="display: inline-block" align="center" >
 	<caption style="caption-side:top;font-size:20px"> View Previous Orders</caption>
         <tr>
             <th>Order ID</th>
@@ -55,15 +54,14 @@
     </table>
 
 	 <!-- Trigger/Open The Popup -->
-<div class="popup" id="x">
-	<p class="popuptext" id="popupText">
-	<span class="close">&times;</span>
-	</p>
+<div id="overlay" onclick="off()" align="center">
+	<div class="container" style="background-color: black;"
+	<p id="overlayText"></p>
 </div>
 
-	
+</div>	
 
-</div> <br><br>
+</div>
 
 
  <!--bottom bar-->

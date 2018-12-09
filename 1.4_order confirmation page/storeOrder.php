@@ -22,19 +22,21 @@ $deliverystate=$_GET['deliverystate'];
 $deliveryzipcode=$_GET['deliveryzipcode'];
 $deliveryphone=$_GET['deliveryphone'];
 $comments=$_GET['comments'];
-$ordersubmissiontime=$_GET['ordersubmissiontime']); 
-$initialestimateddeliverytime=$_GET['initialestimateddeliverytime']);
-$actualdeliverytime="";
+$ordersubmissiontime=$_GET['ordersubmissiontime']; 
+$initialestimateddeliverytime=$_GET['initialestimateddeliverytime'];
+$actualdeliverytime=0;
 $kitchencooktime=$_GET['kitchencooktime']; //in seconds
+$kitchenfinishcooktime=0;
+$deliveryfinishtime=0;
 $deliverytraveltime=$_GET['deliverytraveltime']; //in seconds
 $deliverytraveldistance=$_GET['deliverytraveldistance']; //in seconds
 $totalprice=$_GET['totalprice'];
 $orderstatus="customer_submitted";
 
 $sql = "INSERT INTO fooddeliveryservice.order_header ".
-	"(OrderID, Username, DeliveryFirstName, DeliveryLastName, DeliveryAddress, DeliveryCity, DeliveryState, DeliveryZipCode, DeliveryPhone, Comments, OrderSubmissionTime, InitialEstimatedDeliveryTime, ActualDeliveryTime, KitchenCookTime, DeliveryTravelDistance, DeliveryTravelTime, TotalPrice, OrderStatus)".
+	"(OrderID, Username, DeliveryFirstName, DeliveryLastName, DeliveryAddress, DeliveryCity, DeliveryState, DeliveryZipCode, DeliveryPhone, Comments, OrderSubmissionTime, InitialEstimatedDeliveryTime, ActualDeliveryTime, KitchenCookTime, KitchenFinishCookTime, DeliveryFinishTime, DeliveryTravelDistance, DeliveryTravelTime, TotalPrice, OrderStatus)".
 	" VALUES " . 
-	"('$orderID', '$username', '$deliveryfirstname', '$deliverylastname', '$deliveryaddress', '$deliverycity', '$deliverystate', '$deliveryzipcode', '$deliveryphone', '$comments', '$ordersubmissiontime', '$initialestimateddeliverytime', '$actualdeliverytime', '$kitchencooktime', '$deliverytraveldistance', '$deliverytraveltime', '$totalprice', '$orderstatus')";
+	"('$orderID', '$username', '$deliveryfirstname', '$deliverylastname', '$deliveryaddress', '$deliverycity', '$deliverystate', '$deliveryzipcode', '$deliveryphone', '$comments', '$ordersubmissiontime', '$initialestimateddeliverytime', '$actualdeliverytime', '$kitchencooktime', '$kitchenfinishcooktime', '$deliveryfinishtime', '$deliverytraveldistance', '$deliverytraveltime', '$totalprice', '$orderstatus')";
 
 $result = $conn->query($sql);
 //Checks to see if the query is built right
