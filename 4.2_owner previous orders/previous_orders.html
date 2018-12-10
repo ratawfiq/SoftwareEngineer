@@ -3,10 +3,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>All Previous Orders</title>
+<title>Owner View Previous Orders</title>
 <link rel="stylesheet" href="previous_orders.css">
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
+
+<style>
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#overlayText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+</style>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +56,12 @@
 	</div>	
 </div>
 
-
+<!-- Trigger/Open The Popup -->
+<div id="overlay" onclick="off()" align="center">
+	<div class="container" style="background-color: black;">
+	<p id="overlayText"></p>
+	</div>
+</div>
 
 <table id="testTbl" border=1 style="width:100%">
     <tr>
@@ -70,14 +101,32 @@ $.get("../4.2_owner previous orders/previous_orders.php",function(data,status){
 		var str=convertString(jsonO[i]);
 
 
-		newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id)'' >" + "Order Details"+ "</button>"
+		newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>";
 
 	}
 
   });
 
-function myFunction(e) {
-	alert(e);
+function myFunction(e, id) {
+
+	var url="getOrderDetails.php?orderID="+id;
+	var details = getDatabase(url);
+
+	var foodInfo="";
+	foodItemDetails=JSON.parse(details);
+	foodLen=foodItemDetails.length;
+	for (var k=0; k<foodLen; k++){
+		var foodName=translateFood(foodItemDetails[k].FoodID);
+
+		foodInfo=foodInfo+foodName+" x"+foodItemDetails[k].Quantity+"<br>";
+	}
+
+	var oText=e+"Food Details: </br>"+foodInfo;
+
+	var overlay=document.getElementById("overlayText");
+	document.getElementById("overlayText").innerHTML=oText;
+	on();
+
 }
 
 </script>

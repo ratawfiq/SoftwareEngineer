@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>View Menu</title>
+<title>Owner View Current Orders</title>
 <link rel="stylesheet" href="previous_orders.css">
 
 <style>
@@ -203,7 +203,7 @@ $.get("../4.3_owner%20current%20orders/current_orders.php",function(data,status)
 	var str=convertString(jsonO[i]);
 
 
-		newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>"
+		newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>";
 
 	}
 
@@ -238,7 +238,7 @@ $.get("../4.3_owner%20current%20orders/current_orders0.php",function(data,status
 	var str=convertString(jsonO[i]);
 
 
-        newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>"
+        newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>";
 
 	}
 
@@ -272,7 +272,7 @@ $.get("../4.3_owner%20current%20orders/current_orders1.php",function(data,status
 
 	var str=convertString(jsonO[i]);
 	
-        newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>"
+        newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>";
 
 	}
 
@@ -306,7 +306,7 @@ $.get("../4.3_owner%20current%20orders/current_orders2.php",function(data,status
 
 		var str=convertString(jsonO[i]);
 
-    	newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>"
+    	newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>";
 
 	}
 
