@@ -22,20 +22,6 @@ function createAccount(){
 		return;
 	}
 	
-	//checks phone number
-	var phoneNumberValidation=false;
-	var phoneNumberDigit=0;
-	phoneNumberDigit=document.getElementById("account_phoneNumber").value.length;
-	if(phoneNumberDigit!=12){
-		alert("Please enter a phone number with the following format: xxx-xxx-xxxx");
-		return;
-	}
-	
-	if (validEmail(document.getElementById("account_email").value)==false){
-		alert("Please enter a valid email.");
-		return;
-	}
-	
 	var accountUsername="Default";
 	accountUsername=document.getElementById("account_username").value;
 
@@ -110,6 +96,28 @@ function createAccount(){
 		return;
 	}
 
+	
+	//checks phone number
+	var phoneNumberValidation=false;
+	var phoneNumberDigit=0;
+	phoneNumberDigit=document.getElementById("account_phoneNumber").value.length;
+	if(phoneNumberDigit!=12){
+		alert("Please enter a phone number with the following format: xxx-xxx-xxxx");
+		return;
+	}
+	//checks email
+	if (validEmail(document.getElementById("account_email").value)==false){
+		alert("Please enter a valid email.");
+		return;
+	}
+	
+	//checks if password is confirmed
+	var confirm_pass=document.getElementById("confirm_password").value;
+	if (confirm_pass!=accountPassword){
+		alert("The new password and the confirmation password do not match.");
+		return;
+	}
+	
 	//////////////////////////////////////////////////////////////////////
 	//Checks if username is taken
 	var storedUsers="";
@@ -222,7 +230,7 @@ function callback(response, status) {
 				accountDistance=results[j].distance.value; //Since we are only inputting one locations, we should be getting only 1 set of results
 				accountDuration=results[j].duration.value;
 
-				if (accountDistance>79200){ //Google API using feet for result.distance.value
+				if (accountDistance>24140.2){ //Google API using meters for result.distance.value
 					//Confirmation boxes
 					var r = confirm("Your address is greater than 15 miles from the restaurant. Continue creating account?");
 					if (r==false){
