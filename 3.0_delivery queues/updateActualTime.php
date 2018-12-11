@@ -13,11 +13,10 @@ if ($conn->connect_error) {
 }
 
 $orderID=$_GET['orderID'];
-$kitchenFinishCookTime=$_GET['kitchenFinishCookTime'];
 $actualDeliveryTime=$_GET['actualtime'];
 
 
-$sql = "UPDATE fooddeliveryservice.order_header SET KitchenFinishCookTime='".$kitchenFinishCookTime."', ActualDeliveryTime='".$actualDeliveryTime."' WHERE orderID='" . $orderID. "'";
+$sql = "UPDATE fooddeliveryservice.order_header SET ActualDeliveryTime='".$actualDeliveryTime."' WHERE orderID='" . $orderID. "'";
 	
 
 $result = $conn->query($sql);

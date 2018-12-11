@@ -187,13 +187,14 @@ function cookFood(){
 			var now = Math.floor((new Date().getTime())/1000); //Gets the time when the order is moved
 
 			//Gets the kitchen cook time to add to the now time
-			var url="getKitchenCookTime.php?orderID="+orderID;
+			var url="getOrderByID.php?orderID="+orderID;
 			var temp=getDatabase(url);
-			var orderKitchenTime=JSON.parse(temp);
+			var orderInfo=JSON.parse(temp);
 
-			var kitchenTime=Number(now)+Number(orderKitchenTime[0].KitchenCookTime);
-
-			updateKitchenFinishCookTime(orderID, kitchenTime);
+			//Sets the time when the kitchen should finish and updates when the delivery should be completed
+			var kitchenTime=Number(now)+Number(orderInfo[0].KitchenCookTime);
+			var actualTime=Number(kitchenTime)+Number(orderInfo[0].DeliveryTravelTime)
+			updateKitchenFinishCookTime(orderID, kitchenTime, actualTime);
 			
 			//Changed the order status
         	updateDatabase(orderID, "kitchen_in_progress");
@@ -215,6 +216,15 @@ function completeFood(){
         if(checkboxes[i].checked){
         	//Gets the orderID from the table and sends it to database to update
         	var orderID = table2.rows[i+1].cells[2].innerText;
+
+			var url="getOrderByID.php?orderID="+orderID;
+			var temp=getDatabase(url);
+			var orderInfo=JSON.parse(temp);
+
+        	//Updates actual time 
+        	var kitchenTime=Math.floor((new Date().getTime())/1000);
+        	var actualTime=Number(kitchenTime)+Number(orderInfo[0].DeliveryTravelTime)
+        	updateKitchenFinishCookTime(orderID, kitchenTime, actualTime);
         	updateDatabase(orderID, "kitchen_completed");
     	}
 	}

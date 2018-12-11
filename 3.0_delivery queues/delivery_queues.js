@@ -33,6 +33,15 @@ function updateDeliveryFinishTime(orderID, deliveryTime){
 	oReq.send();
 	
 }
+
+function updateActualTime(orderID, actualtime){
+
+	var oReq = new XMLHttpRequest(); //New request object
+	var url="updateActualTime.php?orderID="+orderID+"&actualtime="+actualtime;
+	oReq.open("GET", url, false);
+	oReq.send();
+}
+
 function display(){
 
 	createTables("table1", "kitchen_completed");
@@ -190,7 +199,7 @@ function deliverFood(){
 			var deliveryTime=Number(now)+Number(orderDeliveryTime[0].DeliveryTravelTime);
 
 			updateDeliveryFinishTime(orderID, deliveryTime);
-			
+			updateActualTime(orderID, deliveryTime);
 			//Changed the order status
         	updateDatabase(orderID, "delivery_in_progress");
 			
@@ -205,12 +214,15 @@ function completeFood(){
     var table2 = document.getElementById("table2");
     var checkboxes = document.getElementsByName("check-table2");
 
-    //loops through orders checked in table1
+    //loops through orders checked in table2
     for(var i = 0; i < checkboxes.length; i++){
         if(checkboxes[i].checked){
         	//Gets the orderID from the table and sends it to database to update
-        	var orderID = table1.rows[i+1].cells[2].innerHTML;
- 
+        	var orderID = table2.rows[i+1].cells[2].innerHTML;
+ 			
+ 			var now = Math.floor((new Date().getTime())/1000);
+ 	
+ 			updateActualTime(orderID, now);
         	updateDatabase(orderID, "completed");
     	}
 	}
