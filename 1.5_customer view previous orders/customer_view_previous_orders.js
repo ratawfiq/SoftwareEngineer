@@ -38,7 +38,7 @@ function createTables(tableNum, orderStatus, username){
 
 			var orderID=orderHeader[i].OrderID;
 			var submissionTime=convertTime(orderHeader[i].OrderSubmissionTime);
-			var actualDeliveryTime=convertTime(orderHeader[i].actualDeliveryTime);
+			var actualDeliveryTime=convertTime(orderHeader[i].ActualDeliveryTime);
 			var price=orderHeader[i].TotalPrice;
 			
 			
@@ -103,7 +103,7 @@ function moreInfo(ID){
 		var zipcode=orderHeader[i].DeliveryZipCode;
 		var comments=orderHeader[i].Comments;
 		var submissionTime=convertTime(orderHeader[i].OrderSubmissionTime)
-		var actualDeliveryTime=convertTime(orderHeader[i].actualDeliveryTime);
+		var actualDeliveryTime=convertTime(orderHeader[i].ActualDeliveryTime);
 		var price=orderHeader[i].TotalPrice;
 			
 		var location=address+" "+city+" "+state+" "+zipcode;

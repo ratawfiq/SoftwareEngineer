@@ -38,7 +38,7 @@ function createTables(tableNum, orderStatus, username){
 
 			var orderID=orderHeader[i].OrderID;
 			var submissionTime=convertTime(orderHeader[i].OrderSubmissionTime);
-			var estDeliveryTime=convertTime(orderHeader[i].DeliveryFinishTime);
+			var estDeliveryTime=convertTime(orderHeader[i].ActualDeliveryTime);
 			var price=orderHeader[i].TotalPrice;
 
 			
