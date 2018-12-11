@@ -1,3 +1,5 @@
+<!--made by Qian-->
+
 <!DOCTYPE html>
 <html>
 
@@ -94,7 +96,7 @@
                         <p class="font-card-info">Zip Code</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="zipCode"/>
+                        <input type="number" class="form-control" style="height:50px" id="zipCode" onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
                     </div>
                 </div>
 				
@@ -105,16 +107,16 @@
 
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="text" class="form-control" style="height:50px" id="phoneNumber"/>
-						<span class="bfh-phone" data-format="+1 (ddd) ddd-dddd" data-number="15555555555"></span>
-						<p><small class="form-text text-muted">i.e. 888-888-8888</small></p>
+                        <input type="number" class="form-control" style="height:50px" id="phoneNumber" onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
+						<span class="bfh-phone" ></span>
+						<p><small class="form-text text-muted">Please follow the phone number format, i.e. 8888888888</small></p>
                     </div>
 
                     <div class="col-sm-3 col-md-2">
                         <p class="font-card-info">Email (Optional)</p>
                     </div>
                     <div class="col-sm-3 col-md-4">
-                        <input type="email" class="form-control" style="height:50px" id="email"/>
+                        <input type="email" class="email form-control" style="height:50px" id="email" ng-model="text" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
                     </div>
                 </div>
 				
@@ -168,7 +170,11 @@
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2TMNF1bewLerQgvelJwKPu1xkAMZbz7c&callback=initMap">
 </script>
 
-
+  <script>
+    function Ctrl($scope) {
+      $scope.text = 'me@example.com';
+    }
+  </script>
 
 
 

@@ -24,7 +24,7 @@
 		var tempStoredQty08=0;
 		var tempStoredQty09=0;			
 
-/*
+
 		tempStoredQty01=localStorage.storedQty01;
 		tempStoredQty02=localStorage.storedQty02;
 		tempStoredQty03=localStorage.storedQty03;
@@ -62,7 +62,7 @@
 
 		}
 
-*/
+
 
 
 //function to calculate the total price
@@ -82,41 +82,82 @@ function calculateSumPrice(){
 			
 		var qty01=0;
 		qty01=document.getElementById("qtyInput01").value;
+		if(qty01<0){
+			qty01=0;
+			alert("Quantity cannot be a negative number.");
+		}
 			
 		var qty02=0;
 		qty02=document.getElementById("qtyInput02").value;
-			
+		if(qty02<0){
+			qty02=0;
+			alert("Quantity cannot be a negative number.");
+		}
+		
 		var qty03=0;
 		qty03=document.getElementById("qtyInput03").value;
-			
+		if(qty03<0){
+			qty03=0;
+			alert("Quantity cannot be a negative number.");
+		}
+		
 		var qty04=0;
 		qty04=document.getElementById("qtyInput04").value;
+		if(qty04<0){
+			qty04=0;
+			alert("Quantity cannot be a negative number.");
+		}
 		
 		var qty05=0;
 		qty05=document.getElementById("qtyInput05").value;
-			
+		if(qty05<0){
+			qty05=0;
+			alert("Quantity cannot be a negative number.");
+		}
+		
 		var qty06=0;
 		qty06=document.getElementById("qtyInput06").value;
-			
+		if(qty06<0){
+			qty06=0;
+			alert("Quantity cannot be a negative number.");
+		}
+		
 		var qty07=0;
 		qty07=document.getElementById("qtyInput07").value;
-			
+		if(qty07<0){
+			qty07=0;
+			alert("Quantity cannot be a negative number.");
+		}
+		
 		var qty08=0;
 		qty08=document.getElementById("qtyInput08").value;
-			
+		if(qty08<0){
+			qty08=0;
+			alert("Quantity cannot be a negative number.");
+		}
+		
 		var qty09=0;
 		qty09=document.getElementById("qtyInput09").value;
-
+		if(qty09<0){
+			qty09=0;
+			alert("Quantity cannot be a negative number.");
+		}
+		
 
 		sumPrice=price01*qty01+price02*qty02+price03*qty03+price04*qty04+price05*qty05+price06*qty06+price07*qty07+price08*qty08+price09*qty09;
-			
+		//alert(sumPrice);
+		var storedSumPrice=0;
+		localStorage.storedSumPrice = sumPrice;		
+
+		
 		//add 6% tax
 		var taxRate=1.06;
 		actualPrice=taxRate*sumPrice;
 		actualPrice=actualPrice.toFixed(2);//2 decimal digits
-		
+
 		
 		document.getElementById("totalPrice").innerHTML="$"+actualPrice;
+
 
 }
 
@@ -425,8 +466,8 @@ function storeData(){
 		var tempQty09=0;
 		tempQty09 = document.getElementById("qtyInput09").value;
 		localStorage.storedQty09=tempQty09;
-	
-		localStorage.storedPrice = actualPrice;
+
+
 }
 	
 		
@@ -438,6 +479,12 @@ function storeData(){
 		function placeOrder(){
 			
 			storeData();
+			var tempTotalPrice=0;
+			tempTotalPrice = localStorage.storedSumPrice;
+			//alert(tempTotalPrice);
+			if(tempTotalPrice==0){
+				alert("Your shopping cart is empty.");
+			}else{
 			window.open("../1.3_delivery address page/delivery_address.html", "_self");
-			
+			}
 		}

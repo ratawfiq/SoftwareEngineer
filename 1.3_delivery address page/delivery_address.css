@@ -1,3 +1,5 @@
+/*made by Qian*/
+
 .row div{padding: 20px}
 .center-vertical-description{
 position: relative;
@@ -40,4 +42,12 @@ text-align: right;
 .font-card-info{
 font-size:100%;
 text-align: right;
+}
+
+/*eliminate the spinner arrows of number picker*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }

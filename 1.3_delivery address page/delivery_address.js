@@ -72,6 +72,30 @@ function editOrder(){
 }
 
 function cancelOrder(){
+
+		var storedQty01=0;
+		var storedQty02=0;
+		var storedQty03=0;
+		var storedQty04=0;
+		var storedQty05=0;
+		var storedQty06=0;
+		var storedQty07=0;
+		var storedQty08=0;
+		var storedQty09=0;
+			
+
+		localStorage.storedQty01=0;
+		localStorage.storedQty02=0;
+		localStorage.storedQty03=0;
+		localStorage.storedQty04=0;
+		localStorage.storedQty05=0;
+		localStorage.storedQty06=0;
+		localStorage.storedQty07=0;
+		localStorage.storedQty08=0;	
+		localStorage.storedQty09=0;	
+
+
+
     window.open("../1.0_landing page/customer_landing_page.html", "_self");
 }
 
@@ -91,16 +115,31 @@ function submitOrder(){
 	&& document.getElementById("state").value!=""
 	&& document.getElementById("zipCode").value!=""
 	&& document.getElementById("phoneNumber").value!="";
-	
+	if(!nonBlank){
+		alert("Please fill in all entry fields.");
+	}
 	
 	var phoneNumberValidation=false;
 	var phoneNumberDigit=0;
 	phoneNumberDigit=document.getElementById("phoneNumber").value.length;
-	if(phoneNumberDigit==12){
+	if(phoneNumberDigit==10){
 		phoneNumberValidation=true;
+	}else{
+		alert("Please follow the phone number format");
 	}
 	
-	if(nonBlank && phoneNumberValidation){
+	
+	var emailValidation=false;
+	var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+	emailString=document.getElementById("email").value;
+	emailValidation=re.test(emailString);
+	if(!emailValidation){
+		alert("Invalid Email address.");
+	}
+	
+	
+	
+	if(nonBlank && phoneNumberValidation && emailValidation){
 	//alert("passed");
 	
 	var addressValue=document.getElementById("deliveryAddress").value;
@@ -137,8 +176,8 @@ function submitOrder(){
 			
 			var deliveryDistance=results[j].distance.value; //Since we are only inputting one locations, we should be getting only 1 set of results
 			var deliveryDuration=results[j].duration.value;
-			if (deliveryDistance>24140.2){ 
-			//Google API returns value in meters
+			if (deliveryDistance>79200){ 
+			//Google API using imperial distance
 				alert("We only deliver to the area within 15 miles.");
 				return;
 			}else{
@@ -204,8 +243,6 @@ function submitOrder(){
 		}
 	  }
 	});
-	}else{
-		alert("Please fill in all entry fields and follow the phone number format.");
 	}
 	
 
