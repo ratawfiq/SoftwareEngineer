@@ -117,3 +117,6 @@ To do: customer view prev orders and customer view current orders.
 
 v2.1 - 12/09/18 - Qian
 fixed the issue which 'e' can by typed in in the Qty type-in column in the 'make an order' page
+
+v2.2 -12/11/18 - Qian
+updated all pages of customer interfaces to line up with the test cases.
