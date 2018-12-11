@@ -97,7 +97,6 @@ function displayOrder() {
     document.getElementById("orderFoodName").innerHTML = tempOrderFoodName;
 	document.getElementById("orderFoodQty").innerHTML = tempOrderFoodQty;
 	document.getElementById("orderFoodPrice").innerHTML = tempOrderFoodPrice;
-	
 	document.getElementById("totalPrice").innerHTML = "Total Price: $"+localStorage.storedPrice;
 	
 	document.getElementById("estTime").innerHTML=displayTime+" minutes";
@@ -174,7 +173,7 @@ function submitOrder(){
 	'&totalprice='+totalPrice;
 	var order_url = PageToSendTo + VariablePlaceholder;	
 
-	databaseSend(order_url);
+	var test=databaseSend(order_url);
 
 	window.open("../1.0_landing page/customer_landing_page.html", "_self");
 	//localStorage.clear();

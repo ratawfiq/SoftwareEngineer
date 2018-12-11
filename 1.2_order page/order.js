@@ -467,6 +467,7 @@ function storeData(){
 		tempQty09 = document.getElementById("qtyInput09").value;
 		localStorage.storedQty09=tempQty09;
 
+		localStorage.storedPrice=actualPrice;
 
 }
 	
