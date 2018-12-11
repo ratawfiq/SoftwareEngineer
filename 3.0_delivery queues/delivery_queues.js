@@ -211,7 +211,7 @@ function completeFood(){
         	//Gets the orderID from the table and sends it to database to update
         	var orderID = table1.rows[i+1].cells[2].innerHTML;
  
-        	updateDatabase(orderID, "complete");
+        	updateDatabase(orderID, "completed");
     	}
 	}
 	
