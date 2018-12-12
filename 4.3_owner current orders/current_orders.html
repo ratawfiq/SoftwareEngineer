@@ -167,10 +167,10 @@ function myFunction(e, id) {
 $.get("../4.3_owner%20current%20orders/current_orders.php",function(data,status){
 
 	var jsonO = eval(data);
-
+	
 	var i;
 	for (i = 0; i < jsonO.length; i++) {
-
+	if(typeof jsonO[i].OrderID!=='undefined'){
 		var newTr = testTbl.insertRow();
 
 		var newTd0 = newTr.insertCell();
@@ -192,6 +192,7 @@ $.get("../4.3_owner%20current%20orders/current_orders.php",function(data,status)
 
 		newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>";
 
+		}
 	}
 
 });
@@ -206,7 +207,7 @@ $.get("../4.3_owner%20current%20orders/current_orders0.php",function(data,status
 
 	var i;
 	for (i = 0; i < jsonO.length; i++) {
-		
+		if(typeof jsonO[i].OrderID!=='undefined'){
 		var newTr = kitchen_in_progress.insertRow();
 				 
 		var newTd0 = newTr.insertCell();
@@ -227,6 +228,7 @@ $.get("../4.3_owner%20current%20orders/current_orders0.php",function(data,status
 
         newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>";
 
+		}
 	}
 
 });
@@ -241,7 +243,7 @@ $.get("../4.3_owner%20current%20orders/current_orders1.php",function(data,status
 	
 	var i;
 	for (i = 0; i < jsonO.length; i++) {
-									 
+		if(typeof jsonO[i].OrderID!=='undefined'){							 
 		var newTr = kitchen_completed.insertRow();
 									
 		var newTd0 = newTr.insertCell();
@@ -260,7 +262,7 @@ $.get("../4.3_owner%20current%20orders/current_orders1.php",function(data,status
 	var str=convertString(jsonO[i]);
 	
         newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>";
-
+        }
 	}
 
 });
@@ -275,7 +277,8 @@ $.get("../4.3_owner%20current%20orders/current_orders2.php",function(data,status
 												
 	var i;
 	for (i = 0; i < jsonO.length; i++) {
-													
+	
+		if(typeof jsonO[i].OrderID!=='undefined'){										
 		var newTr = delivery_in_progress.insertRow();
 													
 		var newTd0 = newTr.insertCell();
@@ -294,7 +297,7 @@ $.get("../4.3_owner%20current%20orders/current_orders2.php",function(data,status
 		var str=convertString(jsonO[i]);
 
     	newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>";
-
+		}
 	}
 
 });

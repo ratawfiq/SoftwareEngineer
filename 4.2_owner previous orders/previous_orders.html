@@ -67,7 +67,7 @@ $.get("../4.2_owner previous orders/previous_orders.php",function(data,status){
 
 	var i;
 	for (i = 0; i < jsonO.length; i++) {
-
+		if(typeof jsonO[i].OrderID!=='undefined'){
 		var newTr = testTbl.insertRow();
 
 		var newTd0 = newTr.insertCell();
@@ -87,7 +87,7 @@ $.get("../4.2_owner previous orders/previous_orders.php",function(data,status){
 
 
 		newTd6.innerHTML= "<button id= '"+str+"'  onclick='myFunction(this.id, "+jsonO[i].OrderID +")' >" + "Order Details"+ "</button>";
-
+		}
 	}
 
   });
