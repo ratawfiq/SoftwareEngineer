@@ -51,19 +51,21 @@ function createTables(tableNum, orderStatus, username){
 
 			//Inserts a row at the top of the table
 			var row = table.insertRow(1);
-			row.setAttribute("onclick", "moreInfo("+orderID+")");
+			//row.setAttribute("onclick", "moreInfo("+orderID+")");
 			//Inserts cells
 		
 			var orderID_cell=row.insertCell(0);
 			var submissionTime_cell=row.insertCell(1);
 			var estDeliveryTime_cell=row.insertCell(2);
 			var price_cell=row.insertCell(3);
+			var infoButton_cell=row.insertCell(4);
 		
 			//Should put the data into the cells
 			orderID_cell.innerHTML=orderID;
 			submissionTime_cell.innerHTML=submissionTime;
 			estDeliveryTime_cell.innerHTML=estDeliveryTime;
 			price_cell.innerHTML=price;
+			infoButton_cell.innerHTML="<button id= 'button"+orderID+"'  onclick='moreInfo("+orderID+")' >" + "More Info"+ "</button>";
 
 			//-----------------------------------------------------------------------
 		}
