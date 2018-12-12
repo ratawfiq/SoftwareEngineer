@@ -4,35 +4,10 @@
 <html>
 <head>
 <title>Owner View Previous Orders</title>
-<link rel="stylesheet" href="previous_orders.css">
+<link rel="stylesheet" href="owner_previous_orders.css">
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 
-<style>
-#overlay {
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 2;
-    cursor: pointer;
-}
-
-#overlayText{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 20px;
-    color: white;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-}
-</style>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,7 +38,8 @@
 	</div>
 </div>
 
-<table id="testTbl" border=1 style="width:100%">
+<div class="row" style="overflow-x:auto;">
+<table id="testTbl" style="display: inline-block;" align="center">
     <tr>
     	<th>Order ID</th>
     	<th>Username</th>
@@ -73,7 +49,16 @@
 		<th>Order Details</th>
 	</tr>
 </table>
+</div>
 
+<div class="container">
+<div style="inline-block"><a href="../4.1_owner landing page/owner_landing_page.html" class="btn btn-info" align="right">Back</a></div>
+</div>
+
+ <!--bottom bar-->
+<div class="alert sticky-bottom alert-dark text-center" role="alert">
+  	<p><small>&#174;2018. All Rights Reserved for Zen Team.</small></p>
+</div>
 <script>
 
 $.get("../4.2_owner previous orders/previous_orders.php",function(data,status){

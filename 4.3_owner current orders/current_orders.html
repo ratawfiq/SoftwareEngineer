@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>Owner View Current Orders</title>
-<link rel="stylesheet" href="previous_orders.css">
+<link rel="stylesheet" href="owner_previous_orders.css">
 
 <style>
 #overlay {
@@ -67,17 +67,19 @@
 	</div>
 </div>
 
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Tab1')">Customer submitted orders</button>
-  <button class="tablinks" onclick="openCity(event, 'Tab2')">Kitchen in-progress orders</button>
-  <button class="tablinks" onclick="openCity(event, 'Tab3')">Kitchen-completed orders</button>
-  <button class="tablinks" onclick="openCity(event, 'Tab4')">Delivery in-progress orders</button>
+<div class="row">
+<div class="tab" style="display: inline;" align="center">
+  <button class="tablinks" style="display: inline;" onclick="openCity(event, 'Tab1')">Customer submitted orders</button>
+  <button class="tablinks" style="display: inline;" onclick="openCity(event, 'Tab2')">Kitchen in-progress orders</button>
+  <button class="tablinks" style="display: inline;" onclick="openCity(event, 'Tab3')">Kitchen completed orders</button>
+  <button class="tablinks" style="display: inline;" onclick="openCity(event, 'Tab4')">Delivery in-progress orders</button>
+</div>
 </div>
 
-<div id="Tab1" class="tabcontent">
+<div id="Tab1" class="tabcontent" align="center">
 
 	<p class="lead"><em>Submitted orders are shown below</em></p>
-	<table id="testTbl" border=1 style="width:100%">
+	<table id="testTbl" style="display: inline-block;" align="center">
         <tr>
 			<th>Order ID</th>
 			<th>Username</th>
@@ -90,10 +92,10 @@
     </table>
 </div>
 
-<div id="Tab2" class="tabcontent">
+<div id="Tab2" class="tabcontent" align="center">
 
 	<p class="lead"><em>Kitchen in-progress orders are shown below</em></p>
-	<table id="kitchen_in_progress" border=1 style="width:100%">
+	<table id="kitchen_in_progress" style="display: inline-block;" align="center">
         <tr>
 			<th>Order ID</th>
 			<th>Username</th>
@@ -105,10 +107,10 @@
     </table>
 </div>
 
-<div id="Tab3" class="tabcontent">
+<div id="Tab3" class="tabcontent" align="center">
 
 	<p class="lead"><em>Kitchen completed orders are shown below</em></p>
-	<table id="kitchen_completed" border=1 style="width:100%">
+	<table id="kitchen_completed" style="display: inline-block;" align="center">
 	    <tr>
 			<th>Order ID</th>
 			<th>Username</th>
@@ -120,10 +122,10 @@
 	</table>
 </div>
 
-<div id="Tab4" class="tabcontent">
+<div id="Tab4" class="tabcontent" align="center">
 
 	<p class="lead"><em>Delivery in-progress orders are shown below</em></p>
-	<table id="delivery_in_progress" border=1 style="width:100%">
+	<table id="delivery_in_progress" style="display: inline-block;" align="center">
            <tr>
 				<th>Order ID</th>
 				<th>Username</th>
@@ -133,6 +135,16 @@
             	<th>Order Details</th>
    			</tr>
     </table>
+</div>
+
+
+<div class="container">
+<div style="inline-block"><a href="../4.1_owner landing page/owner_landing_page.html" class="btn btn-info" align="right">Back</a></div>
+</div>
+
+ <!--bottom bar-->
+<div class="alert sticky-bottom alert-dark text-center" role="alert">
+  	<p><small>&#174;2018. All Rights Reserved for Zen Team.</small></p>
 </div>
 
 <script>
@@ -197,7 +209,7 @@ $.get("../4.3_owner%20current%20orders/current_orders.php",function(data,status)
 		newTd1.innerText= jsonO[i].Username;
 		newTd2.innerText= convertTime(jsonO[i].OrderSubmissionTime);
 		newTd4.innerText= convertTime(jsonO[i].InitialEstimatedDeliveryTime);
-		newTd5.innerText= "$"+jsonO[i].TotalPrice;
+		newTd5.innerText= jsonO[i].TotalPrice;
 
 
 	var str=convertString(jsonO[i]);
