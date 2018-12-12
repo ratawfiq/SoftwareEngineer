@@ -101,8 +101,8 @@ function createAccount(){
 	var phoneNumberValidation=false;
 	var phoneNumberDigit=0;
 	phoneNumberDigit=document.getElementById("account_phoneNumber").value.length;
-	if(phoneNumberDigit!=12){
-		alert("Please enter a phone number with the following format: xxx-xxx-xxxx");
+	if(phoneNumberDigit!=10){
+		alert("Please enter a phone number with the following format: 8888888888");
 		return;
 	}
 	//checks email

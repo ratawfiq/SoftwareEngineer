@@ -46,7 +46,7 @@ function check_checkbox(){
 		document.getElementById("zipCode").value=customerInfo[0].ZipCode;
 		document.getElementById("phoneNumber").value=customerInfo[0].PhoneNumber;
 		document.getElementById("email").value=customerInfo[0].Email;
-
+		
 	}else{
 		//alert("not checked");
 		document.getElementById("firstName").value="";
