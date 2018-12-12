@@ -79,7 +79,7 @@ function displayOrder() {
 	orderID=Number(storedOrderDetails[0])+1; //Increments the largest stored orderID	
 	storedKitchenCookTime=storedOrderDetails[1]; //Is the lowest kitchen cook time
 
-	//Finding the kitchen cook time of the order	var kitchenCookTime=0;
+	//Finding the kitchen cook time of the order
 	var len=orderFoodQty.length;
 	for (var k=0; k<len; k++){
 		
@@ -93,7 +93,10 @@ function displayOrder() {
 	
 	orderDeliveryTime=Number(kitchenCookTime)+Number(localStorage.storedDuration)+Number(storedKitchenCookTime);//Calculates everything in seconds
 	var displayTime=(orderDeliveryTime/60).toFixed(2);
-	
+
+	//Display information
+	document.getElementById("orderTitle").innerHTML="Order ID: "+orderID;
+
     document.getElementById("orderFoodName").innerHTML = tempOrderFoodName;
 	document.getElementById("orderFoodQty").innerHTML = tempOrderFoodQty;
 	document.getElementById("orderFoodPrice").innerHTML = tempOrderFoodPrice;
