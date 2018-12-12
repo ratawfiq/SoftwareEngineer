@@ -176,8 +176,12 @@ function submitOrder(){
 	var test=databaseSend(order_url);
 	
 	alert("Your order has been submitted")
+
+	var tempUser=localStorage.storedUsername;
+	localStorage.clear();
+	localStorage.storedUsername=tempUser;
 	window.open("../1.0_landing page/customer_landing_page.html", "_self");
-	//localStorage.clear();
+	
 
 }
 
