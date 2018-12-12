@@ -67,7 +67,7 @@ function createTables(tableNum, orderStatus){
 		var orderID=orderHeader[i].OrderID;
 		var lastName=orderHeader[i].DeliveryLastName;
 		var deliveryLocation=orderHeader[i].DeliveryAddress+" "+orderHeader[i].DeliveryCity+" "+orderHeader[i].DeliveryState+" "+orderHeader[i].DeliveryZipCode; 
-		var deliveryDistance=orderHeader[i].DeliveryTravelDistance;
+		var deliveryDistance=Number(orderHeader[i].DeliveryTravelDistance)/1609.34; //Convert meters to miles
 		var deliveryTime=orderHeader[i].DeliveryTravelTime;
 		
 	
