@@ -53,6 +53,7 @@
             <th>Food Item ID</th>
             <th>Food Item Quantity</th>
             <th>Comments</th>
+            <th>More Info</th>
             
         </tr>
 
@@ -80,6 +81,7 @@
             <th>Food Item ID</th>
             <th>Food Item Quantity</th>
             <th>Comments</th>
+            <th>More Info</th>
             
         </tr>
                     
@@ -133,12 +135,20 @@ var x = setInterval(
             countDown.innerHTML = (hours + "h "
                 + minutes + "m " + seconds + "s ");
 
-            //If the count down is finished, write some text 
+            //If the count down is finished, recalculate and update the estimated delivery time
             if (distance < 0) {
-            
+                //Gets order info to accurately update delivery time
+                var orderID=table.rows[i+1].cells[2].innerHTML;
+                var url="getOrderByID.php?orderID="+orderID;
+                var temp=decodeURIComponent(getDatabase(url)); //Data is encoded into URL format in the database to be able to be sent using PHP
+                var orderHeader=JSON.parse(temp);
+
+                var deliveryTime=orderHeader[0].DeliveryTravelTime; //Used to calculate updated estimated delivery time
+
                 nowSec = Math.floor(now/1000);
                 var newKitchenTime=Number(nowSec)+180;
-                updateKitchenFinishCookTime(row.cells[2].innerText, newKitchenTime);
+                var newActualTime=Number(newKitchenTime)+Number(deliveryTime);
+                updateKitchenFinishCookTime(row.cells[2].innerText, newKitchenTime, newActualTime);
                 location.reload(true); 
             }
         }

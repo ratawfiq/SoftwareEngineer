@@ -54,6 +54,7 @@
 			<th>Delivery Distance</th>
 			<th>Delivery Completion Time</th>
 			<th>Comments</th>
+            <th>More Info</th>
             
         </tr>
 
@@ -82,6 +83,7 @@
 			<th>Delivery Distance</th>
 			<th>Delivery Completion Time</th>
 			<th>Comments</th>
+            <th>More Info</th>
             
         </tr>
 					
@@ -139,6 +141,7 @@ var x = setInterval(
 				nowSec = Math.floor(now/1000);
 				var newDeliveryTime=Number(nowSec)+180;
                 updateDeliveryFinishTime(row.cells[2].innerText, newDeliveryTime);
+                updateActualTime(row.cells[2].innerText, newDeliveryTime);
 				location.reload(true); 
             }
         }

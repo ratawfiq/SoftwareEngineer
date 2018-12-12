@@ -146,7 +146,7 @@ function createTables(tableNum, orderStatus){
 
 		//Inserts a row at the top of the table
 		var row = table.insertRow(1);
-		row.setAttribute("onclick", "moreInfo("+orderID+")");
+		//row.setAttribute("onclick", "moreInfo("+orderID+")");
 		//Inserts cells
 		var check_cell=row.insertCell(0);
 		var timer=row.insertCell(1);
@@ -158,7 +158,7 @@ function createTables(tableNum, orderStatus){
 		var deliveryDistance_cell=row.insertCell(7);
 		var deliveryTime_cell=row.insertCell(8);
 		var comments_cell=row.insertCell(9);
-		
+		var moreInfo_cell=row.insertCell(10);
 
 		//Should put the data into the cells
 		timer.innerHTML=timer_max; 
@@ -171,7 +171,7 @@ function createTables(tableNum, orderStatus){
 		deliveryTime_cell.innerHTML=finishDeliveryTime;
 		comments_cell.innerHTML=comments;
 		check_cell.innerHTML=check;
-
+		moreInfo_cell.innerHTML="<button id= 'button"+orderID+"'  onclick='moreInfo("+orderID+")' >" + "More Info"+ "</button>";
 		//-----------------------------------------------------------------------
 	}
 	

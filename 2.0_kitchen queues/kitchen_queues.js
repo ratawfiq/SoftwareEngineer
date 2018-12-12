@@ -143,7 +143,7 @@ function createTables(tableNum, orderStatus){
 
 		//Inserts a row at the top of the table
 		var row = table.insertRow(1);
-		row.setAttribute("onclick", "moreInfo("+orderID+")");
+		//row.setAttribute("onclick", "moreInfo("+orderID+")");
 		//Inserts cells
 		var check_cell=row.insertCell(0);
 		var timer=row.insertCell(1);
@@ -154,7 +154,7 @@ function createTables(tableNum, orderStatus){
 		var foodItems_cell=row.insertCell(6);
 		var foodQty_cell=row.insertCell(7);
 		var comments_cell=row.insertCell(8);
-		
+		var moreInfo_cell=row.insertCell(9);
 		
 		//Should put the data into the cells
 		timer.innerHTML=timer_max; //Need to add.
@@ -166,7 +166,7 @@ function createTables(tableNum, orderStatus){
 		foodQty_cell.innerHTML=foodQty;
 		comments_cell.innerHTML=comments;
 		check_cell.innerHTML=check;
-
+		moreInfo_cell.innerHTML="<button id= 'button"+orderID+"'  onclick='moreInfo("+orderID+")' >" + "More Info"+ "</button>";
 		//-----------------------------------------------------------------------
 	}
 	
