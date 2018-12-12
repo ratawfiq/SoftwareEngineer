@@ -53,7 +53,7 @@ CREATE TABLE `order_header` (
 
 LOCK TABLES `order_header` WRITE;
 /*!40000 ALTER TABLE `order_header` DISABLE KEYS */;
-INSERT INTO `order_header` VALUES ('1','Username1','John','Doe','1st Street','Rochester','MI','48307','555-5555','No',1543275279,1543276279,NULL,900,1543881653,1543884882,10,100,10.5,'delivery_in_progress'),('2','Username2','Jane','Doe','2nd Street','Rochester','MI','48307','555-5555','No',1543277387,1543279387,NULL,180,1543972027,NULL,15,200,12,'kitchen_in_progress'),('3','Tester1','A','B','3rd Street','Rochester','MI','48307','555-555','Yes',1543689477,1543699477,NULL,300,NULL,NULL,4,300,9,'customer_submitted'),('4','user','C','D','4th Street','Rochester','MI','48307','555-555-5555','Y',1543689477,1543699477,NULL,300,NULL,NULL,4,300,9,'completed'),('5','user','C','D','4th Street','Rochester','MI','48307','555-555-555','N',1543689477,1543699477,1543699477,300,1543699477,1543699477,4,300,9,'kitchen_completed');
+INSERT INTO `order_header` VALUES ('1','Username1','John','Doe','1st Street','Rochester','MI','48307','555-5555','No',1543275279,1543276279,NULL,900,1543881653,1544573353,10,100,10.5,'delivery_in_progress'),('10','user','John','Doe','1 First St','Rochester','MI','48307','8888888888','',1544571252,1544572649,1544572649,360,0,0,9732,857,8.48,'kitchen_in_progress'),('2','Username2','Jane','Doe','2nd Street','Rochester','MI','48307','555-5555','No',1543277387,1543279387,NULL,180,1544383296,NULL,15,200,12,'completed'),('3','Tester1','A','B','3rd Street','Rochester','MI','48307','555-555','Yes',1543689477,1543699477,NULL,300,NULL,NULL,4,300,9,'customer_submitted'),('4','user','C','D','4th Street','Rochester','MI','48307','555-555-5555','Y',1543689477,1543699477,1543899477,300,NULL,NULL,4,300,9,'completed'),('5','user','C','D','4th Street','Rochester','MI','48307','555-555-555','N',1543689477,1543699477,1544573251,300,1544390716,1544573537,4,300,9,'completed'),('6','Tester1','Bob','Dole','Tienken Rd','Auburn Hills','MI','48307','666-666-6666','as',1544308939,1544310653,1544568901,600,1544383394,1544565103,11486,934,16.96,'kitchen_completes'),('7','Tester1','Bob','Dole','Tienken Rd','Auburn Hills','MI','48307','666-666-6666','as',1544311684,1544313398,0,600,0,0,11486,934,16.96,'customer_submitted'),('8','user','John','Doe','1 First St','Rochester','MI','48307','8888888888','',1544570909,1544572306,0,360,0,0,9732,857,15.9,'customer_submitted'),('9','user','John','Doe','1 First St','Rochester','MI','48307','8888888888','',1544570962,1544572359,0,360,0,0,9732,857,15.9,'completed');
 /*!40000 ALTER TABLE `order_header` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -66,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-06 18:40:19
+-- Dump completed on 2018-12-11 19:23:14

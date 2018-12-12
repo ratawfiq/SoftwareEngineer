@@ -46,7 +46,7 @@ CREATE TABLE `user_account_data` (
 
 LOCK TABLES `user_account_data` WRITE;
 /*!40000 ALTER TABLE `user_account_data` DISABLE KEYS */;
-INSERT INTO `user_account_data` VALUES ('user','pass','John','Doe','1 First St','Rochester','MI','48307','asd@asd.com','555-555-5555','cust','good',0,0),('TestTest5','TestTest5','John','Doe','134 Mill St.','Rochester','MI','48307','asd@asd.com','555-555-5555','cust','good',11788,1031),('TestTest6','TestTest6','A','B','1st Street','Rochester','MI','48307','asd@asd.com','555-555-5555','cust','good',9732,855),('Special6#','Special6','Weshen','Lu','Broadmoor Dr','Rochester Hills','MI','48309','asd@asd.com','999-999-9999','cust','good',6094,580);
+INSERT INTO `user_account_data` VALUES ('user','pass','John','Doe','1 First St','Rochester','MI','48307','asd@asd.com','555-555-5555','cust','good',0,0),('TestTest5','TestTest5','John','Doe','134 Mill St.','Rochester','MI','48307','asd@asd.com','555-555-5555','cust','good',11788,1031),('TestTest6','TestTest6','A','B','1st Street','Rochester','MI','48307','asd@asd.com','555-555-5555','cust','good',9732,855),('Tester1','Tester1','Bob','Dole','Tienken Rd','Auburn Hills','MI','48307','aa@aa.com','666-666-6666','cust','good',11486,934),('kitchen','kitchen','kitchen','kitchen','118 Library Dr','Rochester','MI','48309','a@a.com','555-555-5555','kitchen','good',0,0),('delivery','delivery','delivery','delivery','118 Library Dr','Rochester','MI','48309','a@a.com','555-555-5555','delivery','good',0,0),('owner','owner','owner','owner','118 Library Dr','Rochester','MI','48309','a@a.com','555-555-5555','owner','good',0,0);
 /*!40000 ALTER TABLE `user_account_data` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-06 18:40:20
+-- Dump completed on 2018-12-11 19:23:15
