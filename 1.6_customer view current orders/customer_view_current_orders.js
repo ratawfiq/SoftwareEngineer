@@ -105,7 +105,7 @@ function moreInfo(ID){
 		var zipcode=orderHeader[i].DeliveryZipCode;
 		var comments=orderHeader[i].Comments;
 		var submissionTime=convertTime(orderHeader[i].OrderSubmissionTime)
-		var estDeliveryTime=convertTime(orderHeader[i].DeliveryFinishTime);
+		var estDeliveryTime=convertTime(orderHeader[i].ActualDeliveryTime);
 		var price=orderHeader[i].TotalPrice;
 		var orderStat=orderHeader[i].OrderStatus;
 		

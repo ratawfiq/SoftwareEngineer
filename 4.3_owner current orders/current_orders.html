@@ -6,31 +6,6 @@
 <title>Owner View Current Orders</title>
 <link rel="stylesheet" href="owner_previous_orders.css">
 
-<style>
-#overlay {
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 2;
-    cursor: pointer;
-}
-
-#overlayText{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 20px;
-    color: white;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-}
-</style>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
 </script>
@@ -67,12 +42,12 @@
 	</div>
 </div>
 
-<div class="row">
+<div class="row" align="center">
 <div class="tab" style="display: inline;" align="center">
-  <button class="tablinks" style="display: inline;" onclick="openCity(event, 'Tab1')">Customer submitted orders</button>
-  <button class="tablinks" style="display: inline;" onclick="openCity(event, 'Tab2')">Kitchen in-progress orders</button>
-  <button class="tablinks" style="display: inline;" onclick="openCity(event, 'Tab3')">Kitchen completed orders</button>
-  <button class="tablinks" style="display: inline;" onclick="openCity(event, 'Tab4')">Delivery in-progress orders</button>
+  <button class="tablinks" style="display: inline-block;" onclick="openCity(event, 'Tab1')">Customer submitted orders</button>
+  <button class="tablinks" style="display: inline-block;" onclick="openCity(event, 'Tab2')">Kitchen in-progress orders</button>
+  <button class="tablinks" style="display: inline-block;" onclick="openCity(event, 'Tab3')">Kitchen completed orders</button>
+  <button class="tablinks" style="display: inline-block;" onclick="openCity(event, 'Tab4')">Delivery in-progress orders</button>
 </div>
 </div>
 
