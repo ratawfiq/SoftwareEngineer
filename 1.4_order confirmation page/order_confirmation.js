@@ -102,6 +102,18 @@ function displayOrder() {
 	document.getElementById("orderFoodPrice").innerHTML = tempOrderFoodPrice;
 	document.getElementById("totalPrice").innerHTML = "Total Price: $"+localStorage.storedPrice;
 	
+	//Gets the location and comments and displays it
+	var tempAddress=localStorage.storedDeliveryAddress;
+	var tempCity=localStorage.storedCity;
+	var tempState=localStorage.storedState;
+	var tempZip=localStorage.storedZipCode;
+
+	var location=tempAddress+' '+tempCity+' '+tempState+' '+tempZip;
+	var comments=localStorage.storedComment;
+
+	document.getElementById("location").innerHTML=location;
+	document.getElementById("comments").innerHTML=comments;
+
 	document.getElementById("estTime").innerHTML=displayTime+" minutes";
 }
 
