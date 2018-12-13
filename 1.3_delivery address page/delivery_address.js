@@ -114,7 +114,8 @@ function submitOrder(){
 	&& document.getElementById("city").value!=""
 	&& document.getElementById("state").value!=""
 	&& document.getElementById("zipCode").value!=""
-	&& document.getElementById("phoneNumber").value!="";
+	&& document.getElementById("phoneNumber").value!=""
+	&& document.getElementById("email").value!="";
 	if(!nonBlank){
 		alert("Please fill in all entry fields.");
 	}
@@ -176,8 +177,8 @@ function submitOrder(){
 			
 			var deliveryDistance=results[j].distance.value; //Since we are only inputting one locations, we should be getting only 1 set of results
 			var deliveryDuration=results[j].duration.value;
-			if (deliveryDistance>79200){ 
-			//Google API using imperial distance
+			if (deliveryDistance>24140.2){ 
+			//Google API is in meters
 				alert("We only deliver to the area within 15 miles.");
 				return;
 			}else{
