@@ -25,9 +25,9 @@ function updateDatabase(orderID, newStatus){
 
 }
 
-function updateKitchenFinishCookTime(orderID, kitchenTime){
+function updateKitchenFinishCookTime(orderID, kitchenTime, actualTime){
 	var oReq = new XMLHttpRequest(); //New request object
-	var url="updateKitchenFinishCookTime.php?orderID="+orderID+"&kitchenFinishCookTime="+kitchenTime;
+	var url="updateKitchenFinishCookTime.php?orderID="+orderID+"&kitchenFinishCookTime="+kitchenTime+"&actualtime="+actualTime;
 	oReq.open("GET", url, false);
 	oReq.send();
 	return "hi";
@@ -194,6 +194,7 @@ function cookFood(){
 			//Sets the time when the kitchen should finish and updates when the delivery should be completed
 			var kitchenTime=Number(now)+Number(orderInfo[0].KitchenCookTime);
 			var actualTime=Number(kitchenTime)+Number(orderInfo[0].DeliveryTravelTime)
+		
 			updateKitchenFinishCookTime(orderID, kitchenTime, actualTime);
 			
 			//Changed the order status

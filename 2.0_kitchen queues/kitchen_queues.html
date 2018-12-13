@@ -114,6 +114,7 @@ var x = setInterval(
             //rows would be accessed using the "row" variable assigned in the for loop
 
             var endDate = row.cells[5];
+
             countDownDate = new Date(endDate.innerHTML.replace(/-/g, "/")).getTime();
             var countDown = row.cells[1];
             // Update the count down every 1 second
@@ -137,8 +138,10 @@ var x = setInterval(
 
             //If the count down is finished, recalculate and update the estimated delivery time
             if (distance < 0) {
+
                 //Gets order info to accurately update delivery time
-                var orderID=table.rows[i+1].cells[2].innerHTML;
+                var orderID=table.rows[i].cells[2].innerHTML;
+               
                 var url="getOrderByID.php?orderID="+orderID;
                 var temp=decodeURIComponent(getDatabase(url)); //Data is encoded into URL format in the database to be able to be sent using PHP
                 var orderHeader=JSON.parse(temp);
