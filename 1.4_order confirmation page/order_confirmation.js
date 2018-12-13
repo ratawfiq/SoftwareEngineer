@@ -76,6 +76,7 @@ function displayOrder() {
     }
 	
 	var storedOrderDetails=findOrderDetails();
+
 	orderID=Number(storedOrderDetails[0])+1; //Increments the largest stored orderID	
 	storedKitchenCookTime=storedOrderDetails[1]; //Is the lowest kitchen cook time
 
@@ -119,6 +120,18 @@ function displayOrder() {
 
 
 function cancelOrder(){
+
+
+		localStorage.storedQty01=0;
+		localStorage.storedQty02=0;
+		localStorage.storedQty03=0;
+		localStorage.storedQty04=0;
+		localStorage.storedQty05=0;
+		localStorage.storedQty06=0;
+		localStorage.storedQty07=0;
+		localStorage.storedQty08=0;	
+		localStorage.storedQty09=0;	
+
     window.open("../1.0_landing page/customer_landing_page.html", "_self");
 }
 
@@ -221,6 +234,7 @@ function findOrderDetails(){
     };
 	//parses the JSON that was returned by the PHP into an object.
 	var orderDetails=JSON.parse(details);
+
 	//If there are no stored orders, then set defaults
 	if (orderDetails[0]==""){
 		return [0, 0];
@@ -232,11 +246,11 @@ function findOrderDetails(){
 		var len=orderDetails.length;	
 
 		for (var i=0; i<len; i++){
-			if (orderDetails[i].OrderIDs>highestOrderID){
-				highestOrderID=orderDetails[i].OrderIDs
+			if (Number(orderDetails[i].OrderIDs)>highestOrderID){
+				highestOrderID=orderDetails[i].OrderIDs;
 			}
 			if (orderDetails[i].KitchenCookTimes<lowestKitchenCookTime){
-				lowestKitchenCookTime=orderDetails[i].KitchenCookTimes
+				lowestKitchenCookTime=orderDetails[i].KitchenCookTimes;
 			}
 		}	
 		return [highestOrderID, lowestKitchenCookTime];
