@@ -256,7 +256,7 @@ function moreInfo(ID){
 	
 		var str="<p>Order ID: "+ID+
 		"<br/>Order Submission Time: "+submissionTime+
-		"<br/>Price: "+price+
+		"<br/>Price: $"+price+
 		"<br/>Delivery Location: "+locations+
 		"<br/>Comments: "+comments+"</p>";
 	

@@ -67,7 +67,8 @@ function createTables(tableNum, orderStatus){
 		var orderID=orderHeader[i].OrderID;
 		var lastName=orderHeader[i].DeliveryLastName;
 		var deliveryLocation=orderHeader[i].DeliveryAddress+" "+orderHeader[i].DeliveryCity+" "+orderHeader[i].DeliveryState+" "+orderHeader[i].DeliveryZipCode; 
-		var deliveryDistance=Number(orderHeader[i].DeliveryTravelDistance)/1609.34; //Convert meters to miles
+		var delDist=Number(orderHeader[i].DeliveryTravelDistance)/1609.34; //Convert meters to miles
+		var deliveryDistance=delDist.toFixed(2);
 		var deliveryTime=orderHeader[i].DeliveryTravelTime;
 		
 	
@@ -167,7 +168,7 @@ function createTables(tableNum, orderStatus){
 		foodItems_cell.innerHTML=foodItems;
 		foodQty_cell.innerHTML=foodQty;
 		deliveryLocation_cell.innerHTML=deliveryLocation;
-		deliveryDistance_cell.innerHTML=deliveryDistance;
+		deliveryDistance_cell.innerHTML=deliveryDistance+" miles";
 		deliveryTime_cell.innerHTML=finishDeliveryTime;
 		comments_cell.innerHTML=comments;
 		check_cell.innerHTML=check;
@@ -253,7 +254,7 @@ function moreInfo(ID){
 	
 		var str="<p>Order ID: "+ID+
 		"<br/>Order Submission Time: "+submissionTime+
-		"<br/>Price: "+price+
+		"<br/>Price: $"+price+
 		"<br/>Delivery Location: "+locations+
 		"<br/>Comments: "+comments+"</p>";
 	
